@@ -13,13 +13,14 @@ switch ($Action)
         {//display files if any has been selected
             uploadFiles();
             //echo '<div style="color:blue; text-align:center;"><a href="' . THIS_PAGE . '?action=delete">Clean table</a></div>';
-            echo '<div text-align=center;"><a href="' . THIS_PAGE . '">Back</a></div>';
+            echo '<div class="back" text-align=center;"><a href="' . THIS_PAGE . '">Back</a></div>';
         }
         else { //else prompt the user to select one
             $fileList = getFileList("file_test");
             displayFileList($fileList);
             echo '<div style="color:red; text-align:center;">Please select at least one file</a></div>';
-            echo '<div text-align=center;"><a href="' . THIS_PAGE . '">Reload</a></div>';
+            echo '<div class="reload" text-align=center;"><a href="' . THIS_PAGE . '">Reload</a></div>';
+            echo '<div class="chart" text-align=center;"><a href="charts.php?">Chart Measures</a></div>';
             //echo '<div style="color:blue; text-align:center;"><a href="' . THIS_PAGE . '?action=delete">Clean table</a></div>';
             }
         break;
@@ -36,7 +37,9 @@ switch ($Action)
         $fileList = getFileList("file_test");
         displayFileList($fileList);	 
         //echo '<div style="color:blue; text-align:center;"><a href="' . THIS_PAGE . '?action=delete">Clean table</a></div>';
-        echo '<div text-align=center;"><a href="' . THIS_PAGE . '">Reload</a></div>';
+        echo '<div class="reload" text-align=center;"><a href="' . THIS_PAGE . '">Reload</a></div>';
+        echo '<div class="chart" text-align=center;"><a href="charts.php">Chart Measures</a></div>';
+
 }//end switch
 
 
@@ -50,6 +53,7 @@ function uploadFiles()
     for ($i=0; $i<count($_REQUEST['files']); $i++) 
     {//$dataArr[$i] will contain data from the file[$i]
         $valuesArr[$i] = getLinesFromFile('file_test/'.$_REQUEST['files'][$i]);
+        //dumpDie($valuesArr);
         $netColor = $_REQUEST['netColor'.$i];
         $position = $_REQUEST['measurePosition'.$i];
         $measurementType = $_REQUEST['measureType'.$i];

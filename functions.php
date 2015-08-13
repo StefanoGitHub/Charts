@@ -2,6 +2,10 @@
 //functions.php
 
 include "credentials.php";
+include "Measure.php";
+include "Grafico.php";
+//include "session_db_inc.php";
+
 define ('SORT_ASCENDING', 0);//define constant for scandir() function
 define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); //Current page name, stripped of folder info - (saves resources)
 
@@ -57,7 +61,7 @@ function getLinesFromFile($filePath)
     $linesArr = file($filePath, FILE_SKIP_EMPTY_LINES);
     for ($i=0; $i<count($linesArr); $i++) 
     {
-        $linesArr[$i] = explode(" ", trim(str_replace('  ',' ',$linesArr[$i]), " \t\n\r\0\x0B"));
+        $linesArr[$i] = explode(" ", trim( str_replace("  "," ",$linesArr[$i]), " \t\n\r\0\x0B"));
         if(count($linesArr[$i]) == 2)
         {//check if the line contains a "value pair"
             if (is_numeric($linesArr[$i][0]) && is_numeric($linesArr[$i][1])) 
@@ -276,10 +280,34 @@ function startSession()
         return true;
     }else{
         @session_start();
+        return false;
     }
-    if(isset($_SESSION)){return true;}else{return false;}
+    //if(isset($_SESSION)){return true;}else{return false;}
 } #End startSession()
 
+/**
+ * wrapper function for PHP session_destroy(), to prevent 'session uninitialized' error messages.
+ *
+ * To view any session data, sessions must be explicitly started in PHP.
+ * In order to use sessions in a variety of INC files, we'll check to see if a session
+ * exists first, then destroy the session only if exists.
+ *
+ *
+ * @return void
+ * @todo none
+ */
+function clearSession()
+{
+    //if(!isset($_SESSION)){@session_start();}
+    if(isset($_SESSION))
+    {
+        @session_destroy();
+        return true;
+    }else{
+        return false;
+    }
+    //if(isset($_SESSION)){return true;}else{return false;}
+} #End startSession()
 
 
 function myerror($myFile, $myLine, $errorMsg)
@@ -309,7 +337,7 @@ function myerror($myFile, $myLine, $errorMsg)
  * Later, we can add to this function sitewide, as new requirements or vulnerabilities develop.
  *
  * @param string $str data as pulled from MySQL
- * @return $str data cleaned of slashes, spaces around string, etc.
+ * @return string $str data cleaned of slashes, spaces around string, etc.
  * @see dbIn()
  * @todo none
  ***************************************************************************************/
@@ -329,7 +357,7 @@ function dbOut($str)
  * as vulnerabilities emerge.
  *
  * @param string $var data as entered by user
- * @param object $myConn active mysqli DB connection, passed by reference.
+ * @param object $iConn active mysqli DB connection, passed by reference.
  * @return string returns data filtered by MySQL, adding slashes, etc.
  * @see dbIn() 
  * @todo none
@@ -346,38 +374,7 @@ function idbIn($var,&$iConn)
 }//end idbIn()
 
 /***************************************************************************************
-* A Measure Object will host all the data related a single measure:
-* $valuesArr: array of vale pairs (Wavelength-Amplitude)
-* $netColor: string (i.e. BLUE)
-* $position: string (i.e. 1_Centro)
-* $measurementType: string (i.e. Irradiance)
-* $sessionDate: string (i.e. 08032015)
-*
-* Returns the result from the DB
-TODO: 
-***************************************************************************************/
-class Measure
-{
-    public $valuesArr = array();
-    public $netColor = '';
-    public $position = '';
-    public $measurementType = '';
-    public $sessionDate = '';
-    
-    public function __construct($valuesArr, $netColor, $position, $measurementType, $sessionDate) 
-    {
-        $this->valuesArr = $valuesArr;
-        $this->netColor = $netColor;
-        $this->position = $position;
-        $this->measurementType = $measurementType;
-        $this->sessionDate = $sessionDate;
-    }//end constructor
-    
-}// end Question Class
-
-
-/***************************************************************************************
-* Gets the elements from the Array paramater and generates an OR separated string 
+* Gets the elements from the Array parameter and generates an OR separated string
 * used in the SQL statement to select multiple columns
 * Returns a string
 TODO: 
@@ -450,7 +447,7 @@ function generateDataTable($netColorArr, $positionArr, $measurementTypeArr, $ses
         for ($i=1; $i<$chartLineNumber; $i++) 
         {       
             $sqlJOINT .= 
-                "INNER JOIN 
+                "INNER JOIN
                     (SELECT Wavelength, Amplitude
                      FROM t_IRR_Data 
                      WHERE
@@ -528,7 +525,7 @@ function generateDataTable($netColorArr, $positionArr, $measurementTypeArr, $ses
     @mysqli_free_result($result);//clear result
     //return the DATA TABLE, if created
     if(isset($dataTableString)) {return $dataTableString;}
-}//end getMeasureDataFromTable2()
+}//end getMeasureDataFromTable()
 
 
 
@@ -571,7 +568,7 @@ function smartTitle($myTitle = '')
         //echo $word . '<br />';
     }
     return implode(" ",$myTitle); #return imploded (spaces re-added) version
-}# End smartTitle()
+}// End smartTitle()
 
 
 

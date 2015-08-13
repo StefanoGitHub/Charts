@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        td, tr, th { border:grey solid 1px; }
+        table { margin:0 auto; border:grey solid 1px; }
+        div { margin: 2em; }
+    </style>
+    <title>table</title>
+</head>
+<body>
+<form action="'.THIS_PAGE.'" method="post">
+    <table>
+        <tr>
+            <th>Measurement type</th>
+        </tr>
+        <tr>
+            <td class="measureType" style="text-align:center">
+                <input type="radio" name="measurementType'.$i.'" value="Irradiance" required>IRR
+                <input type="radio" name="measurementType'.$i.'" value="Transmittance">TRM
+                <input type="radio" name="measurementType'.$i.'" value="Reference">SSM(Ref.)
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th>Net Color</th>
+            <th>Measurement position</th>
+            <th>Measurement date</th>
+        </tr>
+
+        <tr>
+            <td class="color" style="text-align:center">
+                <input type="radio" name="netColor'.$i.'" value="Blue" required>Blue
+                <input type="radio" name="netColor'.$i.'" value="Red">Red
+                <input type="radio" name="netColor'.$i.'" value="White">White
+            </td>
+            <td class="position" style="text-align:center">
+                <input type="radio" name="position'.$i.'" value="1_West">1_West
+                <input type="radio" name="position'.$i.'" value="1_Centro" required>1_Centro
+                <input type="radio" name="position'.$i.'" value="1_Est">1_Est <br>
+                <input type="radio" name="position'.$i.'" value="2_West">2_West
+                <input type="radio" name="position'.$i.'" value="2_Centro">2_Centro
+                <input type="radio" name="position'.$i.'" value="2_Est">2_Est <br>
+                <input type="radio" name="position'.$i.'" value="SCAT_West">SCAT_West
+                <input type="radio" name="position'.$i.'" value="SCAT_Centro">SCAT_Centro
+                <input type="radio" name="position'.$i.'" value="SCAT_Est">SCAT_Est <br>
+                <input type="radio" name="position'.$i.'" value="1_REF">1_REF
+                <input type="radio" name="position'.$i.'" value="2_REF">2_REF
+
+            </td>
+            <td class="measureDate" style="text-align:center">
+                <input type="text" name="measureDate'.$i.'" placeholder="mmddyy" required />
+            </td>
+        </tr>
+    </table>
+
+
+    <input id="files" type="hidden" name="measuresToChart" value="'.(int)$_REQUEST['measuresToChart'].'">
+    <div style="text-align:center;" colspan="4">
+        <input type="submit" name="action" value="chart">
+        <a href="' . THIS_PAGE . '">Back</a>
+    </div>
+</form>
+</body>
+</html>

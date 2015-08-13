@@ -17,7 +17,7 @@
  * Below is the DB table to store session data:
  *
  * <code>
- *	CREATE TABLE nm_sessions ( 
+ *	CREATE TABLE t_sessions (
  *	SessionID CHAR(32) NOT NULL, 
  *	SessionData TEXT, 
  *	LastAccessed TIMESTAMP NOT NULL, 
@@ -25,7 +25,6 @@
  *	);
  * </code>
  * 
- * note the prefix "nm_" which should instead match your table prefix in config_inc.php
  *
  * To deploy, place a reference to this include file in config_inc.php.  To go back to 
  * file-system based sessions, merely comment out the include file reference.
@@ -45,14 +44,12 @@
  * @todo none
  */
 
-ini_set('session.use_trans_sid', false); # Turns off querystring session handling - off by default by PHP 4.3.4
+//ini_set('session.use_trans_sid', false); # Turns off querystring session handling - off by default by PHP 4.3.4
 $iConn = NULL;  #var is created outside all functions to be globally available
 
 #overwrite default session handler
 session_set_save_handler('session_open', 'session_close', 'session_read', 'session_write', 'session_eliminate', 'session_clean');
 startSession(); #DB requires session started; equals to: if (!isset($_SESSION)) { session_start(); }
-
-
 
 
 
@@ -106,7 +103,7 @@ function session_read($sid) {
 	if(!is_resource($iConn)){$iConn = IDB::conn();}
 
  	# Identify session data from $sid
- 	$sql = sprintf('SELECT SessionData FROM ' . PREFIX . 'sessions WHERE PHPSessID="%s"', idbIn($sid,$iConn)); 
+ 	$sql = sprintf('SELECT SessionData FROM t_sessions WHERE PHPSessID="%s"', idbIn($sid,$iConn));
 	$result = mysqli_query($iConn,$sql) or die(trigger_error(mysqli_error($iConn) . " sql: " . $sql, E_USER_ERROR));
 	if (mysqli_num_rows($result) > 0)
 	{# Access data as array via list(), and return
@@ -134,7 +131,7 @@ function session_write($sid, $data) {
 	global $iConn;# Global connection to DB
 	if(!is_resource($iConn)){$iConn = IDB::conn();}
 	# Update/insert session data
-	$sql = sprintf('REPLACE INTO ' . PREFIX . 'sessions (PHPSessID, SessionData,LastAccessed) VALUES ("%s", "%s",NOW())', idbIn($sid,$iConn), idbIn($data,$iConn)); 
+	$sql = sprintf('REPLACE INTO t_sessions (PHPSessID, SessionData,LastAccessed) VALUES ("%s", "%s",NOW())', idbIn($sid,$iConn), idbIn($data,$iConn));
  	mysqli_query($iConn,$sql);
 	
 	# Return number of rows updated/inserted
@@ -159,7 +156,7 @@ function session_eliminate($sid) {
 	if(!is_resource($iConn)){$iConn = IDB::conn();}
 	
 	# Delete SQL
- 	$sql = sprintf('DELETE FROM ' . PREFIX . 'sessions WHERE PHPSessID="%s"', idbIn($sid,$iConn)); 
+ 	$sql = sprintf('DELETE FROM t_sessions WHERE PHPSessID="%s"', idbIn($sid,$iConn));
 	mysqli_query($iConn,$sql) or die(trigger_error(mysqli_error($iConn) . " sql: " . $sql, E_USER_ERROR));
 	
 	# Setting a session to an empty array safely clears all data
@@ -186,8 +183,8 @@ function session_eliminate($sid) {
 function session_clean($expire) {
 	global $iConn; # Global connection to DB
 	if(!is_resource($iConn)){$iConn = IDB::conn();}
-	# SQL to delete old sessions
- 	$sql = sprintf('DELETE FROM ' . PREFIX . 'sessions WHERE DATE_ADD(LastAccessed, INTERVAL %d SECOND) < NOW()', (int) $expire); 
+	# SQL to delete old t_sessions
+ 	$sql = sprintf('DELETE FROM t_sessions WHERE DATE_ADD(LastAccessed, INTERVAL %d SECOND) < NOW()', (int) $expire);
 	mysqli_query($iConn,$sql) or die(trigger_error(mysqli_error($iConn) . " sql: " . $sql, E_USER_ERROR));
 
 	return mysqli_affected_rows($iConn);

@@ -1,6 +1,10 @@
 <?php
 
 include "functions.php";
+//startSession();
+session_start();
+
+dumpDie($_SESSION);
 define ('DEBUG', 'DEBUG');
 
 /***************************************************************************************
@@ -10,7 +14,7 @@ define ('DEBUG', 'DEBUG');
  * Returns an array of strings
 TODO:
  ***************************************************************************************/
-function postToArray($postKey)
+/*function postToArray($postKey)
 {
     $originalRequest = json_decode($_REQUEST['oRequest'], TRUE);
 
@@ -20,21 +24,21 @@ function postToArray($postKey)
         $Arr[] = $originalRequest[$postKey.$i];
     }
     return $Arr;
-}
+}*/
+/*    //load all the parameters the user selected in arrays
+    $netColorArr = postToArray('netColor');
+    $positionArr = postToArray('position');
+    $measurementTypeArr = postToArray('measurementType');
+    $measureDateArr = postToArray('measureDate');*/
 
+    $Grafico = $_SESSION['Grafico'];
+    //generate the data table for the charting tool passing the array of parameters
+    $dataTable = generateDataTableOOP($Grafico);
+    //activate the charting function
+    $drawCharts ='chart.draw(dataTable, options);';
+    $chartTitle = $Grafico->chartTitle;
 
-//load all the parameters the user selected in arrays
-$netColorArr = postToArray('netColor');
-$positionArr = postToArray('position');
-$measurementTypeArr = postToArray('measurementType');
-$measureDateArr = postToArray('measureDate');
-//generate the data table for the charting tool passing the array of parameters
-$dataTable = generateDataTable($netColorArr, $positionArr , $measurementTypeArr, $measureDateArr);
-//activate the charting function
-$drawCharts ='chart.draw(dataTable, options);';
-$chartTitle = "$measurementTypeArr[0]";
-
-header('Content-Type: application/javascript');
+    header('Content-Type: application/javascript');
 ?>
 
 // Set a callback to run when the Google Visualization API is loaded.
@@ -63,3 +67,65 @@ function drawChart() {
 }
 
 
+
+<?php
+
+/***************************************************************************************
+* Gets the selected data from the Grafico object
+* and creates the DATA TABLE for the google chart
+* Returns the DATA TABLE as a string
+TODO:
+***************************************************************************************/
+function generateDataTableOOP($Grafico)
+{
+    /* examples
+    $netColorArr = array("Blue", "Red", "White");
+    $positionArr = array("1_Centro", "1_Est", "2_West");
+    $measurementTypeArr = array("Transmittance", "Irradiance", "Transmittance");
+    $sessionDateArr = array("080415", "080315", "080415");*/
+
+    //define meanings for dataArr values based on position in the array
+    $Wavelength = 0;
+    $Amplitude = 1;
+
+    //constructing the part with the columns related to the amplitudes
+    $columnNames = '';
+    for ($i=0; $i<count($Grafico->functions); $i++) {
+
+        $columnNames .= ", '".$Grafico->functions[$i]->Measure->netColor. '_' . $Grafico->functions[$i]->Measure->position."'" ;
+
+    }
+    //first part of the string has all the columns
+    $dataTableString = "['Wavelength'$columnNames], ";
+    //constructing the values
+    $values = '';
+    for ($i=0; $i<count($Grafico->functions[0]->Measure->valuesArr[0])-1; $i++) {
+        $values .= "['".$Grafico->functions[0]->Measure->valuesArr[$i][$Wavelength]."' ";
+        for ($m=0; $m<count($Grafico->functions); $m++) {
+            $values .= $Grafico->functions[$m]->Measure->valuesArr[$i][$Amplitude].', ';
+        }
+        $values .= "'], ";
+    }
+    //the last value will not end with comma
+    $values .= "['".$Grafico->functions[0]->Measure->valuesArr[$i][$Wavelength]."' ";
+    for ($m=0; $m<count($Grafico->functions); $m++) {
+        $values .= $Grafico->functions[$m]->Measure->valuesArr[$i][$Amplitude].', ';
+    }
+    $values .= "']";
+
+    $dataTableString .= $values;
+
+        //number_format( $Grafico->functions[0]->Measure[0][0], 1)."', ".$values."]";
+
+    dumpDie($dataTableString);
+
+        /* espected string result:
+        ['Wavelenght', 'Amp1', 'Amp2' ...],
+        ['225',         1000,   400   ...],
+        ['230',         1170,   460   ...],
+        ['235',         660,    1120  ...],
+        ['240',         1030,   540   ...]
+        */
+
+    return $dataTableString;
+}//end getMeasureDataFromTableOOP()
