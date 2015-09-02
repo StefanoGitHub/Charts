@@ -1,8 +1,15 @@
+#Current Project
+##################
+
+/credentials.php
+/any_other/
+
+
+
 
 
 #-----------------------------------------
 # MAC OSX system files
-#-----------------------------------------
 #from https://github.com/github/gitignore
 
 .DS_Store
@@ -30,3 +37,18 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+*.log
+*.sql
+*.sqlite

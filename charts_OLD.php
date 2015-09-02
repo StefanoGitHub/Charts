@@ -40,7 +40,7 @@ switch ($Action)
 
         //$Chart = $_SESSION['Chart'];
         //generate the data table for the charting tool passing the array of parameters
-        $dataTable = 'google.visualization.arrayToDataTable([ '.generateDataTableOOP($Chart).' ])';
+        $dataTable = generateDataTableOOP($Chart);
         //activate the charting function
         $drawCharts ='chart.draw(dataTable, options);';
 
@@ -61,7 +61,7 @@ switch ($Action)
         
         break;
     
-    default:
+    case "Go":
         //provide page content
         //startSession();
 
@@ -80,59 +80,56 @@ switch ($Action)
                     </td>
                 </tr>
             </table>
-            <div>
-                <button id="addRow" class="addRow" type="button">Add a row</button>
-                <button id="delRow" class="delRow" type="button">Delete last row</button>
-            </div>
-            <table id="table2">
+            <br>
+            <table>
                 <tr>
                     <th>Net Color</th>
                     <th>Measurement position</th>
                     <th>Measurement date</th>
                 </tr>';
 
-        //for ($i=0; $i<$_REQUEST['measuresToChart']; $i++)
-        //{//create the number of lines requested by the user
+        for ($i=0; $i<$_REQUEST['measuresToChart']; $i++)
+        {//create the number of lines requested by the user 
         $page .= '<tr>
                 <td>
-                    <input type="radio" name="netColor0" value="Blue" required>Blue
-                    <input type="radio" name="netColor0" value="Red">Red
-                    <input type="radio" name="netColor0" value="White">White
-                    <input type="radio" name="netColor0" value="Light_Ref">Light_Ref
-                    <input type="radio" name="netColor0" value="Ctrl">Ctrl
+                    <input type="radio" name="netColor'.$i.'" value="Blue" required>Blue 
+                    <input type="radio" name="netColor'.$i.'" value="Red">Red
+                    <input type="radio" name="netColor'.$i.'" value="White">White
+                    <input type="radio" name="netColor'.$i.'" value="Light_Ref">Light_Ref
+                    <input type="radio" name="netColor'.$i.'" value="Ctrl">Ctrl
                 </td>
                 <td>
-                    <input type="radio" name="position0" value="1_1" required>1_1
-                    <input type="radio" name="position0" value="1_2">1_2
-                    <input type="radio" name="position0" value="1_3">1_3 <br>
-                    <input type="radio" name="position0" value="2_1">2_1
-                    <input type="radio" name="position0" value="2_2">2_2
-                    <input type="radio" name="position0" value="2_3">2_3 <br>
-                    <input type="radio" name="position0" value="1_1_SCAT">1_1_SCAT
-                    <input type="radio" name="position0" value="1_2_SCAT">1_2_SCAT
-                    <input type="radio" name="position0" value="1_3_SCAT">1_3_SCAT <br>
-                    <input type="radio" name="position0" value="2_1_SCAT">2_1_SCAT
-                    <input type="radio" name="position0" value="2_2_SCAT">2_2_SCAT
-                    <input type="radio" name="position0" value="2_3_SCAT">2_3_SCAT <br>
+                    <input type="radio" name="position'.$i.'" value="1_1" required>1_1
+                    <input type="radio" name="position'.$i.'" value="1_2">1_2
+                    <input type="radio" name="position'.$i.'" value="1_3">1_3 <br>
+                    <input type="radio" name="position'.$i.'" value="2_1">2_1
+                    <input type="radio" name="position'.$i.'" value="2_2">2_2
+                    <input type="radio" name="position'.$i.'" value="2_3">2_3 <br>
+                    <input type="radio" name="position'.$i.'" value="1_1_SCAT">1_1_SCAT
+                    <input type="radio" name="position'.$i.'" value="1_2_SCAT">1_2_SCAT
+                    <input type="radio" name="position'.$i.'" value="1_3_SCAT">1_3_SCAT <br>
+                    <input type="radio" name="position'.$i.'" value="2_1_SCAT">2_1_SCAT
+                    <input type="radio" name="position'.$i.'" value="2_2_SCAT">2_2_SCAT
+                    <input type="radio" name="position'.$i.'" value="2_3_SCAT">2_3_SCAT <br>
 
                 </td>
                 <td>
-                    <input type="text" name="sessionDate0" placeholder="mmddyy" required />
+                    <input type="text" name="sessionDate'.$i.'" placeholder="mmddyy" required />
                 </td>
             </tr>
             ';
-        //}//end for loop
+        }//end for loop
         $page .= '
                 </table>
-                <input id="files" type="hidden" name="measuresToChart" value="1">
+                <input id="files" type="hidden" name="measuresToChart" value="'.(int)$_REQUEST['measuresToChart'].'">
 
                 <div>
                     <input type="submit" name="action" value="chart">
                 </div>
+                <div>
+                    <a href="' . THIS_PAGE . '">Back</a>
+                </div>
             </form>
-            <div>
-                <a href="' . THIS_PAGE . '">Back</a>
-            </div>
             ';
 
         if (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') {
@@ -147,10 +144,9 @@ switch ($Action)
         $chart = '';
         $chartTitle = '';
         $drawCharts = '';
-        $dataTable = '""';
         break;
         
-/*    default: //Show existing projects
+    default: //Show existing projects
         //provide page content
         unset($_REQUEST);
         //clearSession();
@@ -177,13 +173,14 @@ switch ($Action)
         $chart = '';
         $chartTitle = '';
         $drawCharts = '';
-        $dataTable = '""';*/
         
 }//end switch
 
 
 //data.php?oRequest=<?php echo json_encode($_REQUEST)? >
 ?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -193,10 +190,9 @@ switch ($Action)
       <style>
           td, tr, th { text-align:center; border:grey solid 1px; }
           table { margin:0 auto; border:grey solid 1px; }
-          div { text-align:center; margin: 1.5em; }
+          div { text-align:center; margin: 2em; }
           .error { color:red; text-align:center;}
           #curve_chart { width:1200px; height:700px; margin:0 auto; }
-          button.addRow {  color:blue;}
       </style>
 
       <!-- Load the AJAX API and the Visualization API and the corechart package.
@@ -219,7 +215,9 @@ switch ($Action)
           // draws it.
           function drawChart() {
               // Create the DATA TABLE.
-              var dataTable = <?=$dataTable?>;
+              var dataTable = google.visualization.arrayToDataTable([
+                  <?=$dataTable?>
+              ]);
 
               //Set chart options.
               var options = {
@@ -233,7 +231,6 @@ switch ($Action)
               //chart.draw(dataTable, options);
               <?=$drawCharts?>
           }
-
       </script>
 
   </head>

@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a203fbe1-bb1f-4665-ac57-7a6664f13b9c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/.idea/dictionaries/Stefano.xml" />
+      <change type="NEW" beforePath="" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts_OLD.php" />
+      <change type="NEW" beforePath="" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/script.js" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_SCATTER_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_SCATTER_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/BLUE_SCATTER_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_SCATTER_CENTRO.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_SCATTER_EST.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/RED_SCATTER_WEST.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_SCATTER_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_SCATTER_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/file_test/untitled folder/WHITE_SCATTER_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_SCATTER_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_SCATTER_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/BLU/BLUE_SCATTER_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/FULL SUN OPEN FIELDSCATTER.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/BLUE_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/BLUE_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/BLUE_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/CRTL_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/CRTL_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/CRTL_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/RED_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/RED_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/RED_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/WHITE_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/WHITE_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/IRR/WHITE_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/NETs.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/NETs_clean.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/NETs_clean_wAverages_8Ago15.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/OPEN_FIELD_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_SCATTER_CENTRO.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_SCATTER_EST.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/RED/RED_SCATTER_WEST.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_SCATTER_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_SCATTER_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/originals/WHITE/WHITE_SCATTER_WEST.TRM" afterPath="" />
+      <change type="MOVED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/Grafico.php" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Chart.php" />
+      <change type="MOVED" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/graphs.php" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/upload.php" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Measure.php" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Measure.php" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts.php" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts.php" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/.idea/codeStyleSettings.xml" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/data.php" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/data.php" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/functions.php" afterPath="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/functions.php" />
+    </list>
+    <ignored path="Graphs2.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Graphs2" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="charts.php" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0588236">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding>
+                <marker date="1441192780000" expanded="true" signature="1645:1704" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="1844:1921" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="2106:3060" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="2127:2639" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="2148:2216" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="2237:2618" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="2282:2596" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="2882:3060" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="2903:3060" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="3208:4807" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="3229:3645" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="3666:3699" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="3666:3876" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="3666:4654" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="4675:4708" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="4675:4789" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="4997:5030" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="4997:5090" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="5128:5153" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="5128:5200" placeholder="..." />
+                <marker date="1441192780000" expanded="true" signature="8926:9241" placeholder="SELECT Wavel..t_IRR_Data..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5470383">
+              <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Chart.php" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Chart.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.875">
+              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Measure.php" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Measure.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-26.875">
+              <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.0">
+              <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+              <folding>
+                <marker date="1441180607000" expanded="true" signature="2036:2212" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="2036:2252" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="2036:2272" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="6640:6695" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="6640:6706" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="6640:8368" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="6740:6828" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="6740:6883" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="6904:6937" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="6904:7248" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="7385:7887" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="7385:7906" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="7927:8231" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="8436:8522" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="8613:8760" placeholder="..." />
+                <marker date="1441180607000" expanded="true" signature="10201:10242" placeholder="DELETE FROM ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.125">
+              <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+              <folding>
+                <marker date="1440010621000" expanded="true" signature="3085:3116" placeholder="INSERT INTO ..." />
+                <marker date="1440010621000" expanded="true" signature="18662:18680" placeholder="..." />
+                <marker date="1440010621000" expanded="true" signature="18681:18803" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Html5" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/session_db_inc.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/table.html" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/Grafico.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/graphs.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/Chart.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/data.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/functions.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/Measure.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/upload.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/charts_wjs.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/charts.php" />
+        <option value="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP/script.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="." />
+      <path value="/Applications/MAMP/bin/php/php5.6.10/lib/php" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1607" />
+    <option name="y" value="-232" />
+    <option name="width" value="1426" />
+    <option name="height" value="958" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Blade files</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Graphs2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Graphs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/GoogleDrive/MyLocalServer/Graphs" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$USER_HOME$/GoogleDrive/MyLocalServer/GraphsOOP" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="c0375ac0-68d3-42ec-8ad3-77c2055effe2" server_name="Graphs2">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a203fbe1-bb1f-4665-ac57-7a6664f13b9c" name="Default" comment="" />
+      <created>1439404918831</created>
+      <option name="number" value="Default" />
+      <updated>1439404918831</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Functioning version OOP&#10;&#10;ToDo: clean and rearrange code, renaming">
+      <created>1439456123540</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1439456123540</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1607" y="-232" width="1426" height="958" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18302946" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32845894" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Functioning version OOP&#10;&#10;ToDo: clean and rearrange code, renaming" />
+    <option name="LAST_COMMIT_MESSAGE" value="Functioning version OOP&#10;&#10;ToDo: clean and rearrange code, renaming" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts_OLD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="184" column="19" selection-start-line="184" selection-start-column="19" selection-end-line="184" selection-end-column="19" />
+          <folding>
+            <marker date="1441180607000" expanded="true" signature="2036:2212" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2252" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2272" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6695" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6706" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:8368" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6828" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6883" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:6937" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:7248" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7887" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7906" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7927:8231" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8436:8522" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8613:8760" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="10201:10242" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="6" selection-start-line="91" selection-start-column="6" selection-end-line="91" selection-end-column="6" />
+          <folding>
+            <marker date="1440010621000" expanded="true" signature="3085:3116" placeholder="INSERT INTO ..." />
+            <marker date="1440010621000" expanded="true" signature="18662:18680" placeholder="..." />
+            <marker date="1440010621000" expanded="true" signature="18681:18803" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts_OLD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Chart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Measure.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="104" selection-start-line="20" selection-start-column="104" selection-end-line="20" selection-end-column="104" />
+          <folding>
+            <marker date="1441180607000" expanded="true" signature="2036:2212" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2252" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2272" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6695" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6706" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:8368" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6828" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6883" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:6937" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:7248" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7887" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7906" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7927:8231" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8436:8522" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8613:8760" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="10201:10242" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="494" column="12" selection-start-line="494" selection-start-column="12" selection-end-line="494" selection-end-column="47" />
+          <folding>
+            <marker date="1440010621000" expanded="true" signature="3085:3116" placeholder="INSERT INTO ..." />
+            <marker date="1440010621000" expanded="true" signature="18662:18680" placeholder="..." />
+            <marker date="1440010621000" expanded="true" signature="18681:18803" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts_OLD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="175" column="36" selection-start-line="175" selection-start-column="36" selection-end-line="175" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1441180607000" expanded="true" signature="2036:2212" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2252" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2272" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6695" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6706" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:8368" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6828" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6883" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:6937" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:7248" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7887" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7906" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7927:8231" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8436:8522" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8613:8760" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="10201:10242" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="494" column="12" selection-start-line="494" selection-start-column="12" selection-end-line="494" selection-end-column="47" />
+          <folding>
+            <marker date="1440010621000" expanded="true" signature="3085:3116" placeholder="INSERT INTO ..." />
+            <marker date="1440010621000" expanded="true" signature="18662:18680" placeholder="..." />
+            <marker date="1440010621000" expanded="true" signature="18681:18803" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/session.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.9689298">
+          <caret line="172" column="9" selection-start-line="172" selection-start-column="9" selection-end-line="172" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/credentials.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15535098">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48741007">
+          <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33275864">
+          <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Chart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.875">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/Measure.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.875">
+          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding>
+            <marker date="1441180607000" expanded="true" signature="2036:2212" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2252" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="2036:2272" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6695" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:6706" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6640:8368" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6828" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6740:6883" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:6937" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="6904:7248" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7887" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7385:7906" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="7927:8231" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8436:8522" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="8613:8760" placeholder="..." />
+            <marker date="1441180607000" expanded="true" signature="10201:10242" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.125">
+          <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+          <folding>
+            <marker date="1440010621000" expanded="true" signature="3085:3116" placeholder="INSERT INTO ..." />
+            <marker date="1440010621000" expanded="true" signature="18662:18680" placeholder="..." />
+            <marker date="1440010621000" expanded="true" signature="18681:18803" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts_OLD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6630824">
+          <caret line="220" column="0" selection-start-line="217" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/charts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0588236">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <marker date="1441192780000" expanded="true" signature="1645:1704" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="1844:1921" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="2106:3060" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="2127:2639" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="2148:2216" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="2237:2618" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="2282:2596" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="2882:3060" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="2903:3060" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="3208:4807" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="3229:3645" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="3666:3699" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="3666:3876" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="3666:4654" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="4675:4708" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="4675:4789" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="4997:5030" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="4997:5090" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="5128:5153" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="5128:5200" placeholder="..." />
+            <marker date="1441192780000" expanded="true" signature="8926:9241" placeholder="SELECT Wavel..t_IRR_Data..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/GoogleDrive/MyLocalServer/Graphs/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5470383">
+          <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

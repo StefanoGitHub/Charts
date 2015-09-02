@@ -19,7 +19,19 @@ class Measure
     public $measurementType = '';
     public $sessionDate = '';
 
-    public function __construct()
+
+    function __construct() {
+        $argv = func_get_args();
+        switch(func_num_args()) {
+            case 0:
+                self::__construct_0();
+                break;
+            case 5:
+                self::__construct_5($argv[0], $argv[1], $argv[2], $argv[3], $argv[4]);
+        }
+    }
+
+    public function __construct_0()
     {
         $this->valuesArr = array();
         $this->netColor = '';
@@ -30,14 +42,14 @@ class Measure
 
 
 
-/*    public function __construct($valuesArr, $netColor, $position, $measurementType, $sessionDate)
+    public function __construct_5($valuesArr, $netColor, $position, $measurementType, $sessionDate)
     {
         $this->valuesArr = $valuesArr;
         $this->netColor = $netColor;
         $this->position = $position;
         $this->measurementType = $measurementType;
         $this->sessionDate = $sessionDate;
-    }//end constructor*/
+    }//end constructor
 
 
     public function getValue($i)

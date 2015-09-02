@@ -31,12 +31,12 @@ TODO:
     $measurementTypeArr = postToArray('measurementType');
     $measureDateArr = postToArray('measureDate');*/
 
-    $Grafico = $_SESSION['Grafico'];
+    $Chart = $_SESSION['Chart'];
     //generate the data table for the charting tool passing the array of parameters
-    $dataTable = generateDataTableOOP($Grafico);
+    $dataTable = generateDataTableOOP($Chart);
     //activate the charting function
     $drawCharts ='chart.draw(dataTable, options);';
-    $chartTitle = $Grafico->chartTitle;
+    $chartTitle = $Chart->chartTitle;
 
     header('Content-Type: application/javascript');
 ?>
@@ -71,12 +71,12 @@ function drawChart() {
 <?php
 
 /***************************************************************************************
-* Gets the selected data from the Grafico object
+* Gets the selected data from the Chart object
 * and creates the DATA TABLE for the google chart
 * Returns the DATA TABLE as a string
 TODO:
 ***************************************************************************************/
-function generateDataTableOOP($Grafico)
+function generateDataTableOOP($Chart)
 {
     /* examples
     $netColorArr = array("Blue", "Red", "White");
@@ -90,32 +90,32 @@ function generateDataTableOOP($Grafico)
 
     //constructing the part with the columns related to the amplitudes
     $columnNames = '';
-    for ($i=0; $i<count($Grafico->functions); $i++) {
+    for ($i=0; $i<count($Chart->functions); $i++) {
 
-        $columnNames .= ", '".$Grafico->functions[$i]->Measure->netColor. '_' . $Grafico->functions[$i]->Measure->position."'" ;
+        $columnNames .= ", '".$Chart->functions[$i]->Measure->netColor. '_' . $Chart->functions[$i]->Measure->position."'" ;
 
     }
     //first part of the string has all the columns
     $dataTableString = "['Wavelength'$columnNames], ";
     //constructing the values
     $values = '';
-    for ($i=0; $i<count($Grafico->functions[0]->Measure->valuesArr[0])-1; $i++) {
-        $values .= "['".$Grafico->functions[0]->Measure->valuesArr[$i][$Wavelength]."' ";
-        for ($m=0; $m<count($Grafico->functions); $m++) {
-            $values .= $Grafico->functions[$m]->Measure->valuesArr[$i][$Amplitude].', ';
+    for ($i=0; $i<count($Chart->functions[0]->Measure->valuesArr[0])-1; $i++) {
+        $values .= "['".$Chart->functions[0]->Measure->valuesArr[$i][$Wavelength]."' ";
+        for ($m=0; $m<count($Chart->functions); $m++) {
+            $values .= $Chart->functions[$m]->Measure->valuesArr[$i][$Amplitude].', ';
         }
         $values .= "'], ";
     }
     //the last value will not end with comma
-    $values .= "['".$Grafico->functions[0]->Measure->valuesArr[$i][$Wavelength]."' ";
-    for ($m=0; $m<count($Grafico->functions); $m++) {
-        $values .= $Grafico->functions[$m]->Measure->valuesArr[$i][$Amplitude].', ';
+    $values .= "['".$Chart->functions[0]->Measure->valuesArr[$i][$Wavelength]."' ";
+    for ($m=0; $m<count($Chart->functions); $m++) {
+        $values .= $Chart->functions[$m]->Measure->valuesArr[$i][$Amplitude].', ';
     }
     $values .= "']";
 
     $dataTableString .= $values;
 
-        //number_format( $Grafico->functions[0]->Measure[0][0], 1)."', ".$values."]";
+        //number_format( $Chart->functions[0]->Measure[0][0], 1)."', ".$values."]";
 
     dumpDie($dataTableString);
 

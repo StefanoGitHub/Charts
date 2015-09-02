@@ -3,7 +3,7 @@
 
 include "credentials.php";
 include "Measure.php";
-include "Grafico.php";
+include "Chart.php";
 //include "session_db_inc.php";
 
 define ('SORT_ASCENDING', 0);//define constant for scandir() function
@@ -59,9 +59,11 @@ function getLinesFromFile($filePath)
 {
     
     $linesArr = file($filePath, FILE_SKIP_EMPTY_LINES);
+    //dumpDie($linesArr);
     for ($i=0; $i<count($linesArr); $i++) 
     {
         $linesArr[$i] = explode(" ", trim( str_replace("  "," ",$linesArr[$i]), " \t\n\r\0\x0B"));
+        //dumpDie($linesArr);
         if(count($linesArr[$i]) == 2)
         {//check if the line contains a "value pair"
             if (is_numeric($linesArr[$i][0]) && is_numeric($linesArr[$i][1])) 
@@ -70,6 +72,7 @@ function getLinesFromFile($filePath)
             }
         }
     }
+    //dumpDie($dataArr);
     return $dataArr;
 }//end getLinesFromFile()
 
@@ -85,6 +88,9 @@ function insertExecute($dataArr, $netColor, $position, $measurementType, $sessio
     $Amplitude = 1; 
 	//ID, Wavelength, Amplitude, NetColor, MeasurementType, SessionDate	
     $sql = "INSERT INTO `t_IRR_Data` VALUES "; //ID
+
+    //dumpDie($dataArr);
+
     for ($i=0; $i<count($dataArr)-1; $i++) 
     {//add all the couples of data
         $sql .= "(
@@ -96,13 +102,23 @@ function insertExecute($dataArr, $netColor, $position, $measurementType, $sessio
             '$sessionDate' ), ";
     }
     //the last row will not end with comma
-    $sql .= "( 
-        ".$dataArr[count($dataArr)-1][0].", 
-        ".$dataArr[count($dataArr)-1][1].", 
-        '$netColor', 
-        '$position', 
-        '$measurementType', 
+    if (count($dataArr)-1 > 0) {
+        $sql .= "(
+        " . $dataArr[count($dataArr) - 1][0] . ",
+        " . $dataArr[count($dataArr) - 1][1] . ",
+        '$netColor',
+        '$position',
+        '$measurementType',
         '$sessionDate' );";
+    } else {
+        $sql .= "(
+        " . $dataArr[0][0] . ",
+        " . $dataArr[0][1] . ",
+        '$netColor',
+        '$position',
+        '$measurementType',
+        '$sessionDate' );";
+    }
 
     $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
     $result = mysqli_query($iConn,$sql) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
