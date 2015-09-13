@@ -11,15 +11,14 @@
  * Returns the result from the DB
 TODO:
  ***************************************************************************************/
-class Measure
-{
+class Measure {
     public $valuesArr = array(); //array of value pairs (Wavelength, Amplitude)
     public $netColor = '';
     public $position = '';
     public $measurementType = '';
     public $sessionDate = '';
 
-
+    //constructors
     function __construct() {
         $argv = func_get_args();
         switch(func_num_args()) {
@@ -31,8 +30,7 @@ class Measure
         }
     }
 
-    public function __construct_0()
-    {
+    public function __construct_0() {
         $this->valuesArr = array();
         $this->netColor = '';
         $this->position = '';
@@ -40,10 +38,7 @@ class Measure
         $this->sessionDate = '';
     }
 
-
-
-    public function __construct_5($valuesArr, $netColor, $position, $measurementType, $sessionDate)
-    {
+    public function __construct_5($valuesArr, $netColor, $position, $measurementType, $sessionDate) {
         $this->valuesArr = $valuesArr;
         $this->netColor = $netColor;
         $this->position = $position;
@@ -52,8 +47,8 @@ class Measure
     }//end constructor
 
 
-    public function getValue($i)
-    {
+    //getter
+    public function getValue($i) {
         return $this->valuesArr[$i];
     }
 

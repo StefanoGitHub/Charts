@@ -1,0 +1,60 @@
+body.chart_page {
+    background-color: lightsteelblue
+}
+body.upload {
+    background-color: darkseagreen
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+td, tr, th {
+    text-align: center;
+    border: grey solid 1px;
+}
+
+table {
+    margin: 0 auto;
+    border: grey solid 1px;
+}
+
+div {
+    text-align: center;
+    margin: 1.5em;
+}
+
+/*div.style { margin:0; padding: 0; }*/
+.error {
+    color: red;
+    text-align: center;
+}
+
+#curve_chart {
+    /*
+    width: 1200px;
+    height: 700px;
+    */
+    width: 80%;
+    height: 500px;
+    margin: 0;
+}
+
+button {
+    margin: 3em 4em;
+}
+
+label {
+    margin-right: .7em;
+}
+
+/*button.newChart {
+    margin: 4em;
+}
+.new { position: relative; left: 17em; top: 2em; }
+button.addRow { color:blue;}
+
+div { text-align:center; margin: 2em; }
+.error { color:red; }*/
+
+

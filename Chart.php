@@ -8,12 +8,12 @@
  *
    TODO
  ***************************************************************************************/
-class Chart
-{
+class Chart {
     public $chartTitle = '';
     public $measurementType = '';
     public $functions = array(); //array of Measures
 
+    //constructor
     public function __construct($chartTitle, $measurementType, $functions)
     {
         $this->chartTitle = $chartTitle;
@@ -31,11 +31,6 @@ class Chart
     {
         return $this->valuesArr[$i];
     }*/
-
-
-
-
-
 
 
 }// end Question Class
