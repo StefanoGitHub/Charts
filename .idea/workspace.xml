@@ -1,29 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a203fbe1-bb1f-4665-ac57-7a6664f13b9c" name="Default" comment="split data selection and chart page, add jQuery and ICanHaz">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/ICanHaz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/jquery-1.11.3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/jquery-2.1.4.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/script.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/script_OLD.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/script_math.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/select_data.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/select_root.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view_chart.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/t_IRR_Data.sql" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/charts.php" afterPath="$PROJECT_DIR$/chart_page_OLD.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/charts_OLD.php" afterPath="$PROJECT_DIR$/math.php" />
+    <list default="true" id="a203fbe1-bb1f-4665-ac57-7a6664f13b9c" name="Default" comment="split select_data and view_chart pages; add jQuery and ICanHaz">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/select_data_old.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/upload_old.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_SCATTER_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_SCATTER_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/BLUE/BLUE_SCATTER_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/BLUE_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/BLUE_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/BLUE_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/CRTL_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/CRTL_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/CRTL_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/RED_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/RED_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/RED_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/WHITE_CENTRO.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/WHITE_EST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/PAR/WHITE_WEST.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_SCATTER_CENTRO.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_SCATTER_EST.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/RED/RED_SCATTER_WEST.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/BLUE_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/BLUE_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/BLUE_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/FULL SUN OPEN FIELDSCATTER.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/OPEN_FIELD_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/RED_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/RED_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/RED_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/WHITE_1_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/WHITE_2_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/REF/WHITE_SCATTER_REF.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_1_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_1_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_1_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_2_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_2_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_2_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_SCATTER_CENTRO.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_SCATTER_EST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_01_2015/WHITE/WHITE_SCATTER_WEST.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_1_1.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_1_1_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_1_2.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_1_2_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_1_3.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_1_3_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_2_1.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_2_1_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_2_2.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_2_2_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_2_3.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/BLUE/BLUE_2_3_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/BLUE_PAR_1.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/BLUE_PAR_2.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/BLUE_PAR_3.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/CTRL_PAR_1.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/CTRL_PAR_2.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/CTRL_PAR_3.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/RED_PAR_1.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/RED_PAR_2.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/RED_PAR_3.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/WHITE_PAR_1.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/WHITE_PAR_2.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/PAR/WHITE_PAR_3.IRR" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_1_1.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_1_1_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_1_2.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_1_2_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_1_3.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_1_3_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_2_1.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_2_1_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_2_2.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_2_2_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_2_3.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/RED/RED_2_3_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference BLUE alto.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference BLUE alto2.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference BLUE basso.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference BLUE basso2.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference RED alto.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference RED alto2.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference RED basso.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference RED basso2.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference open field SCATTERED 200-1251.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference open field SCATTERED 200.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/REF/reference open field.SSM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_BLUE.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_BLUE_SCAT.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_Confronto.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_RED.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_RED_SCAT.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_SCAT_Confronto.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_WHITE.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/TRM_WHITE_SCAT.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_1_1.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_1_1_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_1_2.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_1_2_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_1_3.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_1_3_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_2_1.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_2_1_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_2_2.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_2_2_SC.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_2_3.TRM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/file_test/08_15_2015/WHITE/WHITE_2_3_SC.TRM" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chart.php" afterPath="$PROJECT_DIR$/Chart.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Measure.php" afterPath="$PROJECT_DIR$/Measure.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Stefano.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Stefano.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.php" afterPath="$PROJECT_DIR$/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/script.js" afterPath="$PROJECT_DIR$/js/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/select_data.php" afterPath="$PROJECT_DIR$/select_data.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload.php" afterPath="$PROJECT_DIR$/upload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view_chart.php" afterPath="$PROJECT_DIR$/view_chart.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Graphs2.iws" />
@@ -46,29 +150,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="select_data.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="select_data.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/select_data.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2497561">
-              <caret line="18" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <marker date="1442115399000" expanded="true" signature="256:6374" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="263:2993" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3020:6366" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3087:6178" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3100:3735" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3113:3165" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3178:3722" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3215:3708" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3745:3914" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3938:6019" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="3963:4067" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="4080:6006" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="4097:4920" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="4937:5869" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="5886:5992" placeholder="..." />
-                <marker date="1442115399000" expanded="true" signature="6100:6170" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="-9.333333">
+              <caret line="80" column="41" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,27 +164,30 @@
         <entry file="file://$PROJECT_DIR$/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+              <caret line="175" column="3" selection-start-line="175" selection-start-column="3" selection-end-line="175" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/upload.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.470588">
-              <caret line="204" column="21" selection-start-line="204" selection-start-column="21" selection-end-line="204" selection-end-column="21" />
+            <state vertical-scroll-proportion="1.0403225">
+              <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
               <folding>
-                <marker date="1442119763000" expanded="true" signature="1983:2237" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="6564:8292" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="6664:6807" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="6828:7172" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="7309:7830" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="7851:8155" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="8358:8444" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="8539:8686" placeholder="..." />
-                <marker date="1442119763000" expanded="true" signature="10164:10205" placeholder="DELETE FROM ..." />
+                <marker date="1443671622000" expanded="true" signature="8101:8150" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="8101:11020" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="8241:8384" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="8420:9372" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="8503:9350" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="8503:9367" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="8565:9344" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="9533:10479" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="10520:10883" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="11091:11177" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="11272:11434" placeholder="..." />
+                <marker date="1443671622000" expanded="true" signature="12914:12955" placeholder="DELETE FROM ..." />
               </folding>
             </state>
           </provider>
@@ -106,23 +196,22 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3137255">
-              <caret line="57" column="37" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="37" />
+            <state vertical-scroll-proportion="-21.458334">
+              <caret line="77" column="85" selection-start-line="77" selection-start-column="85" selection-end-line="77" selection-end-column="85" />
               <folding>
-                <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+                <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+                <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_chart.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view_chart.php">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.941176">
-              <caret line="97" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-              <folding>
-                <marker date="1442117760000" expanded="true" signature="3732:4047" placeholder="SELECT Wavel..t_IRR_Data..." />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -132,9 +221,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Html5" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="Html5" />
       </list>
     </option>
   </component>
@@ -170,13 +259,18 @@
         <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/script.js" />
         <option value="$PROJECT_DIR$/js/script_OLD.js" />
-        <option value="$PROJECT_DIR$/functions.php" />
-        <option value="$PROJECT_DIR$/select_data.php" />
-        <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/view_chart.php" />
-        <option value="$PROJECT_DIR$/js/script.js" />
         <option value="$PROJECT_DIR$/t_IRR_Data.sql" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/select_location.html" />
+        <option value="$PROJECT_DIR$/select_location.php" />
+        <option value="$PROJECT_DIR$/select_data_quincy.php" />
+        <option value="$PROJECT_DIR$/functions.php" />
+        <option value="$PROJECT_DIR$/view_chart.php" />
+        <option value="$PROJECT_DIR$/select_data_tfrec.php" />
+        <option value="$PROJECT_DIR$/select_data.php" />
+        <option value="$PROJECT_DIR$/js/script.js" />
         <option value="$PROJECT_DIR$/upload.php" />
+        <option value="$PROJECT_DIR$/css/style.css" />
       </list>
     </option>
   </component>
@@ -197,10 +291,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1773" />
-    <option name="y" value="-331" />
-    <option name="width" value="1500" />
-    <option name="height" value="1173" />
+    <option name="y" value="23" />
+    <option name="width" value="1366" />
+    <option name="height" value="741" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -241,20 +334,6 @@
       <sortByType Scope="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Graphs">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -270,13 +349,27 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Graphs">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="147" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
@@ -313,6 +406,9 @@
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -364,32 +460,38 @@
       <option name="project" value="LOCAL" />
       <updated>1439456123540</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="split select_data and view_chart pages; add jQuery and ICanHaz">
+      <created>1442121292001</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1442121292001</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1773" y="-331" width="1500" height="1173" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1366" height="741" extended-state="0" />
+    <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14494875" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295838" sideWeight="0.50280505" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295838" sideWeight="0.49719495" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14533333" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32699275" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32589287" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295838" sideWeight="0.49719495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39940828" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39940828" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -406,7 +508,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Functioning version OOP&#10;&#10;ToDo: clean and rearrange code, renaming" />
     <MESSAGE value="split data selection and chart page, add jQuery and ICanHaz" />
-    <option name="LAST_COMMIT_MESSAGE" value="split data selection and chart page, add jQuery and ICanHaz" />
+    <MESSAGE value="split select_data and view_chart pages; add jQuery and ICanHaz" />
+    <option name="LAST_COMMIT_MESSAGE" value="split select_data and view_chart pages; add jQuery and ICanHaz" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -419,9 +522,21 @@
     <entry file="file://$PROJECT_DIR$/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding>
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -430,16 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding>
-            <element signature="e#1172#1246#0#PHP" expanded="false" />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -448,7 +553,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
           <folding>
-            <marker date="1442117760000" expanded="true" signature="3732:4047" placeholder="SELECT Wavel..t_IRR_Data..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..t_IRR_Data..." />
           </folding>
         </state>
       </provider>
@@ -458,7 +568,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -474,16 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1172#1246#0#PHP" expanded="false" />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -492,7 +593,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
           <folding>
-            <marker date="1442117760000" expanded="true" signature="3732:4047" placeholder="SELECT Wavel..t_IRR_Data..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..t_IRR_Data..." />
           </folding>
         </state>
       </provider>
@@ -502,7 +608,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -518,16 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1172#1246#0#PHP" expanded="false" />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -536,7 +633,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
           <folding>
-            <marker date="1442117760000" expanded="true" signature="3732:4047" placeholder="SELECT Wavel..t_IRR_Data..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..t_IRR_Data..." />
           </folding>
         </state>
       </provider>
@@ -546,7 +648,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -562,16 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1172#1246#0#PHP" expanded="false" />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -580,7 +673,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
           <folding>
-            <marker date="1442117760000" expanded="true" signature="3732:4047" placeholder="SELECT Wavel..t_IRR_Data..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..t_IRR_Data..." />
           </folding>
         </state>
       </provider>
@@ -590,7 +688,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -606,16 +705,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1172#1246#0#PHP" expanded="false" />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -624,7 +713,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
           <folding>
-            <marker date="1442117760000" expanded="true" signature="3732:4047" placeholder="SELECT Wavel..t_IRR_Data..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..t_IRR_Data..." />
           </folding>
         </state>
       </provider>
@@ -634,7 +728,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -651,7 +746,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="91" column="6" selection-start-line="91" selection-start-column="6" selection-end-line="91" selection-end-column="6" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -682,7 +778,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="494" column="12" selection-start-line="494" selection-start-column="12" selection-end-line="494" selection-end-column="47" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -699,7 +796,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="494" column="12" selection-start-line="494" selection-start-column="12" selection-end-line="494" selection-end-column="47" />
           <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -732,20 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Measure.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.625">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/_superglobals.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3559322">
@@ -760,32 +844,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/select_root.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1172#1246#0#PHP" expanded="false" />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/math.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27281368">
           <caret line="301" column="22" selection-start-line="301" selection-start-column="22" selection-end-line="301" selection-end-column="22" />
-          <folding>
-            <marker date="1442107103000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442107103000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442107103000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..t_IRR_Data..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -793,15 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -809,77 +862,116 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36162007">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Measure.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/select_root.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5080645">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+          <folding>
+            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441387838000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/view_chart.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.941176">
-          <caret line="97" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.024193548">
+          <caret line="21" column="118" selection-start-line="21" selection-start-column="118" selection-end-line="21" selection-end-column="118" />
           <folding>
-            <marker date="1442117760000" expanded="true" signature="3732:4047" placeholder="SELECT Wavel..t_IRR_Data..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..." />
+            <marker date="1443658607000" expanded="true" signature="-1:-1" placeholder="SELECT Wavel..t_IRR_Data..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions.php">
+    <entry file="file://$PROJECT_DIR$/select_data.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3137255">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="37" />
-          <folding>
-            <marker date="1442115291000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.470588">
-          <caret line="204" column="21" selection-start-line="204" selection-start-column="21" selection-end-line="204" selection-end-column="21" />
-          <folding>
-            <marker date="1442119763000" expanded="true" signature="1983:2237" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="6564:8292" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="6664:6807" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="6828:7172" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="7309:7830" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="7851:8155" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="8358:8444" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="8539:8686" placeholder="..." />
-            <marker date="1442119763000" expanded="true" signature="10164:10205" placeholder="DELETE FROM ..." />
-          </folding>
+        <state vertical-scroll-proportion="-9.333333">
+          <caret line="80" column="41" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+          <caret line="175" column="3" selection-start-line="175" selection-start-column="3" selection-end-line="175" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/select_data.php">
+    <entry file="file://$PROJECT_DIR$/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2497561">
-          <caret line="18" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="-21.458334">
+          <caret line="77" column="85" selection-start-line="77" selection-start-column="85" selection-end-line="77" selection-end-column="85" />
           <folding>
-            <marker date="1442115399000" expanded="true" signature="256:6374" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="263:2993" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3020:6366" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3087:6178" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3100:3735" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3113:3165" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3178:3722" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3215:3708" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3745:3914" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3938:6019" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="3963:4067" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="4080:6006" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="4097:4920" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="4937:5869" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="5886:5992" placeholder="..." />
-            <marker date="1442115399000" expanded="true" signature="6100:6170" placeholder="..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3041" placeholder="INSERT INTO ..." />
+            <marker date="1443658536000" expanded="true" signature="3028:3059" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0403225">
+          <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+          <folding>
+            <marker date="1443671622000" expanded="true" signature="8101:8150" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="8101:11020" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="8241:8384" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="8420:9372" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="8503:9350" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="8503:9367" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="8565:9344" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="9533:10479" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="10520:10883" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="11091:11177" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="11272:11434" placeholder="..." />
+            <marker date="1443671622000" expanded="true" signature="12914:12955" placeholder="DELETE FROM ..." />
           </folding>
         </state>
       </provider>

@@ -125,7 +125,70 @@
     //$(document).ready(function () {
         $('#newUpload').click(function () {
             //redirect to page
-            window.location.href = "upload.php";
+            //window.location.href = "upload.php";
+            //open a new tab to upload.php
+            window.open('upload.php', '_blank');
         });
     //});
 //}
+
+
+//select all files
+$('#selectAll').click(function() {
+    if($('#selectAll').is(':checked') ){
+        $('.select_checkbox').prop('checked', true);
+        $('td.measureType input:radio').prop('required', true);
+        $('td.measurePosition input:radio').prop('required', true);
+        $('td.select select').prop('required', true);
+
+    } else {
+        $('.select_checkbox').removeAttr('checked');
+        $('td.measureType input:radio').prop('required', false);
+        $('td.measurePosition input:radio').prop('required', false);
+        $('td.select select').prop('required', false);
+
+    }
+});
+
+//set the same measurement type (as the first one)
+$('#sameType').click(function() {
+    if($('#sameType').is(':checked') ){
+
+        if ($('.irradiance:first').is(':checked')) {
+            $('.irradiance').prop('checked', true);
+            $('.transmittance').prop('checked', false);
+            $('.reference').prop('checked', false);
+        }
+
+        if ($('.transmittance:first').is(':checked')) {
+            $('.irradiance').prop('checked', false);
+            $('.transmittance').prop('checked', true);
+            $('.reference').prop('checked', false);
+        }
+
+        if ($('.reference:first').is(':checked')) {
+            $('.irradiance').prop('checked', false);
+            $('.transmittance').prop('checked', false);
+            $('.reference').prop('checked', true);
+        }
+
+    }
+});
+
+$('tr td input:checkbox').click(function() {
+
+    var row = this.id;
+    if($(this).is(':checked') ){
+        $('tr:nth-child('+row+') td.measureType input:radio').prop('required', true);
+        $('tr:nth-child('+row+') td.measurePosition input:radio').prop('required', true);
+        $('tr:nth-child('+row+') td.select select').prop('required', true);
+
+
+    } else {
+        $('tr:nth-child('+row+') td.measureType input:radio').prop('required', false);
+        $('tr:nth-child('+row+') td.measurePosition input:radio').prop('required', false);
+        $('tr:nth-child('+row+') td.select select').prop('required', false);
+
+    }
+
+});

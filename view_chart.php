@@ -11,12 +11,18 @@ $functions = array();
 for ($i=0; $i<$_REQUEST['measuresToChart']; $i++) {
 
     $scattered = (isset($_REQUEST['scattered'.$i]) && $_REQUEST['scattered'.$i] == 'scattered') ? '_SCAT' : '';
-    $position = $_REQUEST['position'.$i]."_".$_REQUEST['number'.$i].$scattered;
+    $reference = (isset($_REQUEST['reference'.$i]) && $_REQUEST['reference'.$i] == 'reference') ? '_REF' : '';
+    $number = (isset($_REQUEST['number'.$i]) && $_REQUEST['number'.$i] != '') ? "_".$_REQUEST['number'.$i] : '';
+
+    $position = $_REQUEST['position'.$i].$number.$scattered.$reference;
+
+    //echo $position.'<br>';
 
     //generate the array of functions (measure) to chart
     $functions[] = getMeasureFromDB($_REQUEST['netColor'.$i], $position, $measurementType, $_REQUEST['sessionDate'.$i]);
 }
 
+//die;
 //if no data available alert message and return to previous page
 $empty = false;
 foreach ($functions as $measure) {
@@ -124,7 +130,7 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
     $sql = "SELECT Wavelength, Amplitude
             FROM t_IRR_Data
             WHERE
-            Wavelength>299.5 AND Wavelength<1100.5 AND
+            Wavelength>299.5 AND Wavelength<1000.5 AND
             NetColor = '".$netColor."' AND
             Position = '".$position."' AND
             MeasurementType = '".$measurementType."' AND

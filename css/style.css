@@ -2,7 +2,7 @@ body.chart_page {
     background-color: lightsteelblue
 }
 body.upload {
-    background-color: darkseagreen
+    background-color: darkseagreen;
 }
 
 h1, h2, h3 {
@@ -21,7 +21,7 @@ table {
 
 div {
     text-align: center;
-    margin: 1.5em;
+    margin: 1em 1.5em;
 }
 
 /*div.style { margin:0; padding: 0; }*/
@@ -41,12 +41,50 @@ div {
 }
 
 button {
-    margin: 3em 4em;
+    margin: 1em 4em;
 }
 
-label {
-    margin-right: .7em;
+input {
+    margin-left: 1em;
 }
+.datalist {
+    margin: 0 1em;
+}
+
+#selectAll {
+    margin: 0 0.5em;;
+}
+label.sameType {
+    font-weight: normal;
+    font-size: .8em;
+}
+
+/*tooltip select all*/
+/* from   http://www.menucool.com/tooltip/css-tooltip  */
+div.tooltip { outline:none; margin: inherit;}
+div.tooltip span {
+    z-index:1;
+    display:none;
+    padding:0.2em;
+    margin-top:1.3em;
+    margin-left:-5.8em;
+    font-weight: normal;
+    font-size: .8em;
+}
+div.tooltip:hover span {
+    display:inline;
+    position:absolute;
+    color:darkgreen;
+    border: 1px solid darkgreen;
+    background: darkseagreen;
+}
+
+/*CSS3 extras*/
+div.tooltip span {
+    border-radius:2px;
+    box-shadow: 1px 1px 1px #CCC;
+}
+
 
 /*button.newChart {
     margin: 4em;

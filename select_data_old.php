@@ -21,20 +21,18 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
     <script id="newRow" type="text/html">
         <tr>
             <td>
-                <input list="netColor{{ index }}" name="netColor{{ index }}" class="datalist">
-                <datalist id="netColor{{ index }}">
-                    <option value="Blue">Blue TFREC</option>
-                    <option value="Blue1">Blue1 Quincy</option>
-                    <option value="Blue2">Blue2 Quincy</option>
-                    <option value="Red">Red TFREC</option>
-                    <option value="Red1">Red1 Quincy</option>
-                    <option value="Red2">Red2 Quincy</option>
-                    <option value="White">White TFREC</option>
-                    <option value="White1">White1 Quincy</option>
-                    <option value="White2">White2 Quincy</option>
-                    <option value="OpenField">Open Field TFREC</option>
-                    <option value="OpenFieldQ">Open Field Quincy</option>
-                </datalist>
+                <input type="radio" name="netColor{{ index }}" id="{{ index }}_Blue" value="Blue" required>
+                <label for="{{ index }}_Blue" id="{{ index }}_Blue_label">Blue</label>
+                <input type="radio" name="netColor{{ index }}" id="{{ index }}_Red" value="Red">
+                <label for="{{ index }}_Red" id="{{ index }}_Red_label">Red</label>
+                <input type="radio" name="netColor{{ index }}" id="{{ index }}_White" value="White">
+                <label for="{{ index }}_White" id="{{ index }}_White_label">White</label>
+                <br>
+                <input type="radio" name="netColor{{ index }}" id="{{ index }}_Ctrl" value="Ctrl">
+                <label for="{{ index }}_Ctrl" id="{{ index }}_Ctrl_label">Ctrl</label>
+                <input type="radio" name="netColor{{ index }}" id="{{ index }}_OpenField" value="OpenField">
+                <label for="{{ index }}_OpenField" id="{{ index }}_OpenField_label">Open Field</label>
+
             </td>
             <td>
                 <input type="radio" name="position{{ index }}" id="{{ index }}_pos1" value="1" required>
@@ -78,7 +76,7 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
 
 <h1>Select data</h1>
 
-<form action="view_chart.php" id="select" method="get">
+<form action="view_chart.php" method="get">
 
     <table>
         <tr>
@@ -107,20 +105,18 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
         </tr>
         <tr>
             <td>
-                <input list="netColor0" name="netColor0" class="datalist">
-                <datalist id="netColor0">
-                    <option value="Blue">Blue TFREC</option>
-                    <option value="Blue1">Blue1 Quincy</option>
-                    <option value="Blue2">Blue2 Quincy</option>
-                    <option value="Red">Red TFREC</option>
-                    <option value="Red1">Red1 Quincy</option>
-                    <option value="Red2">Red2 Quincy</option>
-                    <option value="White">White TFREC</option>
-                    <option value="White1">White1 Quincy</option>
-                    <option value="White2">White2 Quincy</option>
-                    <option value="OpenField">Open Field TFREC</option>
-                    <option value="OpenFieldQ">Open Field Quincy</option>
-                </datalist>
+                <input type="radio" name="netColor0" id="0_Blue" value="Blue" required>
+                    <label for="0_Blue" id="0_Blue_label">Blue</label>
+                <input type="radio" name="netColor0" id="0_Red" value="Red">
+                    <label for="0_Red" id="0_Red_label">Red</label>
+                <input type="radio" name="netColor0" id="0_White" value="White">
+                    <label for="0_White" id="0_White_label">White</label>
+                <br>
+                <input type="radio" name="netColor0" id="0_Ctrl" value="Ctrl">
+                    <label for="0_Ctrl" id="0_Ctrl_label">Ctrl</label>
+                <input type="radio" name="netColor0" id="0_OpenField" value="OpenField">
+                    <label for="0_OpenField" id="0_OpenField_label">Open Field</label>
+
             </td>
             <td>
                 <input type="radio" name="position0" id="0_pos1" value="1" required>
