@@ -8,173 +8,153 @@
  */
 "use strict";
 
-if (document.getElementById("addRow")) {
-    document.getElementById("addRow").addEventListener("click", function () {
+//add new row at the bottom of the table
+$('#addRow').click(function () {
 
-        // Get a reference to the table
-        var tableRef = document.getElementById("table2");
-        var index = tableRef.getElementsByTagName('tr').length;
-        // Insert a row at the end of the table
-        var newRow = tableRef.insertRow(index);
+    var newRowContent,
+        newRow,
+        rowCount = $('#table2 tr').length;
 
-        // Insert a cell in the new row
-        var firstColumn = newRow.insertCell(0);
-        var secondColumn = newRow.insertCell(1);
-        var thirdColumn = newRow.insertCell(2);
-
-
-        //create new <input> tag
-        //example: <input type="radio" name="position1" id="1_pos1" value="1" >
-        var newInput = function (type, name, value, id) {
-            var input = document.createElement("input");
-            input.type = type;
-            input.name = name + (index - 1);
-            input.value = value;
-            input.id = (index - 1)+"_"+id || "";
-            //checkboxes are not required
-            if (type != "checkbox") {
-                input.setAttribute("required", "required");
-            }
-
-            //insert the input into the right cell
-            if (name == "netColor") {
-                //create new netColor radio buttons (column 1)
-                firstColumn.appendChild(input);
-                // Append a text node to the cell
-                var netColorText = document.createTextNode(value);
-                firstColumn.appendChild(netColorText);
-            } else if (name == "position" || name == "number" || name == "scattered") {
-                secondColumn.appendChild(input);
-                //lable tag will be added for text
-            } else if (name == "sessionDate") {
-                input.placeholder = "mmddyy";
-                input.value = "";
-                thirdColumn.appendChild(input);
-            }
-
-        };
-
-
-        //create new <label> tag
-        //example: <label for="1_pos1" id="1_Mark1">Mark 1</label>
-        var newLabel = function (_for, id, text) {
-            var label = document.createElement("label");
-            label.setAttribute("for", (index - 1)+"_"+_for);
-            label.id = (index - 1)+"_"+id;
-            label.innerHTML = text;
-
-            //insert the input into the right cell
-            secondColumn.appendChild(label);
-        };
-
-
-        //create a new <br> tag
-        var newBr = function (cell) {
-            var br = document.createElement("br");
-            cell.appendChild(br);
-        };
-
-        newInput("radio", 'netColor', "Blue");
-        newInput("radio", 'netColor', "Red");
-        newInput("radio", 'netColor', "White");
-        newBr(firstColumn);
-        newInput("radio", 'netColor', "Light_Ref");
-        newInput("radio", 'netColor', "Ctrl");
-
-        newInput("radio", 'position', 1, "pos1");
-            newLabel("pos1", "Mark1", "Mark 1");
-        newInput("radio", 'position', 2, "pos2");
-            newLabel("pos2", "Mark2", "Mark 2");
-        newBr(secondColumn);
-        newInput("radio", 'number', 1, "num1");
-            newLabel("num1", "1st", "1st");
-        newInput("radio", 'number', 2, "num2");
-            newLabel("num2", "2nd", "2nd");
-        newInput("radio", 'number', 3, "num3");
-            newLabel("num3", "3rd", "3rd");
-        newBr(secondColumn);
-
-        newInput("checkbox", 'scattered', "scattered", "scat");
-            newLabel("scat", "scat", "SCAT");
-
-        newInput('sessionDate', "sessionDate", "text");
-
-
-        //increment the number of measuresToChart
-        var inputFiles = document.getElementById("files");
-        inputFiles.value = index;
-
-    });
-}
-
-
-
-//var deleteRowButton = document.getElementById("delRow");
-//deleteRowButton.onclick = function() {
-if (document.getElementById("delRow")) {
-    document.getElementById("delRow").addEventListener("click", function(){
-        var table = document.getElementById("table2");
-        var rowCount = table.rows.length;
-
-        //do not delete header and first row
-        if (rowCount > 2) {
-            //delete last row
-            table.deleteRow(rowCount - 1);
-            //decrement the number of measuresToChart
-            var inputFiles = document.getElementById("files");
-            inputFiles.value = rowCount - 2;
-        }
-    });
-}
-
-
-if (document.getElementById("deleteTable")) {
-    document.getElementById("deleteTable").addEventListener("click", function (event) {
-        if (!confirm('Are you sure you want to \nDELETE the ENTIRE TABLE??')) {
-            event.preventDefault()
-        }
-    });
-}
-
-
-if (document.getElementById("upload")) {
-    document.getElementById("upload").onsubmit = function () {
-        var files = document.getElementsByName("files[]")
-        var anySelected = false;
-        for (var i=0; i<files.length; i++) {
-            if (files[i].checked) {
-                anySelected = true;
-            }
-        }
-        // prevent a form from submitting if no email.
-        if (anySelected) {
-            // reset and allow the form to submit
-            document.getElementById("error").innerHTML = "";
-            return true;
-        } else {
-            document.getElementById("error").innerHTML = "Please select at least one file";
-            // to STOP the form from submitting
-            return false;
-        }
+    //assigning {{ index }} a value
+    newRowContent = {
+        index: rowCount - 1
     };
-}
+
+    // Here's all the magic of ICanHaz.js
+    newRow = ich.newRow(newRowContent);
+
+    // append it to the list, tada!
+    $('#table2').append(newRow);
+
+    //increment the number of measuresToChart
+    $('#files').attr('value', rowCount);
+
+});
+
+//delete last row in the table
+$('#delRow').click(function () {
+    var rowCount = $('#table2 tr').length;
+    //do not delete header and first row
+    if (rowCount > 2) {
+        $('#table2 tr:last').remove();
+        $('#files').attr('value', rowCount - 2);
+    }
+});
 
 /*
-//for select_root.php
-//still under development
-if (document.getElementById("select")) {
-    document.getElementById("select").onchange = function () {
-        var select = document.getElementById("select");
-        var selected = select.options[select.selectedIndex].value;
-        alert(selected);
+$('#deleteTable').click(function (event) {
+    if (!confirm('Are you sure you want to \nDELETE the ENTIRE TABLE??')) {
+        event.preventDefault()
     }
-}
+});
 */
 
-//button to redirect to a new chart page
-if (document.getElementById("newChart")) {
-    document.getElementById("newChart").onclick = function () {
-        //redirect to page
-        window.location.href = "view_chart.php";
+/* no jQuery, working:
+ if (document.getElementById("upload")) {
+ document.getElementById("upload").onsubmit = function () {
+ var files = document.getElementsByName("files[]")
+ var anySelected = false;
+ for (var i=0; i<files.length; i++) {
+ if (files[i].checked) {
+ anySelected = true;
+ }
+ }
+ // prevent a form from submitting if no email.
+ if (anySelected) {
+ // reset and allow the form to submit
+ document.getElementById("error").innerHTML = "";
+ return true;
+ } else {
+ document.getElementById("error").innerHTML = "Please select at least one file";
+ // to STOP the form from submitting
+ return false;
+ }
+ };
+ }
+ */
+
+//submit the form if at least one file were selected
+$('#upload').submit(function () {
+    var files = document.getElementsByName("files[]");
+    var anySelected = false;
+    //check that at least one file were selected
+    for (var i=0; i<files.length; i++) {
+        if (files[i].checked) {
+            anySelected = true;
+        }
     }
-}
+    // prevent to submit if no file were selected.
+    if (anySelected) {
+        // reset and allow the form to submit
+        document.getElementById("error").innerHTML = "";
+        return true;
+    } else {
+        document.getElementById("error").innerHTML = "Please select at least one file";
+        //stop the form from submitting
+        return false;
+    }
+});
+
+//redirect to select_data page
+$('#newChart').click(function () {
+    //redirect to page
+    window.location.href = "select_data.php";
+});
+
+//redirect to upload page
+$('#newUpload').click(function () {
+    //redirect to page
+    //window.location.href = "upload.php";
+    //open a new tab to upload.php
+    window.open('upload.php', '_blank');
+});
+
+//select all files; all data in all rows becomes required
+$('#selectAll').click(function() {
+    if($('#selectAll').is(':checked') ){
+        $('.select_checkbox').prop('checked', true);
+        $('td.measureType input:radio').prop('required', true);
+        $('td.measurePosition input:radio').prop('required', true);
+        $('td.select select').prop('required', true);
+    } else {
+        $('.select_checkbox').removeAttr('checked');
+        $('td.measureType input:radio').prop('required', false);
+        $('td.measurePosition input:radio').prop('required', false);
+        $('td.select select').prop('required', false);
+    }
+});
+
+//set the same measurement type in all rows as the first one
+$('#sameType').click(function() {
+    if($('#sameType').is(':checked') ){
+        if ($('.irradiance:first').is(':checked')) {
+            $('.irradiance').prop('checked', true);
+            $('.transmittance').prop('checked', false);
+            $('.reference').prop('checked', false);
+        }
+        if ($('.transmittance:first').is(':checked')) {
+            $('.irradiance').prop('checked', false);
+            $('.transmittance').prop('checked', true);
+            $('.reference').prop('checked', false);
+        }
+        if ($('.reference:first').is(':checked')) {
+            $('.irradiance').prop('checked', false);
+            $('.transmittance').prop('checked', false);
+            $('.reference').prop('checked', true);
+        }
+    }
+});
+
+//if a file is selected, all data in the same row become required
+$('tr td input:checkbox').click(function() {
+    var row = this.id;
+    if($(this).is(':checked') ){
+        $('tr:nth-child('+row+') td.measureType input:radio').prop('required', true);
+        $('tr:nth-child('+row+') td.measurePosition input:radio').prop('required', true);
+        $('tr:nth-child('+row+') td.select select').prop('required', true);
+    } else {
+        $('tr:nth-child('+row+') td.measureType input:radio').prop('required', false);
+        $('tr:nth-child('+row+') td.measurePosition input:radio').prop('required', false);
+        $('tr:nth-child('+row+') td.select select').prop('required', false);
+    }
+});

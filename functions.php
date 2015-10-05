@@ -56,10 +56,13 @@ TODO:
 function getLinesFromFile($filePath) {
 
     $linesArr = file($filePath, FILE_SKIP_EMPTY_LINES);
+    //dump($linesArr);
     $dataArr = array();
     for ($i=0; $i<count($linesArr); $i++) {
-        $linesArr[$i] = explode(" ", trim( str_replace("  "," ",$linesArr[$i]), " \t\n\r\0\x0B"));
+        $linesArr[$i] = explode(" ", trim( str_replace("  "," ",$linesArr[$i]))); //, " \t\n\r\0\x0B"
+        //dump($linesArr[$i]);
         if(count($linesArr[$i]) == 2) {
+            //dump($linesArr[$i]);
             //check if the line contains a "value pair"
             if (is_numeric($linesArr[$i][0]) && is_numeric($linesArr[$i][1])) {
                 //if the two values are not numeric discard the line
@@ -67,6 +70,8 @@ function getLinesFromFile($filePath) {
             }
         }
     }
+    //dumpDie($dataArr);
+    //die;
     return $dataArr;
 }//end getLinesFromFile()
 
@@ -77,6 +82,8 @@ TODO:
  ***************************************************************************************/
 function insertExecute($dataArr, $netColor, $position, $measurementType, $sessionDate) {
     //define meanings for dataArr values based on position in the array
+
+    //dumpDie($dataArr);
     $Wavelength = 0;
     $Amplitude = 1;
     //ID, Wavelength, Amplitude, NetColor, MeasurementType, SessionDate

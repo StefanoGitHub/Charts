@@ -23,17 +23,20 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
             <td>
                 <input list="netColor{{ index }}" name="netColor{{ index }}" class="datalist">
                 <datalist id="netColor{{ index }}">
-                    <option value="Blue">Blue TFREC</option>
-                    <option value="Blue1">Blue1 Quincy</option>
-                    <option value="Blue2">Blue2 Quincy</option>
-                    <option value="Red">Red TFREC</option>
-                    <option value="Red1">Red1 Quincy</option>
-                    <option value="Red2">Red2 Quincy</option>
-                    <option value="White">White TFREC</option>
-                    <option value="White1">White1 Quincy</option>
-                    <option value="White2">White2 Quincy</option>
-                    <option value="OpenField">Open Field TFREC</option>
-                    <option value="OpenFieldQ">Open Field Quincy</option>
+<!--                    <option value="dummy50">dummy50</option>-->
+
+                                        <option value="Blue">Blue TFREC</option>
+                                        <option value="Blue1">Blue1 Quincy</option>
+                                        <option value="Blue2">Blue2 Quincy</option>
+                                        <option value="Red">Red TFREC</option>
+                                        <option value="Red1">Red1 Quincy</option>
+                                        <option value="Red2">Red2 Quincy</option>
+                                        <option value="White">White TFREC</option>
+                                        <option value="White1">White1 Quincy</option>
+                                        <option value="White2">White2 Quincy</option>
+                                        <option value="OpenField">Open Field TFREC</option>
+                                        <option value="OpenFieldQ">Open Field Quincy</option>
+                </datalist>
                 </datalist>
             </td>
             <td>
@@ -47,9 +50,30 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
                 <label for="{{ index }}_pos3" id="{{ index }}_N">North</label>
                 <input type="radio" name="position{{ index }}" id="{{ index }}_pos4" value="S" >
                 <label for="{{ index }}_pos4" id="{{ index }}_S">South</label>
+                <input type="radio" name="position{{ index }}" id="{{ index }}_pos5" value="" >
+                <label for="{{ index }}_pos5" id="{{ index }}_posNA">N/A</label>
+
                 <br>
 
-                <input type="radio" name="number{{ index }}" id="{{ index }}_num1" value="1" required>
+
+                <b>AVG samples:</b> <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num1" value="1" >
+                <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
+                <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num2" value="2">
+                <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
+                <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num3" value="3">
+                <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
+
+                <input type="checkbox" class="none" name="number{{ index }}none" id="{{ index }}_none" value="" >
+                <label for="{{ index }}_none" id="{{ index }}_numNA">none</label>
+                <br>
+                <b>Scattered light?</b>
+                <input type="checkbox" name="scattered{{ index }}" id="{{ index }}_scat" value="scattered">
+                <label for="{{ index }}_scat" id="{{ index }}_scat">Yes</label>
+                
+                
+                
+                
+<!--                <input type="radio" name="number{{ index }}" id="{{ index }}_num1" value="1" required>
                 <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
                 <input type="radio" name="number{{ index }}" id="{{ index }}_num2" value="2">
                 <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
@@ -57,13 +81,13 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
                 <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
 
                 <input type="radio" name="number{{ index }}" id="{{ index }}_num4" value="" >
-                <label for="{{ index }}_num4" id="{{ index }}_">N/A</label>
+                <label for="{{ index }}_num4" id="{{ index }}_numNA">N/A</label>
                 <br>
                 <input type="checkbox" name="scattered{{ index }}" id="{{ index }}_scat" value="scattered">
                 <label for="{{ index }}_scat" id="{{ index }}_scat">SCAT</label>
                 <input type="checkbox" name="reference{{ index }}" id="{{ index }}_ref" value="reference">
                 <label for="{{ index }}_ref" id="{{ index }}_ref">REF</label>
-
+-->
             </td>
             <td>
                 <input type="text" name="sessionDate{{ index }}" placeholder="mmddyy" required />
@@ -78,7 +102,7 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
 
 <h1>Select data</h1>
 
-<form action="view_chart.php" id="select" method="get">
+<form action="view_chart_w-math.php" id="select" method="get">
 
     <table>
         <tr>
@@ -109,17 +133,20 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
             <td>
                 <input list="netColor0" name="netColor0" class="datalist">
                 <datalist id="netColor0">
-                    <option value="Blue">Blue TFREC</option>
-                    <option value="Blue1">Blue1 Quincy</option>
-                    <option value="Blue2">Blue2 Quincy</option>
-                    <option value="Red">Red TFREC</option>
-                    <option value="Red1">Red1 Quincy</option>
-                    <option value="Red2">Red2 Quincy</option>
-                    <option value="White">White TFREC</option>
-                    <option value="White1">White1 Quincy</option>
-                    <option value="White2">White2 Quincy</option>
-                    <option value="OpenField">Open Field TFREC</option>
-                    <option value="OpenFieldQ">Open Field Quincy</option>
+<!--                    <option value="dummy50">dummy50</option>-->
+
+                                        <option value="Blue">Blue TFREC</option>
+                                        <option value="Blue1">Blue1 Quincy</option>
+                                        <option value="Blue2">Blue2 Quincy</option>
+                                        <option value="Red">Red TFREC</option>
+                                        <option value="Red1">Red1 Quincy</option>
+                                        <option value="Red2">Red2 Quincy</option>
+                                        <option value="White">White TFREC</option>
+                                        <option value="White1">White1 Quincy</option>
+                                        <option value="White2">White2 Quincy</option>
+                                        <option value="OpenField">Open Field TFREC</option>
+                                        <option value="OpenFieldQ">Open Field Quincy</option>
+                                    </datalist>
                 </datalist>
             </td>
             <td>
@@ -133,30 +160,33 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
                 <label for="0_pos3" id="0_N">North</label>
                 <input type="radio" name="position0" id="0_pos4" value="S" >
                 <label for="0_pos4" id="0_S">South</label>
+                <input type="radio" name="position0" id="0_pos5" value="" >
+                <label for="0_pos5" id="0_posNA">N/A</label>
+
                 <br>
 
-                <input type="radio" name="number0" id="0_num1" value="1" required>
+                <b>AVG samples:</b> <input type="checkbox" name="number0[]" id="0_num1" value="1" >
                     <label for="0_num1" id="0_1st">1st</label>
-                <input type="radio" name="number0" id="0_num2" value="2">
+                <input type="checkbox" name="number0[]" id="0_num2" value="2">
                     <label for="0_num2" id="0_2nd">2nd</label>
-                <input type="radio" name="number0" id="0_num3" value="3">
+                <input type="checkbox" name="number0[]" id="0_num3" value="3">
                     <label for="0_num3" id="0_3dr">3dr</label>
 
-                <input type="radio" name="number0" id="0_num4" value="" >
-                <label for="0_num4" id="0_">N/A</label>
-
+                <input type="checkbox" class="none" name="number0none" id="0_none" value="" >
+                <label for="0_none" id="0_numNA">none</label>
                 <br>
+                <b>Scattered light?</b>
                 <input type="checkbox" name="scattered0" id="0_scat" value="scattered">
-                    <label for="0_scat" id="0_scat">SCAT</label>
-                <input type="checkbox" name="reference0" id="0_ref" value="reference">
+                    <label for="0_scat" id="0_scat">Yes</label>
+<!--                <input type="checkbox" name="reference0" id="0_ref" value="reference">
                     <label for="0_ref" id="0_ref">REF</label>
-            </td>
+-->            </td>
             <td>
                 <input type="text" name="sessionDate0" placeholder="mmddyy" required />
             </td>
         </tr>
     </table>
-    <input id="files" type="hidden" name="measuresToChart" value="1">
+    <input id="linesToChart" type="hidden" name="linesToChart" value="1">
 
     <div>
         <input class="chart" type="submit" name="action" value="Chart!">

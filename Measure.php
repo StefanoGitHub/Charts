@@ -52,6 +52,16 @@ class Measure {
         return $this->valuesArr[$i];
     }
 
+    //get measure identifier
+    public function getMeasureID() {
+        echo '<pre>' .
+                $this->netColor .'<br>' .
+                $this->position .'<br>' .
+                $this->measurementType .'<br>' .
+                $this->sessionDate .
+            '</pre>';
+    }
+
 }// end Question Class
 
 

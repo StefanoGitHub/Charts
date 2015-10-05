@@ -8,57 +8,74 @@
  */
 "use strict";
 
-//add new row at the bottom of the table
-$('#addRow').click(function () {
 
+//add a measure table after the last one
+$('#addTable').click(function () {
+    var newTableContent,
+        newTable,
+        tablesCount = $('table').length,
+        //measureNumber = tablesCount;
+    //console.log(maesu)
+    //assigning {{ tableNumber }} a value
+    newTableContent = {
+        measureNumber: ((tablesCount < 10 ? '0' : '') + tablesCount)
+    };
+    // Here's all the magic of ICanHaz.js
+    newTable = ich.newTable(newTableContent);
+    // append it to the list, tada!
+    $('#tables').append(newTable);
+    //increment the number of measuresToChart
+    $('#linesToChart').attr('value', tablesCount);
+});
+
+//delete last table
+$('#delTable').click(function () {
+    var tablesCount = $('table').length;
+    //do not delete header and first two tables
+    if (tablesCount > 2) {
+        $('#tables div:last-child').remove();
+        $('#linesToChart').attr('value', tablesCount - 2);
+    }
+});
+
+
+
+//add new row at the bottom of the correspondent table
+$("#tables").on("click", "button.addRow", function() {
+//$('button.addRow').click(function () {
     var newRowContent,
-        newRow,
-        rowCount = $('#table2 tr').length;
-
+        newRow;
+    var measureNumber = (this.id).slice(1, 3);
+    var rowCount = $('#chartLine'+measureNumber+' tr').length;
     //assigning {{ index }} a value
     newRowContent = {
+        measureNumber: measureNumber,
         index: rowCount - 1
     };
-
     // Here's all the magic of ICanHaz.js
     newRow = ich.newRow(newRowContent);
-
     // append it to the list, tada!
-    $('#table2').append(newRow);
+    $('#chartLine'+measureNumber).append(newRow);
 
     //increment the number of measuresToChart
-    $('#linesToChart').attr('value', rowCount);
+    $('#m'+measureNumber+'_measuresToAverage').attr('value', rowCount);
+
 
 });
 
-//delete last row in the table
-$('#delRow').click(function () {
-    var rowCount = $('#table2 tr').length;
+//delete last row in the correspondent table
+$("#tables").on("click", "button.delRow", function() {
+    //$('button.delRow').click(function () {
+    var measureNumber = (this.id).slice(1, 3);
+    var rowCount = $('#chartLine'+measureNumber+' tr').length;
     //do not delete header and first row
     if (rowCount > 2) {
-        $('#table2 tr:last').remove();
-        $('#linesToChart').attr('value', rowCount - 2);
+        $('#chartLine'+measureNumber+' tr:last').remove();
+        $('#m'+measureNumber+'_measuresToAverage').attr('value', rowCount - 2);
     }
 });
 
-//if checkbox non is selected all other sample chackbox have to be unchecked
-$("#table2").on("click", "input:checkbox.none", function() {
-    var row = (this.id).charAt(0);
-    console.log(row);
-    if($(this).is(':checked') ){
-        $('#'+row+'_num1').prop('disabled', true);
-        $('#'+row+'_num1').prop('checked', false);
-        $('#'+row+'_num2').prop('disabled', true);
-        $('#'+row+'_num2').prop('checked', false);
-        $('#'+row+'_num3').prop('disabled', true);
-        $('#'+row+'_num3').prop('checked', false);
-    } else {
-        $('#'+row+'_num1').prop('disabled', false);
-        $('#'+row+'_num2').prop('disabled', false);
-        $('#'+row+'_num3').prop('disabled', false);
 
-    }
-});
 
 
 //submit the form if at least one file were selected
@@ -86,7 +103,7 @@ $('#upload').submit(function () {
 //redirect to select_data page
 $('#newChart').click(function () {
     //redirect to page
-    window.location.href = "select_data_W-math.php";
+    window.location.href = "select_data.php";
 });
 
 //redirect to upload page
@@ -134,7 +151,7 @@ $('#sameType').click(function() {
 });
 
 //if a file is selected, all data in the same row become required
-$('tr td input:checkbox.select_checkbox').click(function() {
+$('tr td input:checkbox').click(function() {
     var row = this.id;
     if($(this).is(':checked') ){
         $('tr:nth-child('+row+') td.measureType input:radio').prop('required', true);

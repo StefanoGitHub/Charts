@@ -1,39 +1,84 @@
 <?php
-//view_chart.php
+//view_chart_w-math.php
 
 include "functions.php";
 define ('DEBUG', 'DEBUG');
 
+//dumpDie($_REQUEST);
+
 $measurementType = $_REQUEST['measurementType'];
-$chartTitle = $measurementType;
+//dumpDie($measurementType);
 
-$functions = array();
-for ($i=0; $i<$_REQUEST['measuresToChart']; $i++) {
+$linesToChart = array();
+for ($i=0; $i<$_REQUEST['linesToChart']; $i++) {
 
+    $position = (isset($_REQUEST['position'.$i]) && $_REQUEST['position'.$i] != '') ? $_REQUEST['position'.$i] : '';
+    $numbers = (isset($_REQUEST['number'.$i]) && count($_REQUEST['number'.$i]) > 0) ? $_REQUEST['number'.$i] : '';
     $scattered = (isset($_REQUEST['scattered'.$i]) && $_REQUEST['scattered'.$i] == 'scattered') ? '_SCAT' : '';
     $reference = (isset($_REQUEST['reference'.$i]) && $_REQUEST['reference'.$i] == 'reference') ? '_REF' : '';
-    $number = (isset($_REQUEST['number'.$i]) && $_REQUEST['number'.$i] != '') ? "_".$_REQUEST['number'.$i] : '';
 
-    $position = $_REQUEST['position'.$i].$number.$scattered.$reference;
+    $selectedMeasures = array();
+    $measureID = array();
 
-    //echo $position.'<br>';
+    if (is_array($numbers)) {
 
-    //generate the array of functions (measure) to chart
-    $functions[] = getMeasureFromDB($_REQUEST['netColor'.$i], $position, $measurementType, $_REQUEST['sessionDate'.$i]);
+        if (count($numbers) > 1) {
+            foreach ( $numbers as $number ) {
+                //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
+                $measureID = $position . '_' . $number . $scattered . $reference;
+                /*            dump($_REQUEST['netColor'.$i]);
+                            dump($measureID);
+                            dump($measurementType);
+                            dump($_REQUEST['sessionDate'.$i]);*/
+
+                //generate the array of selected measures
+                //                    getMeasureFromDB($netColor               , $position , $measurementType, $sessionDate               )
+                $selectedMeasures[] = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+
+                //dumpDie(getMeasureFromDB($_REQUEST['netColor'.$i], $measureID, $measurementType, $_REQUEST['sessionDate'.$i]));
+            }
+            $linesToChart[] = calculateAverage($selectedMeasures);
+        } else {
+            $measureID = $position . '_' . $numbers[0] . $scattered . $reference;
+            $linesToChart[] = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+        }
+        //dumpDie($linesToChart);
+    } else {
+        //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
+        $measureID = $position . $scattered . $reference;
+/*        dump($_REQUEST['netColor'.$i]);
+        dump($measureID);
+        dump($measurementType);
+        dump($_REQUEST['sessionDate'.$i]);*/
+
+        //echo 'number not an array: "' . toString($numbers) . '"';
+
+        $linesToChart[] = getMeasureFromDB($_REQUEST['netColor'.$i], $measureID, $measurementType, $_REQUEST['sessionDate'.$i]);
+    }
+    //dumpDie(getMeasureFromDB('dummy50', '1_1', "Transmittance", "010101"));
+
+
+
+
+    //dumpDie($linesToChart);
+
 }
 
-//die;
 //if no data available alert message and return to previous page
 $empty = false;
-foreach ($functions as $measure) {
+foreach ($selectedMeasures as $measure) {
     $empty = empty($measure);
 }
 if ($empty) {
-    header('Location: select_data.php?error=error');
+    header('Location: '.THIS_PAGE.'?action=Go&error=error&linesToChart='.$_REQUEST['linesToChart']);
 }
 
+
+
+$chartTitle = $measurementType;
+
 //create the Chart object
-$Chart = new Chart($chartTitle, $measurementType, $functions);
+$Chart = new Chart($chartTitle, $measurementType, $linesToChart); //$selectedMeasures
 //generate the data table for the charting tool passing the array of parameters
 $dataTable = 'google.visualization.arrayToDataTable(['.generateDataTable($Chart).'])';
 //activate the charting function
@@ -130,12 +175,16 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
     $sql = "SELECT Wavelength, Amplitude
             FROM t_IRR_Data
             WHERE
-            Wavelength > 299.5 AND Wavelength < 1000.5 AND
+             Wavelength > 299.5 AND Wavelength < 1000.5 AND
+
+            -- Wavelength > 225 AND Wavelength < 241 AND
+
             NetColor = '".$netColor."' AND
             Position = '".$position."' AND
             MeasurementType = '".$measurementType."' AND
             SessionDate = '".$sessionDate."'";
 
+    //dumpDie($sql);
     //connection comes first in mysqli (improved) function
     $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
@@ -174,6 +223,8 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
  * Gets the selected data from the Chart object
  * and creates the DATA TABLE for the google chart
  * Returns the DATA TABLE as a string
+ * @param $Chart
+ * @return string
 TODO:
  ***************************************************************************************/
 function generateDataTable($Chart) {
@@ -184,9 +235,8 @@ function generateDataTable($Chart) {
     //constructing the part with the columns related to the amplitudes
     $columnNames = '';
     for ($i=0; $i < count($Chart->functions); $i++) {
-
+        //generate the name of the lines to chart
         $columnNames .= ", '".$Chart->functions[$i]->netColor. '_' . $Chart->functions[$i]->position."'" ;
-
     }
     //first part of the string has all the columns
     $dataTableString = "['Wavelength'$columnNames], ";
@@ -219,3 +269,53 @@ function generateDataTable($Chart) {
 
     return $dataTableString;
 }//end generateDataTable()
+
+
+/**
+ * gets an array of up to three Measures and returns a single Measure obj with the average Amplitudes
+ * @param $measuresToAverage
+ * @return Measure
+ */
+function calculateAverage($measuresToAverage) {
+    //define meanings for dataArr values based on position in the array
+    $Wavelength = 0;
+    $Amplitude = 1;
+    $countMeasuresToAverage = count($measuresToAverage);
+
+/*    foreach ($measuresToAverage as $measure) {
+        $measure->getMeasureID();
+    }
+    die;*/
+
+    //create Measure object to return (all attributes are common to all measures, except Amplitudes in valuesArr[] )
+    $lineToChart = $measuresToAverage[0];
+
+    //now overwrite the Amplitude values of $lineToChart with the average:
+    //for each point of the measure
+    for ($i = 0; $i < count($lineToChart->valuesArr); $i++) {
+        $sum = 0;
+        //sum the Amplitude values of every measure to average
+        for ( $m = 0; $m < $countMeasuresToAverage; $m++ ) {
+             $sum += $measuresToAverage[$m]->valuesArr[$i][$Amplitude];
+        }
+        //average the values and overwrite the value in $lineToChart
+        $lineToChart->valuesArr[$i][$Amplitude] = $sum / $countMeasuresToAverage;
+    }
+
+/*    echo $lineToChart->position;
+    die;*/
+
+    //change the data used to generate the name of the line in the chart
+    $newName = explode('_', $lineToChart->position);
+    $last = array_pop($newName);
+    if ($last == 'SCAT') {
+        array_pop($newName);
+    }
+    $newName = implode('_', $newName).'_AVG('.$countMeasuresToAverage.')';
+    if ($last == 'SCAT') {
+        $newName .= '_SCAT';
+    }
+    $lineToChart->position = $newName;
+
+    return $lineToChart;
+}//end calculateAverage()

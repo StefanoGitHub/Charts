@@ -217,6 +217,9 @@ function displayFileList($fileList) {
                 <td class="select">
                     <select form="upload" name="netColor'.$i.'" class="datalist" >
                         <option value="" selected></option>
+
+                        <option value="dummy50">dummy50</option>
+
                         <option value="Blue">Blue TFREC</option>
                         <option value="Blue1">Blue1 Quincy</option>
                         <option value="Blue2">Blue2 Quincy</option>

@@ -21,7 +21,10 @@ table {
 
 div {
     text-align: center;
-    margin: 1em 1.5em;
+    margin: .5em 1.5em;
+}
+div.tableBlock {
+    border-top: 1px solid slategrey;
 }
 
 /*div.style { margin:0; padding: 0; }*/
@@ -43,12 +46,23 @@ div {
 button {
     margin: 1em 4em;
 }
+.addRow, .delRow {
+    margin: .5em 4em 0em;
+}
+
+.addTable, .delTable {
+    margin: 2em 4em 2em;
+}
 
 input {
     margin-left: 1em;
 }
 .datalist {
     margin: 0 1em;
+}
+input.chart{
+    margin: 3em 0em 1em;
+
 }
 
 #selectAll {
