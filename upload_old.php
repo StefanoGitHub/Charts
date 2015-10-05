@@ -317,7 +317,7 @@ TODO:
  ***************************************************************************************/
 /*function deleteTable() {
     //ID, Wavelength, Amplitude, NetColor, MeasurementName, SessionDate
-    $sql = "DELETE FROM `Graphs`.`t_IRR_Data` WHERE 1;";
+    $sql = "DELETE FROM `Charts`.`t_IRR_Data` WHERE 1;";
     //connect to the DB and execute the SQL statement
     $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
     //clear result
