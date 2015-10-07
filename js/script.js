@@ -92,8 +92,6 @@ $('#newChart').click(function () {
 //redirect to upload page
 $('#newUpload').click(function () {
     //redirect to page
-    //window.location.href = "upload.php";
-    //open a new tab to upload.php
     window.open('upload.php', '_blank');
 });
 
@@ -110,6 +108,10 @@ $('#selectAll').click(function() {
         $('td.measurePosition input:radio').prop('required', false);
         $('td.select select').prop('required', false);
     }
+});
+
+$('#sameDate').click(function() {
+        $('input.date').prop('value', $('#thisDate').val());
 });
 
 //set the same measurement type in all rows as the first one
@@ -146,3 +148,6 @@ $('tr td input:checkbox.select_checkbox').click(function() {
         $('tr:nth-child('+row+') td.select select').prop('required', false);
     }
 });
+
+
+

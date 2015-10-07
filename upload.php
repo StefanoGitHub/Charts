@@ -176,7 +176,6 @@ function displayFileList($fileList) {
                     <label for="selectAll" class="selectAll" id="selectAll_label">Select</label> <br>
                     <input type="checkbox" id="selectAll" >
                         <span>Select all</span>
-
                 </div>
 				</th>
                 <th>File Name</th>
@@ -189,26 +188,6 @@ function displayFileList($fileList) {
 			</tr>';
         for ($i=0; $i<count($fileList); $i++) {
             //create a line for each file in the folder
-
-
-            /*
-            <input list="netColor'.$i.'" name="netColor'.$i.'" class="datalist">
-                    <datalist id="netColor'.$i.'">
-                    <option value="Blue">Blue TFREC</option>
-                    <option value="Blue1">Blue1 Quincy</option>
-                    <option value="Blue2">Blue2 Quincy</option>
-                    <option value="Red">Red TFREC</option>
-                    <option value="Red1">Red1 Quincy</option>
-                    <option value="Red2">Red2 Quincy</option>
-                    <option value="White">White TFREC</option>
-                    <option value="White1">White1 Quincy</option>
-                    <option value="White2">White2 Quincy</option>
-                    <option value="OpenField">Open Field TFREC</option>
-                    <option value="OpenFieldQ">Open Field Quincy</option>
-                    </datalist>
-*/
-
-
             echo '<tr>
                 <td><input type="checkbox" id="'.($i+2).'" class="select_checkbox" name="files[]" value="'.$i.'"></td>
                 <td>'.$fileList[$i].'
@@ -217,9 +196,6 @@ function displayFileList($fileList) {
                 <td class="select">
                     <select form="upload" name="netColor'.$i.'" class="datalist" >
                         <option value="" selected></option>
-
-                        <option value="dummy50">dummy50</option>
-
                         <option value="Blue">Blue TFREC</option>
                         <option value="Blue1">Blue1 Quincy</option>
                         <option value="Blue2">Blue2 Quincy</option>
@@ -233,8 +209,6 @@ function displayFileList($fileList) {
                         <option value="OpenFieldQ">Open Field Quincy</option>
                     </select>
                 </td>
-
-                <!-- <td><input type="text" name="measurePosition'.$i.'" placeholder="line#_position" /></td> -->
 
                 <td class="measurePosition">
                     <input type="radio" name="measurePosition'.$i.'" value="1" >Mark 1

@@ -27,7 +27,7 @@ $('#addRow').click(function () {
     $('#table2').append(newRow);
 
     //increment the number of measuresToChart
-    $('#files').attr('value', rowCount);
+    $('#linesToChart').attr('value', rowCount);
 
 });
 
@@ -37,41 +37,29 @@ $('#delRow').click(function () {
     //do not delete header and first row
     if (rowCount > 2) {
         $('#table2 tr:last').remove();
-        $('#files').attr('value', rowCount - 2);
+        $('#linesToChart').attr('value', rowCount - 2);
     }
 });
 
-/*
-$('#deleteTable').click(function (event) {
-    if (!confirm('Are you sure you want to \nDELETE the ENTIRE TABLE??')) {
-        event.preventDefault()
+//if checkbox non is selected all other sample chackbox have to be unchecked
+$("#table2").on("click", "input:checkbox.none", function() {
+    var row = (this.id).charAt(0);
+    console.log(row);
+    if($(this).is(':checked') ){
+        $('#'+row+'_num1').prop('disabled', true);
+        $('#'+row+'_num1').prop('checked', false);
+        $('#'+row+'_num2').prop('disabled', true);
+        $('#'+row+'_num2').prop('checked', false);
+        $('#'+row+'_num3').prop('disabled', true);
+        $('#'+row+'_num3').prop('checked', false);
+    } else {
+        $('#'+row+'_num1').prop('disabled', false);
+        $('#'+row+'_num2').prop('disabled', false);
+        $('#'+row+'_num3').prop('disabled', false);
+
     }
 });
-*/
 
-/* no jQuery, working:
- if (document.getElementById("upload")) {
- document.getElementById("upload").onsubmit = function () {
- var files = document.getElementsByName("files[]")
- var anySelected = false;
- for (var i=0; i<files.length; i++) {
- if (files[i].checked) {
- anySelected = true;
- }
- }
- // prevent a form from submitting if no email.
- if (anySelected) {
- // reset and allow the form to submit
- document.getElementById("error").innerHTML = "";
- return true;
- } else {
- document.getElementById("error").innerHTML = "Please select at least one file";
- // to STOP the form from submitting
- return false;
- }
- };
- }
- */
 
 //submit the form if at least one file were selected
 $('#upload').submit(function () {
@@ -98,14 +86,12 @@ $('#upload').submit(function () {
 //redirect to select_data page
 $('#newChart').click(function () {
     //redirect to page
-    window.location.href = "select_data.php";
+    window.location.href = "select_data_W-math.php";
 });
 
 //redirect to upload page
 $('#newUpload').click(function () {
     //redirect to page
-    //window.location.href = "upload.php";
-    //open a new tab to upload.php
     window.open('upload.php', '_blank');
 });
 
@@ -122,6 +108,10 @@ $('#selectAll').click(function() {
         $('td.measurePosition input:radio').prop('required', false);
         $('td.select select').prop('required', false);
     }
+});
+
+$('#sameDate').click(function() {
+        $('input.date').prop('value', $('#thisDate').val());
 });
 
 //set the same measurement type in all rows as the first one
@@ -146,7 +136,7 @@ $('#sameType').click(function() {
 });
 
 //if a file is selected, all data in the same row become required
-$('tr td input:checkbox').click(function() {
+$('tr td input:checkbox.select_checkbox').click(function() {
     var row = this.id;
     if($(this).is(':checked') ){
         $('tr:nth-child('+row+') td.measureType input:radio').prop('required', true);
@@ -158,3 +148,6 @@ $('tr td input:checkbox').click(function() {
         $('tr:nth-child('+row+') td.select select').prop('required', false);
     }
 });
+
+
+

@@ -5,6 +5,9 @@
 /any_other/
 /appoggio/
 .idea/
+/ORIGINAL_DATA/
+*.txt
+
 
 #-----------------------------------------
 # MAC OSX system files

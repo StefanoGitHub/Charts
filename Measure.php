@@ -13,10 +13,20 @@ TODO:
  ***************************************************************************************/
 class Measure {
     public $valuesArr = array(); //array of value pairs (Wavelength, Amplitude)
+    //              [$Wavelength][$Amplitude]
+    //valuesArr[0][]     225        7834
+    //valuesArr[1][]     300        2645
+    //valuesArr[2][]     305        4975
+    // ..
+    //valuesArr[$i][]     ..         ..
+
     public $netColor = '';
     public $position = '';
     public $measurementType = '';
     public $sessionDate = '';
+
+    const AMPLITUDE = 1;
+    const WAVELENGTH = 0;
 
     //constructors
     function __construct() {
@@ -47,11 +57,23 @@ class Measure {
     }//end constructor
 
 
-    //getter
-    public function getValue($i) {
-        return $this->valuesArr[$i];
+    //getters
+    public function getAmplitude($i) {
+        return $this->valuesArr[$i][self::AMPLITUDE];
+    }
+    public function getWavelength($i) {
+        return $this->valuesArr[$i][self::WAVELENGTH];
     }
 
+    //setters
+    public function setAmplitude($i, $value) {
+        return $this->valuesArr[$i][self::AMPLITUDE] = $value;
+    }
+    public function setWavelength($i, $value) {
+        $this->valuesArr[$i][self::WAVELENGTH] = $value;
+    }
+
+    //for DEBUGGING
     //get measure identifier
     public function getMeasureID() {
         echo '<pre>' .
