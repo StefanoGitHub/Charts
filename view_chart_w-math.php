@@ -7,92 +7,43 @@ define ('DEBUG', 'DEBUG');
 //dumpDie($_REQUEST);
 
 $measurementType = $_REQUEST['measurementType'];
-//dumpDie($measurementType);
 
 $linesToChart = array();
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
 
     $position = (isset($_REQUEST['position'.$i]) && $_REQUEST['position'.$i] != '') ? $_REQUEST['position'.$i] : '';
-    $numbers = (isset($_REQUEST['number'.$i]) && count($_REQUEST['number'.$i]) > 0) ? $_REQUEST['number'.$i] : '';
+    $numbers = $_REQUEST['number'.$i];
     $scattered = (isset($_REQUEST['scattered'.$i]) && $_REQUEST['scattered'.$i] == 'scattered') ? '_SCAT' : '';
     $reference = (isset($_REQUEST['reference'.$i]) && $_REQUEST['reference'.$i] == 'reference') ? '_REF' : '';
 
     $selectedMeasures = array();
-    $measureID = array();
+    $measureID = '';
 
     //dumpDie($numbers);
-    if (is_array($numbers)) {
 
-        if (count($numbers) > 1) {
-            foreach ( $numbers as $number ) {
-                //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
-                $measureID = $position . '_' . $number . $scattered . $reference;
-                /*            dump($_REQUEST['netColor'.$i]);
-                            dump($measureID);
-                            dump($measurementType);
-                            dump($_REQUEST['sessionDate'.$i]);*/
-                //dumpDie($measureID);
-
-                //generate the array of selected measures
-                //                    getMeasureFromDB($netColor               , $position , $measurementType, $sessionDate               )
-                $selectedMeasures[] = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
-
-                //dumpDie(getMeasureFromDB($_REQUEST['netColor'.$i], $measureID, $measurementType, $_REQUEST['sessionDate'.$i]));
-            }
-            $linesToChart[] = calculateAverage($selectedMeasures);
-        } else {
-            $measureID = $position . '_' . $numbers[0] . $scattered . $reference;
-            //dumpDie($measureID);
-            $linesToChart[] = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
-//            dump($_REQUEST['netColor'.$i]);
-//            dump($measureID);
-//            dump($measurementType);
-//            dump($_REQUEST['sessionDate'.$i]);
-            //dumpDie($linesToChart);
-        }
-    } else {
+    foreach ( $numbers as $number ) {
         //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
-        $measureID = $position . $scattered . $reference;
-        //dumpDie($measureID);
-/*      dump($_REQUEST['netColor'.$i]);
-        dump($measureID);
-        dump($measurementType);
-        dump($_REQUEST['sessionDate'.$i]);*/
-
-        //echo 'number not an array: "' . toString($numbers) . '"';
-
-        $linesToChart[] = getMeasureFromDB($_REQUEST['netColor'.$i], $measureID, $measurementType, $_REQUEST['sessionDate'.$i]);
+        $measureID = $position . '_' . $number . $scattered . $reference;
+        //generate the array of selected measures
+        $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+        //if no data available return to previous page with error message
+        if ($contentFromDB == false) {
+            $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$_REQUEST['sessionDate' . $i].']';
+            header('Location: select_data_w-math.php?action=Go&error='.$errorMessage);
+            exit();
+        }
+        $selectedMeasures[] = $contentFromDB;
     }
-    //dumpDie(getMeasureFromDB('dummy50', '1_1', "Transmittance", "010101"));
-
-
-
-
-    //dumpDie($linesToChart);
-
+    if (count($selectedMeasures) > 1) {
+        $linesToChart[] = calculateAverage($selectedMeasures);
+    } else {
+        $linesToChart[] = $selectedMeasures[0];
+    }
 }
 
-//if no data available alert message and return to previous page
-$empty = false;
-foreach ($selectedMeasures as $measure) {
-    $empty = empty($measure);
-}
-if ($empty) {
-    header('Location: '.THIS_PAGE.'?action=Go&error=error&linesToChart='.$_REQUEST['linesToChart']);
-}
-
-
+//dumpDie($linesToChart);
 
 $chartTitle = $measurementType;
-
-//create the Chart object
-$Chart = new Chart($chartTitle, $measurementType, $linesToChart); //$selectedMeasures
-//generate the data table for the charting tool passing the array of parameters
-$dataTable = 'google.visualization.arrayToDataTable(['.generateDataTable($Chart).'])';
-//activate the charting function
-$drawCharts ='chart.draw(dataTable, options);';
-
-$chartTitle = $Chart->chartTitle;
 //if all the lines in the chart come from the same session date, add this to the title
 $allSameDate = true;
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
@@ -115,19 +66,20 @@ if ($allSameDate) {
     $chartTitle .= ' @ '.$location;
 }
 
+//create the Chart object
+$Chart = new Chart($chartTitle, $measurementType, $linesToChart); //$selectedMeasures
+//dumpDie($Chart);
+//from the Chart obj generate the data table for the charting tool
+$dataTable = generateDataTable($Chart);
+//dumpDie($dataTable);
 
-
-
-
-
+//create vertical axis label for the chart
 if($measurementType == 'Transmittance') {
     $vAxisLabel = $measurementType.' (%)';
 }
 if($measurementType == 'Reference') {
     $vAxisLabel = 'Light (uMol / m2)';
 }
-
-
 
 //data.php?oRequest=<?php echo json_encode($_REQUEST)? >
 ?>
@@ -166,7 +118,7 @@ if($measurementType == 'Reference') {
             function drawChart() {
 
                 // Create the DATA TABLE.
-                var dataTable = <?=$dataTable?>;
+                var dataTable = google.visualization.arrayToDataTable([<?=$dataTable?>]);
 /*
                 //Alternative way
                 var data = new google.visualization.DataTable();
@@ -231,24 +183,21 @@ if($measurementType == 'Reference') {
 
                 var colorSeriesArr = [];
                 var blueLines = 0, redLines = 0, whiteLines = 0, yellowLines = 0;
-                for (var i = 0; i < colorLabels.length; i++) {
-                    switch (colorLabels[i].toLowerCase()) {
+                for (var j = 0; j < colorLabels.length; j++) {
 
+                    switch (colorLabels[j].toLowerCase()) {
                         case 'blue':
                             colorSeriesArr.push(bluePalette[blueLines]);
                             blueLines++;
                             break;
-
                         case 'red':
                             colorSeriesArr.push(redPalette[redLines]);
                             redLines++;
                             break;
-
                         case 'white':
                             colorSeriesArr.push(greyPalette[whiteLines]);
                             whiteLines++;
                             break;
-
                         case 'openfield':
                             colorSeriesArr.push(yellowPalette[whiteLines]);
                             yellowLines++;
@@ -258,10 +207,10 @@ if($measurementType == 'Reference') {
 
                 //create color series obj
                 var colorSeries = {};
-                for (var i = 0; i < numberOfLinesInChart - 1; i++) { //first column is x-Axis
-                    colorSeries[i] = { color: colorSeriesArr[i]}
+                for (var k = 0; k < numberOfLinesInChart - 1; k++) { //first column is x-Axis
+                    colorSeries[k] = { color: colorSeriesArr[k]}
                 }
-            console.log(JSON.stringify(colorSeries));
+                //console.log(JSON.stringify(colorSeries));
 
                 //Set chart options.
                 var options = {
@@ -293,7 +242,7 @@ if($measurementType == 'Reference') {
                 //Instantiate and draw the chart, passing in some options.
                 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
                 //chart.draw(dataTable, options);
-                <?=$drawCharts?>
+                chart.draw(dataTable, options);
             }
 
         </script>
@@ -312,7 +261,7 @@ if($measurementType == 'Reference') {
 
 
 
-        <!-- generate test color palette - ->
+        <!-- generate test color palette   from http://linkbroker.hu/stuff/kolorwheel.js/  - ->
         <br><br>
         <div id="results"></div>
         <script>
@@ -413,7 +362,7 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
         return $Measure;
     }
     else {
-        return FALSE;
+        return false;
     }
 }//end getMeasureFromDB()
 
@@ -428,16 +377,7 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
 TODO:
  ***************************************************************************************/
 function generateDataTable($Chart) {
-    //constructing the part with the columns related to the amplitudes
-//    $columnNames = '';
-//    for ($i=0; $i < count($Chart->functions); $i++) {
-//        //generate the name of the lines to chart
-//        $columnNames .= ", '".$Chart->functions[$i]->netColor. '_' . $Chart->functions[$i]->position."'" ;
-//    }
-//    //first part of the string has all the columns
-//    $dataTableString = "['Wavelength'$columnNames], ";
-
-
+    //constructing the string with the columns related to the amplitudes
     $columnNames = '';
     for ($i=0; $i < count($Chart->functions); $i++) {
         //generate the name of the lines to chart

@@ -1,8 +1,8 @@
 <?php
-//select_data.php
+//select_data_w-math.php
 
-$errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
-                '<h3 class="error">No value matches the selection</h3>' :
+$errorMessaqe = (isset($_REQUEST['error'])) ?
+                '<h3 class="error">No value matches the selection: '.$_REQUEST['error'].'</h3>' :
                 '';
 
 //data.php?oRequest=<?php echo json_encode($_REQUEST)? >
@@ -165,7 +165,7 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
     </div>
 </form>
 
-<?=$errorMessage?>
+<?=$errorMessaqe?>
 
 <div>
     <button id="newUpload" class="newUpload" type="button">Upload new data</button>

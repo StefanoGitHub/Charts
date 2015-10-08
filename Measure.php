@@ -12,6 +12,10 @@
 TODO:
  ***************************************************************************************/
 class Measure {
+    public $netColor = '';
+    public $position = '';
+    public $measurementType = '';
+    public $sessionDate = '';
     public $valuesArr = array(); //array of value pairs (Wavelength, Amplitude)
     //              [$Wavelength][$Amplitude]
     //valuesArr[0][]     225        7834
@@ -19,11 +23,6 @@ class Measure {
     //valuesArr[2][]     305        4975
     // ..
     //valuesArr[$i][]     ..         ..
-
-    public $netColor = '';
-    public $position = '';
-    public $measurementType = '';
-    public $sessionDate = '';
 
     const AMPLITUDE = 1;
     const WAVELENGTH = 0;
