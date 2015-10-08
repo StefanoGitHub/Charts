@@ -55,16 +55,20 @@ if ($allSameDate) {
     $chartTitle .= '  -  ' . implode(".", str_split($_REQUEST['sessionDate0'], 2));
 }
 //if all measures come from the same location, add this to the title
-$allSameDate = true;
-$location = (substr($_REQUEST['position0'], -1) == 'Q') ? 'Quincy' : 'TFREC';
+$measuresInQuincy = 0;
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
-    if ($_REQUEST['position0'] !=  $_REQUEST['position'.$i]) {
-        $allSameDate = false;
+    if (substr($_REQUEST['netColor'.$i], -1) == 'Q') {
+        $measuresInQuincy++;
     }
 }
-if ($allSameDate) {
-    $chartTitle .= ' @ '.$location;
+$location = '';
+if ($measuresInQuincy == $_REQUEST['linesToChart']) {
+    $location = ' @ Quincy';
 }
+if ($measuresInQuincy == 0) {
+    $location = ' @ TFREC';
+}
+$chartTitle .= $location;
 
 //create the Chart object
 $Chart = new Chart($chartTitle, $measurementType, $linesToChart); //$selectedMeasures
@@ -148,11 +152,11 @@ if($measurementType == 'Reference') {
 
                 //define (dark) color generators
                 var darkBlue = '#000E73',   lightBlue = '#DCF9FF',
-                    darkRed = '#970000',    lightRed = '#FFE1E1',
-                    darkGrey = '#767676',   lightGrey = '#FFFFFF',
-                    darkYellow = '#E16C00', lightYellow = '#FBFFB7',
+                    darkRed = '#970000',    lightRed = '#FBA281',
+                    darkGrey = '#444444',   lightGrey = '#FEFEFE',
+                    darkYellow = '#D48D00', lightYellow = '#88BF00', //E16C00 97D400
                     //darkGreenw = '#016F25', lightGreen = '#C0DC9D', //if necessary in the future
-                    steps = 17; //number of shades per color wheel
+                    steps = 18; //number of shades per color wheel
 
                 //create color palette objs
                 var blueHue = new KolorWheel(darkBlue).abs(lightBlue, steps);
@@ -160,47 +164,68 @@ if($measurementType == 'Reference') {
                 var greyHue = new KolorWheel(darkGrey).abs(lightGrey, steps);
                 var yellowHue = new KolorWheel(darkYellow).abs(lightYellow, steps);
 
-                var createColorPalette = function(wheel) {
+                var createColorPalette = function(wheel, steps) {
                     var colorPalette = [];
                     //get only intense distinct colors in each palette
-                    for (var n = 0; n <= 15; n += 3) {
+                    for (var n = 0; n <= steps - 3; n += 3) {
                         colorPalette.push(wheel.get(n).getHex());
                     }
                     return colorPalette;
                 };
 
-                var bluePalette = createColorPalette(blueHue);
-                var redPalette = createColorPalette(redHue);
-                var greyPalette = createColorPalette(greyHue);
-                var yellowPalette = createColorPalette(yellowHue);
+                var bluePalette = createColorPalette(blueHue, steps);
+                var redPalette = createColorPalette(redHue, steps);
+                var greyPalette = createColorPalette(greyHue, steps);
+                var yellowPalette = createColorPalette(yellowHue, steps);
 
                 //get colors from line names
                 var colorLabels = [];
                 var numberOfLinesInChart = dataTable.getNumberOfColumns();
                 for (var i = 1; i < numberOfLinesInChart; i++) {
-                    colorLabels.push(dataTable.getColumnLabel(i).split('_')[0]);
+                    var colorLabel = dataTable.getColumnLabel(i).split('_')[0];
+                    console.log(colorLabel);
+                    if (colorLabel.slice(-1) == 'Q') {
+                        if (colorLabel.toLowerCase().indexOf('open') >= 0) {
+                            colorLabel = colorLabel.slice(0, -1);
+                        } else {
+                            colorLabel = colorLabel.slice(0, -2);
+                        }
+                    }
+                    colorLabels.push(colorLabel);
                 }
+                console.log(colorLabels);
 
                 var colorSeriesArr = [];
                 var blueLines = 0, redLines = 0, whiteLines = 0, yellowLines = 0;
                 for (var j = 0; j < colorLabels.length; j++) {
-
                     switch (colorLabels[j].toLowerCase()) {
                         case 'blue':
                             colorSeriesArr.push(bluePalette[blueLines]);
                             blueLines++;
+                            if (blueLines == bluePalette.length) {
+                                blueLines = 0;
+                            }
                             break;
                         case 'red':
                             colorSeriesArr.push(redPalette[redLines]);
                             redLines++;
+                            if (redLines == redPalette.length) {
+                                redLines = 0;
+                            }
                             break;
                         case 'white':
                             colorSeriesArr.push(greyPalette[whiteLines]);
                             whiteLines++;
+                            if (whiteLines == greyPalette.length-1) {
+                                whiteLines = 0;
+                            }
                             break;
                         case 'openfield':
-                            colorSeriesArr.push(yellowPalette[whiteLines]);
+                            colorSeriesArr.push(yellowPalette[yellowLines]);
                             yellowLines++;
+                            if (yellowLines == yellowPalette.length) {
+                                yellowLines = 0;
+                            }
                             break;
                     }
                 }
@@ -210,7 +235,6 @@ if($measurementType == 'Reference') {
                 for (var k = 0; k < numberOfLinesInChart - 1; k++) { //first column is x-Axis
                     colorSeries[k] = { color: colorSeriesArr[k]}
                 }
-                //console.log(JSON.stringify(colorSeries));
 
                 //Set chart options.
                 var options = {
@@ -232,7 +256,7 @@ if($measurementType == 'Reference') {
                             textStyle: { fontSize: 13 }
                            } ,
                     chartArea: {left:'10%',
-                                width:'75%' , height:'75%'
+                                width:'70%' , height:'75%'
                                },
                     legend: { textStyle: { fontSize: 12 } }
                 };
@@ -261,7 +285,7 @@ if($measurementType == 'Reference') {
 
 
 
-        <!-- generate test color palette   from http://linkbroker.hu/stuff/kolorwheel.js/  - ->
+        <!-- generate TEST color palette   from http://linkbroker.hu/stuff/kolorwheel.js/  - ->
         <br><br>
         <div id="results"></div>
         <script>
@@ -290,9 +314,9 @@ if($measurementType == 'Reference') {
             };
 
             make('#000E73', '#DCF9FF',  steps);//blue
-            make('#970000', '#FFE1E1',  steps);//rosso
-            make('#767676', '#FFFFFF',  steps);//grigio
-            make('#E16C00', '#FBFFB7',  steps);//giallo
+            make('#970000', '#FBA281',  steps);//rosso
+            make('#444444', '#FEFEFE',  steps);//grigio
+            make('#D48D00', '#88BF00',  steps);//giallo 97D400
             make('#016F25', '#C0DC9D',  steps);//verde
         </script>
         <!-- end test color -->

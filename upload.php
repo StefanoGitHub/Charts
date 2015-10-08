@@ -31,7 +31,7 @@ if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Acti
         <title>Upload files</title>
 
     </head>
-    <body class="upload">
+    <body class="upload_page">
 
     <?php
     switch ($Action)
@@ -42,8 +42,6 @@ if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Acti
                 uploadFiles();
                 echo '<div class="back"><a href="' . THIS_PAGE . '">Back</a></div>';
                 echo '<div class="chart"><a href="select_data.php">Chart Measures</a></div>';
-
-                //echo '<div><a id="deleteTable" href="' . THIS_PAGE . '?action=delete">Delete table</a></div>';
             } else {
                 //else prompt the user to select one
                 $fileList = getFileList("_data");
@@ -52,37 +50,14 @@ if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Acti
                 echo '<div class="reload"><a href="' . THIS_PAGE . '">Reload page</a></div>';
                 echo '<div class="chart"><a href="select_data.php?">Chart Measures</a></div>';
 
-                //echo '<div><a id="deleteTable" href="' . THIS_PAGE . '?action=delete">Delete table</a></div>';
             }
             break;
-
-/*        case "delete":
-            echo '<div>
-                <h3>Do you really want to clean the table??</h3>
-                <a id="deleteTable" href="' . THIS_PAGE . '?action=deleteOK">Delete table</a>
-                <br>
-                <a href="' . THIS_PAGE . '">Back</a>
-              </div>';
-            break;
-
-        case "deleteOK":
-            $success = deleteTable();
-            if ($success)
-            { echo '<h3>Table cleaned!</h3>'; }
-            else {echo '<h3 class="error">ERROR, table NOT cleaned :(';}
-
-            echo '<div><a href="' . THIS_PAGE . '">Reload page</a></div>';
-            break;*/
-
         default:
             //Show existing projects
             $fileList = getFileList("_data");
             displayFileList($fileList);
             echo '<div class="reload"><a href="' . THIS_PAGE . '">Reload page</a></div>';
             echo '<div class="chart"><a href="select_data.php" target="_blank">Chart Measures</a></div>';
-
-            //echo '<div><a id="deleteTable" href="' . THIS_PAGE . '?action=delete">Delete table</a></div>';
-
     }//end switch
 
     ?>
@@ -169,7 +144,7 @@ function displayFileList($fileList) {
                 </tr>
             </table>
             <br>
-            <table>
+            <table class="upload">
             <tr>
 				<th>
 				<div class="tooltip">
@@ -190,21 +165,21 @@ function displayFileList($fileList) {
             //create a line for each file in the folder
             echo '<tr>
                 <td><input type="checkbox" id="'.($i+2).'" class="select_checkbox" name="files[]" value="'.$i.'"></td>
-                <td>'.$fileList[$i].'
+                <td class="file">'.$fileList[$i].'
                     <input id="fileList" type="hidden" name="fileList'.$i.'" value="'.$fileList[$i].'">
                 </td>
                 <td class="select">
                     <select form="upload" name="netColor'.$i.'" class="datalist" >
                         <option value="" selected></option>
                         <option value="Blue">Blue TFREC</option>
-                        <option value="Blue1">Blue1 Quincy</option>
-                        <option value="Blue2">Blue2 Quincy</option>
+                        <option value="Blue1Q">Blue1 Quincy</option>
+                        <option value="Blue2Q">Blue2 Quincy</option>
                         <option value="Red">Red TFREC</option>
-                        <option value="Red1">Red1 Quincy</option>
-                        <option value="Red2">Red2 Quincy</option>
+                        <option value="Red1Q">Red1 Quincy</option>
+                        <option value="Red2Q">Red2 Quincy</option>
                         <option value="White">White TFREC</option>
-                        <option value="White1">White1 Quincy</option>
-                        <option value="White2">White2 Quincy</option>
+                        <option value="White1Q">White1 Quincy</option>
+                        <option value="White2Q">White2 Quincy</option>
                         <option value="OpenField">Open Field TFREC</option>
                         <option value="OpenFieldQ">Open Field Quincy</option>
                     </select>
@@ -217,6 +192,8 @@ function displayFileList($fileList) {
 
                     <input type="radio" name="measurePosition'.$i.'" value="N" >North
                     <input type="radio" name="measurePosition'.$i.'" value="S" >South
+                    <input type="radio" name="measurePosition'.$i.'" value="" >N/A
+
                     <br>
 
                     <input type="radio" name="measureNumber'.$i.'" value="1">1st
@@ -283,24 +260,5 @@ function getFileList($directory) {
         return 0;
     }
 }//end getFileList()
-
-
-
-/***************************************************************************************
- * DEBUG ONLY!!!
- * Deletes all rows in the table
- * Returns TRUE if successful, FALSE otherwise
-TODO: 
- ***************************************************************************************/
-/*function deleteTable() {
-    //ID, Wavelength, Amplitude, NetColor, MeasurementName, SessionDate
-    $sql = "DELETE FROM `Charts`.`t_IRR_Data` WHERE 1;";
-    //connect to the DB and execute the SQL statement
-    $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
-    //clear result
-    @mysqli_free_result($result);
-    return $success = ($result = 1) ? TRUE : FALSE;
-}//end deleteTable()*/
-
 
 

@@ -1,9 +1,9 @@
 <?php
-//select_data.php
+//select_data_w-math.php
 
-$errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
-                '<h3 class="error">No value matches the selection</h3>' :
-                '';
+$errorMessaqe = (isset($_REQUEST['error'])) ?
+    '<h3 class="error">No value matches the selection: '.$_REQUEST['error'].'</h3>' :
+    '';
 
 //data.php?oRequest=<?php echo json_encode($_REQUEST)? >
 ?>
@@ -38,31 +38,31 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
             </td>
             <td>
                 <input type="radio" name="position{{ index }}" id="{{ index }}_pos1" value="1" required>
-                    <label for="{{ index }}_pos1" id="{{ index }}_Mark1">Mark 1</label>
+                <label for="{{ index }}_pos1" id="{{ index }}_Mark1">Mark 1</label>
                 <input type="radio" name="position{{ index }}" id="{{ index }}_pos2" value="2" >
-                    <label for="{{ index }}_pos2" id="{{ index }}_Mark2">Mark 2</label>
+                <label for="{{ index }}_pos2" id="{{ index }}_Mark2">Mark 2</label>
                 <br>
                 <input type="radio" name="position{{ index }}" id="{{ index }}_pos3" value="N">
-                    <label for="{{ index }}_pos3" id="{{ index }}_N">North</label>
+                <label for="{{ index }}_pos3" id="{{ index }}_N">North</label>
                 <input type="radio" name="position{{ index }}" id="{{ index }}_pos4" value="S" >
-                    <label for="{{ index }}_pos4" id="{{ index }}_S">South</label>
+                <label for="{{ index }}_pos4" id="{{ index }}_S">South</label>
                 <input type="radio" name="position{{ index }}" id="{{ index }}_pos5" value="" >
-                    <label for="{{ index }}_pos5" id="{{ index }}_posNA">N/A</label>
+                <label for="{{ index }}_pos5" id="{{ index }}_posNA">N/A</label>
                 <br class="moreSpace">
 
                 <b>AVG samples:</b> <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num1" value="1" >
-                    <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
+                <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
                 <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num2" value="2">
-                    <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
+                <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
                 <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num3" value="3">
-                    <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
+                <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
                 <input type="checkbox" class="none" name="number{{ index }}none" id="{{ index }}_none" value="" >
-                    <label for="{{ index }}_none" id="{{ index }}_numNA">none</label>
+                <label for="{{ index }}_none" id="{{ index }}_numNA">none</label>
                 <br class="moreSpace">
 
                 <b>Scattered light?</b>
                 <input type="checkbox" name="scattered{{ index }}" id="{{ index }}_scat" value="scattered">
-                    <label for="{{ index }}_scat" id="{{ index }}_scat">Yes</label>
+                <label for="{{ index }}_scat" id="{{ index }}_scat">Yes</label>
             </td>
             <td>
                 <input type="text" class="date" name="sessionDate{{ index }}" placeholder="mmddyy" required />
@@ -86,11 +86,11 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
         <tr>
             <td class="measureType" >
                 <input type="radio" name="measurementType" id="IRR" value="Irradiance" required>
-                    <label for="IRR" id="IRR_label">.IRR</label>
+                <label for="IRR" id="IRR_label">.IRR</label>
                 <input type="radio" name="measurementType" id="TRM" value="Transmittance">
-                    <label for="TRM" id="TRM_label">.TRM</label>
+                <label for="TRM" id="TRM_label">.TRM</label>
                 <input type="radio" name="measurementType" id="SSM" value="Reference">
-                    <label for="SSM" id="SSM_label">.SSM (Light Ref)</label>
+                <label for="SSM" id="SSM_label">.SSM (Light Ref)</label>
             </td>
         </tr>
     </table>
@@ -125,34 +125,34 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
             </td>
             <td>
                 <input type="radio" name="position0" id="0_pos1" value="1" required>
-                    <label for="0_pos1" id="0_Mark1">Mark 1</label>
+                <label for="0_pos1" id="0_Mark1">Mark 1</label>
                 <input type="radio" name="position0" id="0_pos2" value="2" >
-                    <label for="0_pos2" id="0_Mark2">Mark 2</label>
+                <label for="0_pos2" id="0_Mark2">Mark 2</label>
                 <br>
                 <input type="radio" name="position0" id="0_pos3" value="N">
-                    <label for="0_pos3" id="0_N">North</label>
+                <label for="0_pos3" id="0_N">North</label>
                 <input type="radio" name="position0" id="0_pos4" value="S" >
-                    <label for="0_pos4" id="0_S">South</label>
+                <label for="0_pos4" id="0_S">South</label>
                 <input type="radio" name="position0" id="0_pos5" value="" >
-                    <label for="0_pos5" id="0_posNA">N/A</label>
+                <label for="0_pos5" id="0_posNA">N/A</label>
                 <br class="moreSpace">
 
                 <b>AVG samples:</b> <input type="checkbox" name="number0[]" id="0_num1" value="1" >
-                    <label for="0_num1" id="0_1st">1st</label>
+                <label for="0_num1" id="0_1st">1st</label>
                 <input type="checkbox" name="number0[]" id="0_num2" value="2">
-                    <label for="0_num2" id="0_2nd">2nd</label>
+                <label for="0_num2" id="0_2nd">2nd</label>
                 <input type="checkbox" name="number0[]" id="0_num3" value="3">
-                    <label for="0_num3" id="0_3dr">3dr</label>
+                <label for="0_num3" id="0_3dr">3dr</label>
                 <input type="checkbox" class="none" name="number0none" id="0_none" value="" >
-                    <label for="0_none" id="0_numNA">none</label>
+                <label for="0_none" id="0_numNA">none</label>
                 <br class="moreSpace">
 
                 <b>Scattered light?</b>
                 <input type="checkbox" name="scattered0" id="0_scat" value="scattered">
-                    <label for="0_scat" id="0_scat">Yes</label>
-<!--                <input type="checkbox" name="reference0" id="0_ref" value="reference">
-                    <label for="0_ref" id="0_ref">REF</label>
--->            </td>
+                <label for="0_scat" id="0_scat">Yes</label>
+                <!--                <input type="checkbox" name="reference0" id="0_ref" value="reference">
+                                    <label for="0_ref" id="0_ref">REF</label>
+                -->            </td>
             <td>
                 <input type="text" class="date" id="thisDate" name="sessionDate0" placeholder="mmddyy" required />
             </td>
@@ -165,7 +165,7 @@ $errorMessage = (isset($_REQUEST['error']) && $_REQUEST['error'] == 'error') ?
     </div>
 </form>
 
-<?=$errorMessage?>
+<?=$errorMessaqe?>
 
 <div>
     <button id="newUpload" class="newUpload" type="button">Upload new data</button>

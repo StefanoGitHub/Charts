@@ -7,92 +7,43 @@ define ('DEBUG', 'DEBUG');
 //dumpDie($_REQUEST);
 
 $measurementType = $_REQUEST['measurementType'];
-//dumpDie($measurementType);
 
 $linesToChart = array();
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
 
     $position = (isset($_REQUEST['position'.$i]) && $_REQUEST['position'.$i] != '') ? $_REQUEST['position'.$i] : '';
-    $numbers = (isset($_REQUEST['number'.$i]) && count($_REQUEST['number'.$i]) > 0) ? $_REQUEST['number'.$i] : '';
+    $numbers = $_REQUEST['number'.$i];
     $scattered = (isset($_REQUEST['scattered'.$i]) && $_REQUEST['scattered'.$i] == 'scattered') ? '_SCAT' : '';
     $reference = (isset($_REQUEST['reference'.$i]) && $_REQUEST['reference'.$i] == 'reference') ? '_REF' : '';
 
     $selectedMeasures = array();
-    $measureID = array();
+    $measureID = '';
 
     //dumpDie($numbers);
-    if (is_array($numbers)) {
 
-        if (count($numbers) > 1) {
-            foreach ( $numbers as $number ) {
-                //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
-                $measureID = $position . '_' . $number . $scattered . $reference;
-                /*            dump($_REQUEST['netColor'.$i]);
-                            dump($measureID);
-                            dump($measurementType);
-                            dump($_REQUEST['sessionDate'.$i]);*/
-                //dumpDie($measureID);
-
-                //generate the array of selected measures
-                //                    getMeasureFromDB($netColor               , $position , $measurementType, $sessionDate               )
-                $selectedMeasures[] = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
-
-                //dumpDie(getMeasureFromDB($_REQUEST['netColor'.$i], $measureID, $measurementType, $_REQUEST['sessionDate'.$i]));
-            }
-            $linesToChart[] = calculateAverage($selectedMeasures);
-        } else {
-            $measureID = $position . '_' . $numbers[0] . $scattered . $reference;
-            //dumpDie($measureID);
-            $linesToChart[] = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
-//            dump($_REQUEST['netColor'.$i]);
-//            dump($measureID);
-//            dump($measurementType);
-//            dump($_REQUEST['sessionDate'.$i]);
-            //dumpDie($linesToChart);
-        }
-    } else {
+    foreach ( $numbers as $number ) {
         //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
-        $measureID = $position . $scattered . $reference;
-        //dumpDie($measureID);
-/*      dump($_REQUEST['netColor'.$i]);
-        dump($measureID);
-        dump($measurementType);
-        dump($_REQUEST['sessionDate'.$i]);*/
-
-        //echo 'number not an array: "' . toString($numbers) . '"';
-
-        $linesToChart[] = getMeasureFromDB($_REQUEST['netColor'.$i], $measureID, $measurementType, $_REQUEST['sessionDate'.$i]);
+        $measureID = $position . '_' . $number . $scattered . $reference;
+        //generate the array of selected measures
+        $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+        //if no data available return to previous page with error message
+        if ($contentFromDB == false) {
+            $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$_REQUEST['sessionDate' . $i].']';
+            header('Location: select_data_w-math.php?action=Go&error='.$errorMessage);
+            exit();
+        }
+        $selectedMeasures[] = $contentFromDB;
     }
-    //dumpDie(getMeasureFromDB('dummy50', '1_1', "Transmittance", "010101"));
-
-
-
-
-    //dumpDie($linesToChart);
-
+    if (count($selectedMeasures) > 1) {
+        $linesToChart[] = calculateAverage($selectedMeasures);
+    } else {
+        $linesToChart[] = $selectedMeasures[0];
+    }
 }
 
-//if no data available alert message and return to previous page
-$empty = false;
-foreach ($selectedMeasures as $measure) {
-    $empty = empty($measure);
-}
-if ($empty) {
-    header('Location: '.THIS_PAGE.'?action=Go&error=error&linesToChart='.$_REQUEST['linesToChart']);
-}
-
-
+//dumpDie($linesToChart);
 
 $chartTitle = $measurementType;
-
-//create the Chart object
-$Chart = new Chart($chartTitle, $measurementType, $linesToChart); //$selectedMeasures
-//generate the data table for the charting tool passing the array of parameters
-$dataTable = 'google.visualization.arrayToDataTable(['.generateDataTable($Chart).'])';
-//activate the charting function
-$drawCharts ='chart.draw(dataTable, options);';
-
-$chartTitle = $Chart->chartTitle;
 //if all the lines in the chart come from the same session date, add this to the title
 $allSameDate = true;
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
@@ -104,22 +55,29 @@ if ($allSameDate) {
     $chartTitle .= '  -  ' . implode(".", str_split($_REQUEST['sessionDate0'], 2));
 }
 //if all measures come from the same location, add this to the title
-$allSameDate = true;
-$location = (substr($_REQUEST['position0'], -1) == 'Q') ? 'Quincy' : 'TFREC';
+$measuresInQuincy = 0;
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
-    if ($_REQUEST['position0'] !=  $_REQUEST['position'.$i]) {
-        $allSameDate = false;
+    if (substr($_REQUEST['netColor'.$i], -1) == 'Q') {
+        $measuresInQuincy++;
     }
 }
-if ($allSameDate) {
-    $chartTitle .= ' @ '.$location;
+$location = '';
+if ($measuresInQuincy == $_REQUEST['linesToChart']) {
+    $location = ' @ Quincy';
 }
+if ($measuresInQuincy == 0) {
+    $location = ' @ TFREC';
+}
+$chartTitle .= $location;
 
+//create the Chart object
+$Chart = new Chart($chartTitle, $measurementType, $linesToChart); //$selectedMeasures
+//dumpDie($Chart);
+//from the Chart obj generate the data table for the charting tool
+$dataTable = generateDataTable($Chart);
+//dumpDie($dataTable);
 
-
-
-
-
+//create vertical axis label for the chart
 if($measurementType == 'Transmittance') {
     $vAxisLabel = $measurementType.' (%)';
 }
@@ -127,12 +85,10 @@ if($measurementType == 'Reference') {
     $vAxisLabel = 'Light (uMol / m2)';
 }
 
-
-
 //data.php?oRequest=<?php echo json_encode($_REQUEST)? >
 ?>
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
     <head>
 
         <meta name="viewport" content="width=device-width" />
@@ -166,41 +122,41 @@ if($measurementType == 'Reference') {
             function drawChart() {
 
                 // Create the DATA TABLE.
-                var dataTable = <?=$dataTable?>;
-/*
-                //Alternative way
-                var data = new google.visualization.DataTable();
-                data.addColumn('number', 'Day');
-                data.addColumn('number', 'Guardians of the Galaxy');
-                data.addColumn('number', 'The Avengers');
-                data.addColumn('number', 'Transformers: Age of Extinction');
+                var dataTable = google.visualization.arrayToDataTable([<?=$dataTable?>]);
+                /*
+                 //Alternative way
+                 var data = new google.visualization.DataTable();
+                 data.addColumn('number', 'Day');
+                 data.addColumn('number', 'Guardians of the Galaxy');
+                 data.addColumn('number', 'The Avengers');
+                 data.addColumn('number', 'Transformers: Age of Extinction');
 
-                data.addRows([
-                    [1,  37.8, 80.8, 41.8],
-                    [2,  30.9, 69.5, 32.4],
-                    [3,  25.4,   57, 25.7],
-                    [4,  11.7, 18.8, 10.5],
-                    [5,  11.9, 17.6, 10.4],
-                    [6,   8.8, 13.6,  7.7],
-                    [7,   7.6, 12.3,  9.6],
-                    [8,  12.3, 29.2, 10.6],
-                    [9,  16.9, 42.9, 14.8],
-                    [10, 12.8, 30.9, 11.6],
-                    [11,  5.3,  7.9,  4.7],
-                    [12,  6.6,  8.4,  5.2],
-                    [13,  4.8,  6.3,  3.6],
-                    [14,  4.2,  6.2,  3.4]
-                ]);
-*/
+                 data.addRows([
+                 [1,  37.8, 80.8, 41.8],
+                 [2,  30.9, 69.5, 32.4],
+                 [3,  25.4,   57, 25.7],
+                 [4,  11.7, 18.8, 10.5],
+                 [5,  11.9, 17.6, 10.4],
+                 [6,   8.8, 13.6,  7.7],
+                 [7,   7.6, 12.3,  9.6],
+                 [8,  12.3, 29.2, 10.6],
+                 [9,  16.9, 42.9, 14.8],
+                 [10, 12.8, 30.9, 11.6],
+                 [11,  5.3,  7.9,  4.7],
+                 [12,  6.6,  8.4,  5.2],
+                 [13,  4.8,  6.3,  3.6],
+                 [14,  4.2,  6.2,  3.4]
+                 ]);
+                 */
 
 
                 //define (dark) color generators
                 var darkBlue = '#000E73',   lightBlue = '#DCF9FF',
-                    darkRed = '#970000',    lightRed = '#FFE1E1',
-                    darkGrey = '#767676',   lightGrey = '#FFFFFF',
-                    darkYellow = '#E16C00', lightYellow = '#FBFFB7',
-                    //darkGreenw = '#016F25', lightGreen = '#C0DC9D', //if necessary in the future
-                    steps = 17; //number of shades per color wheel
+                    darkRed = '#970000',    lightRed = '#FBA281',
+                    darkGrey = '#444444',   lightGrey = '#FEFEFE',
+                    darkYellow = '#D48D00', lightYellow = '#88BF00', //E16C00 97D400
+                //darkGreenw = '#016F25', lightGreen = '#C0DC9D', //if necessary in the future
+                    steps = 18; //number of shades per color wheel
 
                 //create color palette objs
                 var blueHue = new KolorWheel(darkBlue).abs(lightBlue, steps);
@@ -208,60 +164,77 @@ if($measurementType == 'Reference') {
                 var greyHue = new KolorWheel(darkGrey).abs(lightGrey, steps);
                 var yellowHue = new KolorWheel(darkYellow).abs(lightYellow, steps);
 
-                var createColorPalette = function(wheel) {
+                var createColorPalette = function(wheel, steps) {
                     var colorPalette = [];
                     //get only intense distinct colors in each palette
-                    for (var n = 0; n <= 15; n += 3) {
+                    for (var n = 0; n <= steps - 3; n += 3) {
                         colorPalette.push(wheel.get(n).getHex());
                     }
                     return colorPalette;
                 };
 
-                var bluePalette = createColorPalette(blueHue);
-                var redPalette = createColorPalette(redHue);
-                var greyPalette = createColorPalette(greyHue);
-                var yellowPalette = createColorPalette(yellowHue);
+                var bluePalette = createColorPalette(blueHue, steps);
+                var redPalette = createColorPalette(redHue, steps);
+                var greyPalette = createColorPalette(greyHue, steps);
+                var yellowPalette = createColorPalette(yellowHue, steps);
 
                 //get colors from line names
                 var colorLabels = [];
                 var numberOfLinesInChart = dataTable.getNumberOfColumns();
                 for (var i = 1; i < numberOfLinesInChart; i++) {
-                    colorLabels.push(dataTable.getColumnLabel(i).split('_')[0]);
+                    var colorLabel = dataTable.getColumnLabel(i).split('_')[0];
+                    console.log(colorLabel);
+                    if (colorLabel.slice(-1) == 'Q') {
+                        if (colorLabel.toLowerCase().indexOf('open') >= 0) {
+                            colorLabel = colorLabel.slice(0, -1);
+                        } else {
+                            colorLabel = colorLabel.slice(0, -2);
+                        }
+                    }
+                    colorLabels.push(colorLabel);
                 }
+                console.log(colorLabels);
 
                 var colorSeriesArr = [];
                 var blueLines = 0, redLines = 0, whiteLines = 0, yellowLines = 0;
-                for (var i = 0; i < colorLabels.length; i++) {
-                    switch (colorLabels[i].toLowerCase()) {
-
+                for (var j = 0; j < colorLabels.length; j++) {
+                    switch (colorLabels[j].toLowerCase()) {
                         case 'blue':
                             colorSeriesArr.push(bluePalette[blueLines]);
                             blueLines++;
+                            if (blueLines == bluePalette.length) {
+                                blueLines = 0;
+                            }
                             break;
-
                         case 'red':
                             colorSeriesArr.push(redPalette[redLines]);
                             redLines++;
+                            if (redLines == redPalette.length) {
+                                redLines = 0;
+                            }
                             break;
-
                         case 'white':
                             colorSeriesArr.push(greyPalette[whiteLines]);
                             whiteLines++;
+                            if (whiteLines == greyPalette.length-1) {
+                                whiteLines = 0;
+                            }
                             break;
-
                         case 'openfield':
-                            colorSeriesArr.push(yellowPalette[whiteLines]);
+                            colorSeriesArr.push(yellowPalette[yellowLines]);
                             yellowLines++;
+                            if (yellowLines == yellowPalette.length) {
+                                yellowLines = 0;
+                            }
                             break;
                     }
                 }
 
                 //create color series obj
                 var colorSeries = {};
-                for (var i = 0; i < numberOfLinesInChart - 1; i++) { //first column is x-Axis
-                    colorSeries[i] = { color: colorSeriesArr[i]}
+                for (var k = 0; k < numberOfLinesInChart - 1; k++) { //first column is x-Axis
+                    colorSeries[k] = { color: colorSeriesArr[k]}
                 }
-            console.log(JSON.stringify(colorSeries));
 
                 //Set chart options.
                 var options = {
@@ -269,22 +242,22 @@ if($measurementType == 'Reference') {
                     forceIFrame : true,
                     title: '<?=$chartTitle?>',
                     titleTextStyle: { fontSize: 22,
-                                      bold: true,
-                                      italic: true
-                                    },
+                        bold: true,
+                        italic: true
+                    },
                     curveType: 'function',
                     hAxis: { title: 'Wavelength (nm)',
-                             ticks: [300, 400, 500, 600, 700, 800, 900, 1000],
-                             textStyle: { fontSize: 13 }
-                            },
+                        ticks: [300, 400, 500, 600, 700, 800, 900, 1000],
+                        textStyle: { fontSize: 13 }
+                    },
                     vAxis: { title: '<?=$vAxisLabel?>',
-                             //ticks: [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
-                            viewWindowMode: 'pretty',
-                            textStyle: { fontSize: 13 }
-                           } ,
+                        //ticks: [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
+                        viewWindowMode: 'pretty',
+                        textStyle: { fontSize: 13 }
+                    } ,
                     chartArea: {left:'10%',
-                                width:'75%' , height:'75%'
-                               },
+                        width:'70%' , height:'75%'
+                    },
                     legend: { textStyle: { fontSize: 12 } }
                 };
 
@@ -293,7 +266,7 @@ if($measurementType == 'Reference') {
                 //Instantiate and draw the chart, passing in some options.
                 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
                 //chart.draw(dataTable, options);
-                <?=$drawCharts?>
+                chart.draw(dataTable, options);
             }
 
         </script>
@@ -301,59 +274,59 @@ if($measurementType == 'Reference') {
     </head>
     <body class="chart_page">
 
-        <h1>Selected chart</h1>
-        <!-- here the chart will be displayed -->
-        <div id="curve_chart"></div>
-        <div>
-            <button id="newChart" class="newChart" type="button">New chart</button>
-            <button id="newUpload" class="newUpload" type="button">Upload new data</button>
-        </div>
+    <h1>Selected chart</h1>
+    <!-- here the chart will be displayed -->
+    <div id="curve_chart"></div>
+    <div>
+        <button id="newChart" class="newChart" type="button">New chart</button>
+        <button id="newUpload" class="newUpload" type="button">Upload new data</button>
+    </div>
 
 
 
 
-        <!-- generate test color palette - ->
-        <br><br>
-        <div id="results"></div>
-        <script>
-            //test colors
-            var r = document.getElementById('results');
-            var steps = 17;
+    <!-- generate TEST color palette   from http://linkbroker.hu/stuff/kolorwheel.js/  - ->
+    <br><br>
+    <div id="results"></div>
+    <script>
+        //test colors
+        var r = document.getElementById('results');
+        var steps = 17;
+
+        for (var n = 0; n < steps; n++ ) {
+            r.innerHTML += '<div class="box">['+n+']</div>';
+            //console.log(n);
+        };
+
+        var make = function(start, end, steps){
+            var base = new KolorWheel(start);
+            var target = base.abs(end, steps);
+            var drawBox = function(color){
+                return '<div class="box" style="color:'+color+';"><b>'+color+' </b></div>';
+            };
 
             for (var n = 0; n < steps; n++ ) {
-                r.innerHTML += '<div class="box">['+n+']</div>';
-                //console.log(n);
+                r.innerHTML += drawBox(target.get(n).getHex());
+                //console.log(n +': ' + target.get(n).getHex());
             };
 
-            var make = function(start, end, steps){
-                var base = new KolorWheel(start);
-                var target = base.abs(end, steps);
-                var drawBox = function(color){
-                    return '<div class="box" style="color:'+color+';"><b>'+color+' </b></div>';
-                };
+            r.innerHTML += '<br clear="both" />';
+        };
 
-                for (var n = 0; n < steps; n++ ) {
-                    r.innerHTML += drawBox(target.get(n).getHex());
-                    //console.log(n +': ' + target.get(n).getHex());
-                };
-
-                r.innerHTML += '<br clear="both" />';
-            };
-
-            make('#000E73', '#DCF9FF',  steps);//blue
-            make('#970000', '#FFE1E1',  steps);//rosso
-            make('#767676', '#FFFFFF',  steps);//grigio
-            make('#E16C00', '#FBFFB7',  steps);//giallo
-            make('#016F25', '#C0DC9D',  steps);//verde
-        </script>
-        <!-- end test color -->
+        make('#000E73', '#DCF9FF',  steps);//blue
+        make('#970000', '#FBA281',  steps);//rosso
+        make('#444444', '#FEFEFE',  steps);//grigio
+        make('#D48D00', '#88BF00',  steps);//giallo 97D400
+        make('#016F25', '#C0DC9D',  steps);//verde
+    </script>
+    <!-- end test color -->
 
 
 
 
-        <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     </body>
-</html>
+    </html>
 
 
 
@@ -413,7 +386,7 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
         return $Measure;
     }
     else {
-        return FALSE;
+        return false;
     }
 }//end getMeasureFromDB()
 
@@ -428,16 +401,7 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
 TODO:
  ***************************************************************************************/
 function generateDataTable($Chart) {
-    //constructing the part with the columns related to the amplitudes
-//    $columnNames = '';
-//    for ($i=0; $i < count($Chart->functions); $i++) {
-//        //generate the name of the lines to chart
-//        $columnNames .= ", '".$Chart->functions[$i]->netColor. '_' . $Chart->functions[$i]->position."'" ;
-//    }
-//    //first part of the string has all the columns
-//    $dataTableString = "['Wavelength'$columnNames], ";
-
-
+    //constructing the string with the columns related to the amplitudes
     $columnNames = '';
     for ($i=0; $i < count($Chart->functions); $i++) {
         //generate the name of the lines to chart
@@ -493,7 +457,7 @@ function calculateAverage($measuresToAverage) {
         $sum = 0;
         //sum the Amplitude values of every measure to average
         for ( $m = 0; $m < $countMeasuresToAverage; $m++ ) {
-             $sum += $measuresToAverage[$m]->getAmplitude($i);
+            $sum += $measuresToAverage[$m]->getAmplitude($i);
         }
         //average the values and overwrite the value in $lineToChart
         $lineToChart->setAmplitude($i, $sum / $countMeasuresToAverage);

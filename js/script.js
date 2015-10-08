@@ -150,4 +150,46 @@ $('tr td input:checkbox.select_checkbox').click(function() {
 });
 
 
+$( document ).ready(function() {
+    //in each row of the table preset the values base on the file name
+    for (var i = 0; i < $('.upload tr td.file').length; i++) {
+        //get file name
+        var fileName = $('.upload .file:eq('+ i +')').text();
+        //get the name of the measure
+        var measureID = fileName.split('.')[0];
+        //unset the default option
+        $('.upload .datalist:eq('+ i +') option:selected').attr('selected', false);
+        var netColor = measureID.split('_')[0];
+        netColor = netColor.charAt(0).toUpperCase() + netColor.slice(1).toLowerCase();
+        if (!isNaN(netColor.slice(-1))) {
+            netColor += 'Q';
+        }
+        //set the net color
+        $('.upload .datalist:eq('+ i +') option[value="'+netColor+'"]').attr('selected', true);
 
+        //set the position and number of measure
+        var position_number = measureID.split('_').slice(1);
+        $('.upload .measurePosition:eq('+ i +') input[name="measurePosition'+ i +'"][value="'+position_number[0]+'"]').prop('checked', true);
+        $('.upload .measurePosition:eq('+ i +') input[name="measureNumber'+ i +'"][value="'+position_number[1]+'"]').prop('checked', true);
+        if (position_number[2] == 'SCAT') {
+            $('.upload .measurePosition:eq('+ i +') input[name="scattered'+ i +'"]').prop('checked', true);
+        }
+
+        //get the measure type from the file name
+        var measureType = '';
+        var fileExt = fileName.split('.')[1].trim();
+        switch (fileExt) {
+            case 'TRM':
+                measureType = 'Transmittance';
+                break;
+            case 'SSM':
+                measureType = 'Reference';
+                break;
+            case 'IRR':
+                measureType = 'Irradiance';
+                break;
+        }
+        //set the measure type
+        $('.upload .measureType:eq('+ i +') .'+measureType.toLowerCase()).prop('checked', true);
+    }
+});
