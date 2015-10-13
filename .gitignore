@@ -2,11 +2,10 @@
 ##################
 
 /credentials.php
-/any_other/
-/appoggio/
 .idea/
 /ORIGINAL_DATA/
 *.txt
+/varie/
 
 
 #-----------------------------------------

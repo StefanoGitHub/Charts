@@ -41,14 +41,12 @@ if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Acti
                 //display files if any has been selected
                 uploadFiles();
                 echo '<div class="back"><a href="' . THIS_PAGE . '">Back</a></div>';
-                echo '<div class="chart"><a href="select_data.php">Chart Measures</a></div>';
             } else {
                 //else prompt the user to select one
                 $fileList = getFileList("_data");
                 displayFileList($fileList);
                 echo '<div class="error" id="error">Please select at least one file</a></div>';
                 echo '<div class="reload"><a href="' . THIS_PAGE . '">Reload page</a></div>';
-                echo '<div class="chart"><a href="select_data.php?">Chart Measures</a></div>';
 
             }
             break;
@@ -57,7 +55,6 @@ if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Acti
             $fileList = getFileList("_data");
             displayFileList($fileList);
             echo '<div class="reload"><a href="' . THIS_PAGE . '">Reload page</a></div>';
-            echo '<div class="chart"><a href="select_data.php" target="_blank">Chart Measures</a></div>';
     }//end switch
 
     ?>
@@ -202,7 +199,7 @@ function displayFileList($fileList) {
                     <input type="radio" name="measureNumber'.$i.'" value="" >N/A
                     <br>
                     <input type="checkbox" name="scattered'.$i.'" value="scattered">SCAT
-                    <input type="checkbox" name="reference'.$i.'" value="reference">REF
+<!--                    <input type="checkbox" name="reference'.$i.'" value="reference">REF -->
                 </td>
                 <td class="measureType">
                     <input type="radio" name="measureType'.$i.'" class="irradiance" value="Irradiance" >.IRR
@@ -215,15 +212,12 @@ function displayFileList($fileList) {
             ';
         }
         echo '</table>
-
-
-
-
-
             <div>
                 <input type="submit" name="action" value="upload">
             </div>
-        </form>        
+        </form>
+        <div class="chart"><a href="select_data_w-math.php" target="_blank">Chart Measures</a></div>
+
     ';
     } else {
         //no files in the list
