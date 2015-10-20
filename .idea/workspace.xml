@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a203fbe1-bb1f-4665-ac57-7a6664f13b9c" name="Default" comment="fixes some files issues">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/select_data_w-math_OLD.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/upload_vecchio.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upload_vecchio.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload_old.php" afterPath="$PROJECT_DIR$/upload_old.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Graphs2.iws" />
@@ -26,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/upload.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="38.208332">
-              <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.738437">
+              <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
               <folding>
                 <marker date="1444754436000" expanded="true" signature="5954:8869" placeholder="..." />
                 <marker date="1444754436000" expanded="true" signature="6107:6250" placeholder="..." />
@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_chart_w-math.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="view_chart_w-math.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view_chart_w-math.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51670146">
+            <state vertical-scroll-proportion="-20.0">
               <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
               <folding>
                 <marker date="1445299704000" expanded="true" signature="14354:14735" placeholder="SELECT Wavel..t_IRR_Data..." />
@@ -105,7 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../GraphsOOP/Chart.php" />
         <option value="$PROJECT_DIR$/../GraphsOOP/data.php" />
         <option value="$PROJECT_DIR$/../GraphsOOP/functions.php" />
         <option value="$PROJECT_DIR$/../GraphsOOP/Measure.php" />
@@ -156,6 +155,7 @@
         <option value="$PROJECT_DIR$/select_data_w-math.php" />
         <option value="$PROJECT_DIR$/view_chart_w-math.php" />
         <option value="$PROJECT_DIR$/upload_OLD.php" />
+        <option value="$PROJECT_DIR$/upload_vecchio.php" />
       </list>
     </option>
   </component>
@@ -479,7 +479,13 @@
       <option name="project" value="LOCAL" />
       <updated>1445301554792</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fixes some files issues">
+      <created>1445301785343</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1445301785343</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -488,7 +494,7 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24388255" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32772276" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32772276" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32649255" sideWeight="0.50280505" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -769,23 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="38.208332">
-          <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
-          <folding>
-            <marker date="1444754436000" expanded="true" signature="5954:8869" placeholder="..." />
-            <marker date="1444754436000" expanded="true" signature="6107:6250" placeholder="..." />
-            <marker date="1444754436000" expanded="true" signature="6286:7244" placeholder="..." />
-            <marker date="1444754436000" expanded="true" signature="6368:7222" placeholder="..." />
-            <marker date="1444754436000" expanded="true" signature="7290:8328" placeholder="..." />
-            <marker date="1444754436000" expanded="true" signature="8369:8732" placeholder="..." />
-            <marker date="1444754436000" expanded="true" signature="8935:9021" placeholder="..." />
-            <marker date="1444754436000" expanded="true" signature="9210:9372" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/select_data_w-math.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-26.875">
@@ -796,11 +785,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view_chart_w-math.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51670146">
+        <state vertical-scroll-proportion="-20.0">
           <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
           <folding>
             <marker date="1445299704000" expanded="true" signature="14354:14735" placeholder="SELECT Wavel..t_IRR_Data..." />
             <marker date="1445299704000" expanded="true" signature="14502:14546" placeholder="-- Wavelengt..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload_old.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9521531">
+          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+          <folding>
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445301867000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.738437">
+          <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
+          <folding>
+            <marker date="1444754436000" expanded="true" signature="5954:8869" placeholder="..." />
+            <marker date="1444754436000" expanded="true" signature="6107:6250" placeholder="..." />
+            <marker date="1444754436000" expanded="true" signature="6286:7244" placeholder="..." />
+            <marker date="1444754436000" expanded="true" signature="6368:7222" placeholder="..." />
+            <marker date="1444754436000" expanded="true" signature="7290:8328" placeholder="..." />
+            <marker date="1444754436000" expanded="true" signature="8369:8732" placeholder="..." />
+            <marker date="1444754436000" expanded="true" signature="8935:9021" placeholder="..." />
+            <marker date="1444754436000" expanded="true" signature="9210:9372" placeholder="..." />
           </folding>
         </state>
       </provider>
