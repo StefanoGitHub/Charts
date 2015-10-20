@@ -41,24 +41,44 @@ $('#delRow').click(function () {
     }
 });
 
-//if checkbox non is selected all other sample chackbox have to be unchecked
-$("#table2").on("click", "input:checkbox.none", function() {
+//if checkbox all is selected all other sample chackbox will be checked
+$("#table2").on("click", "input:checkbox.all", function() {
     var row = (this.id).charAt(0);
-    console.log(row);
+    //console.log(row);
     if($(this).is(':checked') ){
-        $('#'+row+'_num1').prop('disabled', true);
-        $('#'+row+'_num1').prop('checked', false);
-        $('#'+row+'_num2').prop('disabled', true);
-        $('#'+row+'_num2').prop('checked', false);
-        $('#'+row+'_num3').prop('disabled', true);
-        $('#'+row+'_num3').prop('checked', false);
+        //$('#'+row+'_num1').prop('disabled', true);
+        $('#'+row+'_num1').prop('checked', true);
+        //$('#'+row+'_num2').prop('disabled', true);
+        $('#'+row+'_num2').prop('checked', true);
+        //$('#'+row+'_num3').prop('disabled', true);
+        $('#'+row+'_num3').prop('checked', true);
     } else {
-        $('#'+row+'_num1').prop('disabled', false);
-        $('#'+row+'_num2').prop('disabled', false);
-        $('#'+row+'_num3').prop('disabled', false);
+        $('#'+row+'_num1').prop('checked', false);
+        $('#'+row+'_num2').prop('checked', false);
+        $('#'+row+'_num3').prop('checked', false);
 
     }
 });
+
+
+//if checkbox N/A is selected correspondent position chackbox will be unchecked
+$("#table2").on("click", "input:checkbox.NA", function() {
+    var row = (this.id).charAt(0);
+    //console.log(row);
+    if($(this).is(':checked') ){
+        $('#'+row+'_pos1').prop('disabled', true);
+        $('#'+row+'_pos1').prop('checked', false);
+        $('#'+row+'_pos2').prop('disabled', true);
+        $('#'+row+'_pos2').prop('checked', false);
+    } else {
+        $('#'+row+'_pos1').prop('disabled', false);
+        $('#'+row+'_pos1').prop('checked', false);
+        $('#'+row+'_pos2').prop('disabled', false);
+        $('#'+row+'_pos2').prop('checked', false);
+    }
+});
+
+
 
 
 //submit the form if at least one file were selected
@@ -150,6 +170,7 @@ $('tr td input:checkbox.select_checkbox').click(function() {
 });
 
 
+//preload values in upload.php form
 $( document ).ready(function() {
     //in each row of the table preset the values base on the file name
     for (var i = 0; i < $('.upload tr td.file').length; i++) {

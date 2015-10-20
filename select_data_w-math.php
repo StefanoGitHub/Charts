@@ -37,17 +37,12 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
                 </datalist>
             </td>
             <td>
-                <input type="radio" name="position{{ index }}" id="{{ index }}_pos1" value="1" required>
-                    <label for="{{ index }}_pos1" id="{{ index }}_Mark1">Mark 1</label>
-                <input type="radio" name="position{{ index }}" id="{{ index }}_pos2" value="2" >
-                    <label for="{{ index }}_pos2" id="{{ index }}_Mark2">Mark 2</label>
-                <br>
-                <input type="radio" name="position{{ index }}" id="{{ index }}_pos3" value="N">
-                    <label for="{{ index }}_pos3" id="{{ index }}_N">North</label>
-                <input type="radio" name="position{{ index }}" id="{{ index }}_pos4" value="S" >
-                    <label for="{{ index }}_pos4" id="{{ index }}_S">South</label>
-                <input type="radio" name="position{{ index }}" id="{{ index }}_pos5" value="" >
-                    <label for="{{ index }}_pos5" id="{{ index }}_posNA">N/A</label>
+                <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos1" value="N">
+                    <label for="{{ index }}_pos1" id="{{ index }}_N">North</label>
+                <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos2" value="S" >
+                    <label for="{{ index }}_pos2" id="{{ index }}_S">South</label>
+                <input type="checkbox" class="NA" name="position{{ index }}" id="{{ index }}_pos3" value="" >
+                    <label for="{{ index }}_pos3" id="{{ index }}_posNA">N/A</label>
                 <br class="moreSpace">
 
                 <b>AVG samples:</b> <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num1" value="1" >
@@ -56,8 +51,8 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
                     <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
                 <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num3" value="3">
                     <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
-                <input type="checkbox" class="none" name="number{{ index }}none" id="{{ index }}_none" value="" >
-                    <label for="{{ index }}_none" id="{{ index }}_numNA">none</label>
+                <input type="checkbox" class="all" name="number{{ index }}all" id="{{ index }}_all" value="" >
+                    <label for="{{ index }}_all" id="{{ index }}_numAll">All</label>
                 <br class="moreSpace">
 
                 <b>Scattered light?</b>
@@ -124,17 +119,12 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
                 </datalist>
             </td>
             <td>
-                <input type="radio" name="position0" id="0_pos1" value="1" required>
-                    <label for="0_pos1" id="0_Mark1">Mark 1</label>
-                <input type="radio" name="position0" id="0_pos2" value="2" >
-                    <label for="0_pos2" id="0_Mark2">Mark 2</label>
-                <br>
-                <input type="radio" name="position0" id="0_pos3" value="N">
-                    <label for="0_pos3" id="0_N">North</label>
-                <input type="radio" name="position0" id="0_pos4" value="S" >
-                    <label for="0_pos4" id="0_S">South</label>
-                <input type="radio" name="position0" id="0_pos5" value="" >
-                    <label for="0_pos5" id="0_posNA">N/A</label>
+                <input type="checkbox" name="position0[]" id="0_pos1" value="N">
+                    <label for="0_pos1" id="0_N">North</label>
+                <input type="checkbox" name="position0[]" id="0_pos2" value="S" >
+                    <label for="0_pos2" id="0_S">South</label>
+                <input type="checkbox" class="NA" name="position0" id="0_pos3" value="" >
+                    <label for="0_pos3" id="0_posNA">N/A</label>
                 <br class="moreSpace">
 
                 <b>AVG samples:</b> <input type="checkbox" name="number0[]" id="0_num1" value="1" >
@@ -143,8 +133,8 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
                     <label for="0_num2" id="0_2nd">2nd</label>
                 <input type="checkbox" name="number0[]" id="0_num3" value="3">
                     <label for="0_num3" id="0_3dr">3dr</label>
-                <input type="checkbox" class="none" name="number0none" id="0_none" value="" >
-                    <label for="0_none" id="0_numNA">none</label>
+                <input type="checkbox" class="all" name="number0_all" id="0_all" value="" >
+                    <label for="0_all" id="0_numAll">All</label>
                 <br class="moreSpace">
 
                 <b>Scattered light?</b>

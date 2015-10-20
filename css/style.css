@@ -86,7 +86,8 @@ button {
 
 /***** INPUTS *****/
 input {
-    margin-left: 1em;
+    margin-left: 0.8em;
+    margin-right: 0em;
 }
 .datalist {
     margin: 0 1em;

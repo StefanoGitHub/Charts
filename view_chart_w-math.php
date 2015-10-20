@@ -11,7 +11,8 @@ $measurementType = $_REQUEST['measurementType'];
 $linesToChart = array();
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
 
-    $position = (isset($_REQUEST['position'.$i]) && $_REQUEST['position'.$i] != '') ? $_REQUEST['position'.$i] : '';
+//    $position = (isset($_REQUEST['position'.$i]) && $_REQUEST['position'.$i] != '') ? $_REQUEST['position'.$i] : '';
+    $positions = $_REQUEST['position'.$i];
     $numbers = $_REQUEST['number'.$i];
     $scattered = (isset($_REQUEST['scattered'.$i]) && $_REQUEST['scattered'.$i] == 'scattered') ? '_SCAT' : '';
     $reference = (isset($_REQUEST['reference'.$i]) && $_REQUEST['reference'.$i] == 'reference') ? '_REF' : '';
@@ -19,21 +20,43 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
     $selectedMeasures = array();
     $measureID = '';
 
-    //dumpDie($numbers);
+//    dump($positions);
+//    dumpDie($numbers);
 
-    foreach ( $numbers as $number ) {
-        //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
-        $measureID = $position . '_' . $number . $scattered . $reference;
-        //generate the array of selected measures
-        $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
-        //if no data available return to previous page with error message
-        if ($contentFromDB == false) {
-            $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$_REQUEST['sessionDate' . $i].']';
-            header('Location: select_data_w-math.php?action=Go&error='.$errorMessage);
-            exit();
+    if (is_array($positions)) {
+        foreach ( $positions as $position ) {
+            foreach ( $numbers as $number ) {
+                //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
+                $measureID = $position . '_' . $number . $scattered . $reference;
+                //generate the array of selected measures
+                $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+                //if no data available return to previous page with error message
+                if ($contentFromDB == false) {
+                    $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$_REQUEST['sessionDate' . $i].']';
+                    header('Location: select_data_w-math.php?action=Go&error='.$errorMessage);
+                    exit();
+                }
+                $selectedMeasures[] = $contentFromDB;
+            }
         }
-        $selectedMeasures[] = $contentFromDB;
+    } else {
+        foreach ( $numbers as $number ) {
+            //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
+            $measureID = $position . '_' . $number . $scattered . $reference;
+            //generate the array of selected measures
+            $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+            //if no data available return to previous page with error message
+            if ($contentFromDB == false) {
+                $errorMessage = '[' . $_REQUEST['netColor' . $i] . ' ' . $measureID . ' ' . $measurementType . ' ' . $_REQUEST['sessionDate' . $i] . ']';
+                header('Location: select_data_w-math.php?action=Go&error=' . $errorMessage);
+                exit();
+            }
+            $selectedMeasures[] = $contentFromDB;
+        }
     }
+
+
+
     if (count($selectedMeasures) > 1) {
         $linesToChart[] = calculateAverage($selectedMeasures);
     } else {
@@ -469,7 +492,9 @@ function calculateAverage($measuresToAverage) {
     if ($last == 'SCAT') {
         array_pop($newName);
     }
-    $newName = implode('_', $newName).'_AVG('.$countMeasuresToAverage.')';
+    $newName = ($countMeasuresToAverage < 4) ?
+                        implode('_', $newName).'_AVG('.$countMeasuresToAverage.')' :
+                        'AVG('.$countMeasuresToAverage.')';
     if ($last == 'SCAT') {
         $newName .= '_SCAT';
     }
