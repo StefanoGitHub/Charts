@@ -18,9 +18,10 @@ function makeLinks($Array, $icons) {
     $arrow = ' <span><i class="fa fa-arrow-right"></i></span> ';
     foreach ( $Array as $url => $text ) {
         $url == THIS_PAGE ? $current = ' class="current" ' : $current = '';
-        $url == 'view_chart.php' ? $href = '' : $href = $url;
+        $url == 'view_chart.php' ? $href = '' : $href = 'href = "'.$url.'"';
+        $url == 'view_chart.php' ? $id = ' id="chart" ' : $id = '';
         //dumpDie($href);
-        $myReturn .= '<li' . $current . '><a href="' . $href . '">' . $icons[$url] . $text . '</a></li>';
+        $myReturn .= '<li' . $current . $id . '><a '. $href.'>' . $icons[$url] . $text . '</a></li>';
         if ($arrow_count < 2) {
             $myReturn .= $arrow;
             $arrow_count++;

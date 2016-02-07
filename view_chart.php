@@ -305,15 +305,26 @@ include "includes/header_inc.php";
     <h1>Selected chart</h1>
         <!-- here the chart will be displayed -->
         <div id="curve_chart"></div>
-        <div>
-            <button id="newChart" class="newChart" type="button">New chart</button>
-            <button id="newUpload" class="newUpload" type="button">Upload new data</button>
-        </div>
+<!--        <div>-->
+<!--            <button id="newChart" class="newChart" type="button">New chart</button>-->
+<!--            <button id="newUpload" class="newUpload" type="button">Upload new data</button>-->
+<!--        </div>-->
 
 
+    <div class="submit_button">
+        <button id="newChart" class="newChart" type="button">
+            <i class="fa fa-plus FA-"></i> &nbsp; New chart <i class="fa fa-line-chart fa-fw"></i>
+        </button>
+
+        <button id="newUpload" class="newUpload" type="button">
+            <i class="fa fa-plus FA-"></i> &nbsp; Upload new data <i class="fa fa-table fa-fw"></i>
+        </button>
 
 
-        <!-- generate TEST color palette   from http://linkbroker.hu/stuff/kolorwheel.js/  - ->
+    </div>
+
+
+    <!-- generate TEST color palette   from http://linkbroker.hu/stuff/kolorwheel.js/  - ->
         <br><br>
         <div id="results"></div>
         <script>

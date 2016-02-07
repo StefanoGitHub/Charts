@@ -148,9 +148,12 @@ include "includes/header_inc.php";
     </table>
     <input id="linesToChart" type="hidden" name="linesToChart" value="1">
 
-    <div>
-        <input class="chart" type="submit" name="action" value="Chart!">
+    <div class="submit_button">
+        <button id="chart_button" type="submit" form="select" value="Submit">
+            Chart <i class="fa fa-arrow-right"></i> <i class="fa fa-line-chart fa-fw"></i>
+        </button>
     </div>
+
 </form>
 
 <?=$errorMessaqe?>

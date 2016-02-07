@@ -219,15 +219,11 @@ function displayFileList($fileList) {
                 <input type="submit" class="upload" name="action" value="Upload!">
             </div> -->
 
-            <div class="input-group">
-                <div class="input">
-                    <input type="submit" class="upload" name="action" value="">Upload
-                    <i class="fa fa-arrow-right"></i>
-                    <i class="fa fa-database"></i>
-                </div>
+            <div class="submit_button">
+                <button id="upload_button" type="submit" form="upload" value="Submit">
+                    Upload <i class="fa fa-arrow-right"></i> <i class="fa fa-database"></i>
+                </button>
             </div>
-
-<!--        <a href="#" onclick="document.forms[0].submit(); return false;">Submit</a> -->
 
         </form>
 

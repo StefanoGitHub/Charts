@@ -62,15 +62,53 @@ div.tableBlock {
 }
 
 /***** BUTTONS *****/
+div.submit_button {
+    width: 100%;
+    margin: 2em auto 1em;
+}
+
 button {
-    /*margin: 1em 2em;*/
+    border-radius: 1.6em;
+    -webkit-border-radius: 1.6em;
+    -moz-border-radius: 1.6em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    padding: 0.4em 1.5em;
+    background: #7d7d7d url(../images/gradient.png) repeat-x 0 -110px;
+    font-weight: bold;
+    color: #444;
+    /*display: block;*/
+    border: none;
+    margin: 0 auto;
+    font-size: 1em;
 }
-.addRow, .delRow {
+
+button:hover {
+    background: #666 url(../images/gradient.png) repeat-x 0 -40px;
+    color: #444;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+button.addRow,
+button.delRow,
+#sameDate {
+    padding: 0.2em 1em;
+    color: #595959;
+    text-shadow: none;
     margin: 2em 4em 1em;
+    font-size: .8em;
+    /*margin: 0em;*/
 }
+
 #newChart, #newUpload {
-    margin: 1em 5em;
+    margin-left: 5em;
+    margin-right: 5em;
 }
+
 /*
 .addTable, .delTable {
     margin: 2em 4em 2em;
@@ -78,7 +116,6 @@ button {
 */
 #sameDate {
     margin: 0em;
-    font-size: .5em;
 }
 
 /***** INPUTS *****/
@@ -116,48 +153,6 @@ input.chart, input.upload {
 }
 
 
-div.input-group {
-    width: 100%;
-    margin: 1em auto;
-}
-div.input {
-    border-radius: 1.6em;
-    -webkit-border-radius: 1.6em;
-    -moz-border-radius: 1.6em;
-
-    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
-    padding: 0.4em 1.5em;
-    background: #7d7d7d url(../images/gradient.png) repeat-x 0 -110px;
-
-    font-weight: bold;
-    color: #e7e5e5;
-
-    display: inline-block;
-
-}
-div.input input {
-    border: none;
-    margin: 0 auto;
-    padding: 0;
-    font-size: 1em;
-}
-div.input-group :hover {
-    background: #666 url(../images/gradient.png) repeat-x 0 -40px;
-    color: #444;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
-}
-
-
-
-
-
-
-
 footer {
     color: darkslategrey;
     text-align: right;
@@ -169,14 +164,12 @@ footer {
 }
 
 /***************************************/
-.box{
-    font-size: 12px;
-    width:20px;
-    height: 20px;
-    float: left;
-    /*outline:1px solid #fff;
-    margin: 2em;*/
-    padding: .3em;
-}
+/*.box{*/
+    /*font-size: 12px;*/
+    /*width:20px;*/
+    /*height: 20px;*/
+    /*float: left;*/
+    /*padding: .3em;*/
+/*}*/
 
 
