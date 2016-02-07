@@ -86,7 +86,7 @@ $('#upload').submit(function () {
 //redirect to select_data page
 $('#newChart').click(function () {
     //redirect to page
-    window.location.href = "select_data_W-math.php";
+    window.location.href = "../select_data.php";
 });
 
 //redirect to upload page

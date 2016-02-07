@@ -1,5 +1,5 @@
 <?php
-//view_chart_w-math.php
+//view_chart.php
 
 include "functions.php";
 define ('DEBUG', 'DEBUG');
@@ -33,7 +33,7 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
                 //if no data available return to previous page with error message
                 if ($contentFromDB == false) {
                     $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$_REQUEST['sessionDate' . $i].']';
-                    header('Location: select_data_w-math.php?action=Go&error='.$errorMessage);
+                    header('Location: select_data.php?action=Go&error='.$errorMessage);
                     exit();
                 }
                 $selectedMeasures[] = $contentFromDB;
@@ -42,13 +42,19 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
     } else {
         foreach ( $numbers as $number ) {
             //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
+            $position = $_REQUEST['position'.$i];
             $measureID = $position . '_' . $number . $scattered . $reference;
+            //dumpDie($measureID);
             //generate the array of selected measures
+//            dump($_REQUEST['netColor' . $i]);
+//            dump($measureID);
+//            dump($measurementType);
+//            dumpDie($_REQUEST['sessionDate' . $i]);
             $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
             //if no data available return to previous page with error message
             if ($contentFromDB == false) {
                 $errorMessage = '[' . $_REQUEST['netColor' . $i] . ' ' . $measureID . ' ' . $measurementType . ' ' . $_REQUEST['sessionDate' . $i] . ']';
-                header('Location: select_data_w-math.php?action=Go&error=' . $errorMessage);
+                header('Location: select_data.php?action=Go&error=' . $errorMessage);
                 exit();
             }
             $selectedMeasures[] = $contentFromDB;
@@ -104,29 +110,23 @@ $dataTable = generateDataTable($Chart);
 if($measurementType == 'Transmittance') {
     $vAxisLabel = $measurementType.' (%)';
 }
+if($measurementType == 'Irradiance') {
+    $vAxisLabel = 'Light (uMol / m2)';
+}
 if($measurementType == 'Reference') {
     $vAxisLabel = 'Light (uMol / m2)';
 }
 
-//data.php?oRequest=<?php echo json_encode($_REQUEST)? >
+
+//HEADER
+include "includes/header_inc.php";
+
+//###########  BODY ################//
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-
-        <meta name="viewport" content="width=device-width" />
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <title>Charts</title>
-
-        <!-- jQuery -->
-        <script src="js/jquery-2.1.4.js"></script>
-        <!-- kolorwheel.js -->
-        <script src="js/KolorWheel.js"></script>
-
-        <!-- Load the AJAX API and the Visualization API and the corechart package.
-        Do this only once per web page! -->
-        <script type="text/javascript"
-                src="https://www.google.com/jsapi?autoload={
+    <!-- Load the AJAX API and the Visualization API and the corechart package.
+            Do this only once per web page! -->
+    <script type="text/javascript"
+            src="https://www.google.com/jsapi?autoload={
               'modules':[{
               'name':'visualization',
               'version':'1',
@@ -134,19 +134,18 @@ if($measurementType == 'Reference') {
               }]
             }"></script>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
 
-            // Set a callback to run when the Google Visualization API is loaded.
-            google.setOnLoadCallback(drawChart);
-
-            // Callback that creates and populates a data table,
+        // Callback that creates and populates a data table,
             // instantiates the line chart, passes in the data and
             // draws it.
             function drawChart() {
 
                 // Create the DATA TABLE.
                 var dataTable = google.visualization.arrayToDataTable([<?=$dataTable?>]);
-/*
+
                 //Alternative way
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'Day');
@@ -170,7 +169,7 @@ if($measurementType == 'Reference') {
                     [13,  4.8,  6.3,  3.6],
                     [14,  4.2,  6.2,  3.4]
                 ]);
-*/
+
 
 
                 //define (dark) color generators
@@ -178,14 +177,15 @@ if($measurementType == 'Reference') {
                     darkRed = '#970000',    lightRed = '#FBA281',
                     darkGrey = '#444444',   lightGrey = '#FEFEFE',
                     darkYellow = '#D48D00', lightYellow = '#88BF00', //E16C00 97D400
-                    //darkGreenw = '#016F25', lightGreen = '#C0DC9D', //if necessary in the future
-                    steps = 18; //number of shades per color wheel
+                    darkGreen = '#016F25', lightGreen = '#C0DC9D', //if necessary in the future
+                   steps = 18; //number of shades per color wheel
 
                 //create color palette objs
                 var blueHue = new KolorWheel(darkBlue).abs(lightBlue, steps);
                 var redHue = new KolorWheel(darkRed).abs(lightRed, steps);
                 var greyHue = new KolorWheel(darkGrey).abs(lightGrey, steps);
                 var yellowHue = new KolorWheel(darkYellow).abs(lightYellow, steps);
+                var greenHue = new KolorWheel(darkGreen).abs(lightGreen, steps);
 
                 var createColorPalette = function(wheel, steps) {
                     var colorPalette = [];
@@ -200,6 +200,7 @@ if($measurementType == 'Reference') {
                 var redPalette = createColorPalette(redHue, steps);
                 var greyPalette = createColorPalette(greyHue, steps);
                 var yellowPalette = createColorPalette(yellowHue, steps);
+                var greenPalette = createColorPalette(greenHue, steps);
 
                 //get colors from line names
                 var colorLabels = [];
@@ -219,7 +220,7 @@ if($measurementType == 'Reference') {
                 console.log(colorLabels);
 
                 var colorSeriesArr = [];
-                var blueLines = 0, redLines = 0, whiteLines = 0, yellowLines = 0;
+                var blueLines = 0, redLines = 0, whiteLines = 0, yellowLines = 0, greenLines = 0;
                 for (var j = 0; j < colorLabels.length; j++) {
                     switch (colorLabels[j].toLowerCase()) {
                         case 'blue':
@@ -228,26 +229,33 @@ if($measurementType == 'Reference') {
                             if (blueLines == bluePalette.length) {
                                 blueLines = 0;
                             }
-                            break;
+                           break;
                         case 'red':
                             colorSeriesArr.push(redPalette[redLines]);
-                            redLines++;
+                           redLines++;
                             if (redLines == redPalette.length) {
-                                redLines = 0;
+                              redLines = 0;
                             }
                             break;
                         case 'white':
-                            colorSeriesArr.push(greyPalette[whiteLines]);
+                           colorSeriesArr.push(greyPalette[whiteLines]);
                             whiteLines++;
                             if (whiteLines == greyPalette.length-1) {
                                 whiteLines = 0;
                             }
                             break;
-                        case 'openfield':
+                       case 'ctrl':
                             colorSeriesArr.push(yellowPalette[yellowLines]);
                             yellowLines++;
                             if (yellowLines == yellowPalette.length) {
                                 yellowLines = 0;
+                            }
+                            break;
+                        case 'openfield':
+                            colorSeriesArr.push(greenPalette[greenLines]);
+                            greenLines++;
+                            if (greenLines == greenPalette.length) {
+                                greenLines = 0;
                             }
                             break;
                     }
@@ -288,16 +296,12 @@ if($measurementType == 'Reference') {
 
                 //Instantiate and draw the chart, passing in some options.
                 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-                //chart.draw(dataTable, options);
                 chart.draw(dataTable, options);
             }
 
         </script>
 
-    </head>
-    <body class="chart_page">
-
-        <h1>Selected chart</h1>
+    <h1>Selected chart</h1>
         <!-- here the chart will be displayed -->
         <div id="curve_chart"></div>
         <div>
@@ -344,17 +348,15 @@ if($measurementType == 'Reference') {
         </script>
         <!-- end test color -->
 
-
-
-
-        <script type="text/javascript" src="js/script.js"></script>
-    </body>
-</html>
-
-
-
-
 <?php
+    //###########  END BODY ################//
+
+    //FOOTER
+    include "includes/footer_inc.php";
+
+
+
+
 
 /**
  *

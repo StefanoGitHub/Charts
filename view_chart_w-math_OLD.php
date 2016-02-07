@@ -1,5 +1,5 @@
 <?php
-//view_chart_w-math.php
+//view_chart.php
 
 include "functions.php";
 define ('DEBUG', 'DEBUG');
@@ -29,7 +29,7 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
         //if no data available return to previous page with error message
         if ($contentFromDB == false) {
             $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$_REQUEST['sessionDate' . $i].']';
-            header('Location: select_data_w-math.php?action=Go&error='.$errorMessage);
+            header('Location: select_data.php?action=Go&error='.$errorMessage);
             exit();
         }
         $selectedMeasures[] = $contentFromDB;

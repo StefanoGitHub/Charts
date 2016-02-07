@@ -1,78 +1,70 @@
 <?php
-//select_data_w-math.php
+//select_data.php
+include "functions.php";
 
 $errorMessaqe = (isset($_REQUEST['error'])) ?
                 '<h3 class="error">No value matches the selection: '.$_REQUEST['error'].'</h3>' :
                 '';
 
+//HEADER
+include "includes/header_inc.php";
 //data.php?oRequest=<?php echo json_encode($_REQUEST)? >
+
+//###########  BODY ################//
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+<script id="newRow" type="text/html">
+    <tr>
+        <td>
+            <input list="netColor{{ index }}" name="netColor{{ index }}" class="datalist">
+            <datalist id="netColor{{ index }}">
+                <option value="Blue">Blue TFREC</option>
+                <option value="Blue1Q">Blue1 Quincy</option>
+                <option value="Blue2Q">Blue2 Quincy</option>
+                <option value="Red">Red TFREC</option>
+                <option value="Red1Q">Red1 Quincy</option>
+                <option value="Red2Q">Red2 Quincy</option>
+                <option value="White">White TFREC</option>
+                <option value="White1Q">White1 Quincy</option>
+                <option value="White2Q">White2 Quincy</option>
+                <option value="OpenField">Open Field TFREC</option>
+                <option value="OpenFieldQ">Open Field Quincy</option>
+                <option value="Ctrl">Ctrl TFREC</option>
+                <option value="CtrlQ">CtrlQ</option>
+            </datalist>
+        </td>
+        <td>
+            <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos1" value="N">
+            <label for="{{ index }}_pos1" id="{{ index }}_N">North</label>
+            <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos2" value="S">
+            <label for="{{ index }}_pos2" id="{{ index }}_S">South</label>
+            <input type="checkbox" class="NA" name="position{{ index }}" id="{{ index }}_pos3" value="_">
+            <label for="{{ index }}_pos3" id="{{ index }}_posNA">N/A</label>
+            <br class="moreSpace">
 
-    <!-- jQuery -->
-    <script src="js/jquery-2.1.4.js"></script>
-    <!-- ICanHaz templating -->
-    <script type="text/javascript" src="js/ICanHaz.js"></script>
-    <script id="newRow" type="text/html">
-        <tr>
-            <td>
-                <input list="netColor{{ index }}" name="netColor{{ index }}" class="datalist">
-                <datalist id="netColor{{ index }}">
-                    <option value="Blue">Blue TFREC</option>
-                    <option value="Blue1Q">Blue1 Quincy</option>
-                    <option value="Blue2Q">Blue2 Quincy</option>
-                    <option value="Red">Red TFREC</option>
-                    <option value="Red1Q">Red1 Quincy</option>
-                    <option value="Red2Q">Red2 Quincy</option>
-                    <option value="White">White TFREC</option>
-                    <option value="White1Q">White1 Quincy</option>
-                    <option value="White2Q">White2 Quincy</option>
-                    <option value="OpenField">Open Field TFREC</option>
-                    <option value="OpenFieldQ">Open Field Quincy</option>
-                </datalist>
-            </td>
-            <td>
-                <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos1" value="N">
-                    <label for="{{ index }}_pos1" id="{{ index }}_N">North</label>
-                <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos2" value="S" >
-                    <label for="{{ index }}_pos2" id="{{ index }}_S">South</label>
-                <input type="checkbox" class="NA" name="position{{ index }}" id="{{ index }}_pos3" value="" >
-                    <label for="{{ index }}_pos3" id="{{ index }}_posNA">N/A</label>
-                <br class="moreSpace">
+            <b>AVG samples:</b> <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num1" value="1">
+            <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
+            <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num2" value="2">
+            <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
+            <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num3" value="3">
+            <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
+            <input type="checkbox" class="all" name="number{{ index }}all" id="{{ index }}_all" value="">
+            <label for="{{ index }}_all" id="{{ index }}_numAll">All</label>
+            <br class="moreSpace">
 
-                <b>AVG samples:</b> <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num1" value="1" >
-                    <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
-                <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num2" value="2">
-                    <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
-                <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num3" value="3">
-                    <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
-                <input type="checkbox" class="all" name="number{{ index }}all" id="{{ index }}_all" value="" >
-                    <label for="{{ index }}_all" id="{{ index }}_numAll">All</label>
-                <br class="moreSpace">
-
-                <b>Scattered light?</b>
-                <input type="checkbox" name="scattered{{ index }}" id="{{ index }}_scat" value="scattered">
-                    <label for="{{ index }}_scat" id="{{ index }}_scat">Yes</label>
-            </td>
-            <td>
-                <input type="text" class="date" name="sessionDate{{ index }}" placeholder="mmddyy" required />
-            </td>
-        </tr>
-    </script>
-
-    <title>Select data</title>
-</head>
-
-<body class="chart_page">
+            <b>Scattered light?</b>
+            <input type="checkbox" name="scattered{{ index }}" id="{{ index }}_scat" value="scattered">
+            <label for="{{ index }}_scat" id="{{ index }}_scat">Yes</label>
+        </td>
+        <td>
+            <input type="text" class="date" name="sessionDate{{ index }}" placeholder="mmddyy" required/>
+        </td>
+    </tr>
+</script>
 
 <h1>Select data</h1>
 
-<form action="view_chart_w-math.php" id="select" method="get">
+<form action="view_chart.php" id="select" method="get">
 
     <table>
         <tr>
@@ -97,9 +89,7 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
         <tr id="header">
             <th>Net Color</th>
             <th>Measurement</th>
-            <th>Date
-                <button type="button" id="sameDate" >All same date</button>
-            </th>
+            <th>Date</th>
         </tr>
         <tr>
             <td>
@@ -116,6 +106,8 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
                     <option value="White2Q">White2 Quincy</option>
                     <option value="OpenField">Open Field TFREC</option>
                     <option value="OpenFieldQ">Open Field Quincy</option>
+                    <option value="Ctrl">Ctrl TFREC</option>
+                    <option value="CtrlQ">CtrlQ</option>
                 </datalist>
             </td>
             <td>
@@ -123,7 +115,7 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
                     <label for="0_pos1" id="0_N">North</label>
                 <input type="checkbox" name="position0[]" id="0_pos2" value="S" >
                     <label for="0_pos2" id="0_S">South</label>
-                <input type="checkbox" class="NA" name="position0" id="0_pos3" value="" >
+                <input type="checkbox" class="NA" name="position0" id="0_pos3" value="_" >
                     <label for="0_pos3" id="0_posNA">N/A</label>
                 <br class="moreSpace">
 
@@ -145,6 +137,9 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
 -->            </td>
             <td>
                 <input type="text" class="date" id="thisDate" name="sessionDate0" placeholder="mmddyy" required />
+                <br>
+                <button type="button" id="sameDate">All with this date</button>
+
             </td>
         </tr>
     </table>
@@ -161,7 +156,8 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
     <button id="newUpload" class="newUpload" type="button">Upload new data</button>
 </div>
 
-<script type="text/javascript" src="js/script.js"></script>
+<?php
+//###########  END BODY ################//
 
-</body>
-</html>
+//FOOTER
+include "includes/footer_inc.php";

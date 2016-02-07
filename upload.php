@@ -16,24 +16,12 @@ define ('DEBUG', 'DEBUG');
 
 if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Action = "";}
 
-?>
 
+//HEADER
+include "includes/header_inc.php";
 
-    <!DOCTYPE html>
-    <html>
-    <head>
+//###########  BODY ################//
 
-        <meta name="viewport" content="width=device-width" />
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <!-- jQuery -->
-        <script src="js/jquery-2.1.4.js"></script>
-
-        <title>Upload files</title>
-
-    </head>
-    <body class="upload_page">
-
-    <?php
     switch ($Action)
     {//check 'action' for type of process
         case "upload": //upload selected file(s)
@@ -54,19 +42,18 @@ if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Acti
             //Show existing projects
             $fileList = getFileList("_data");
             displayFileList($fileList);
-            echo '<div class="reload"><a href="' . THIS_PAGE . '">Reload page</a></div>';
+            echo '
+                <div>
+                    <button id="reload" class="reload" type="button">Reload page</button>
+                </div>
+            ';
     }//end switch
 
-    ?>
+//###########  END BODY ################//
 
-    <script type="text/javascript" src="js/script.js"></script>
+//FOOTER
+include "includes/footer_inc.php";
 
-    </body>
-    </html>
-
-
-
-<?php
 
 /***************************************************************************************
  * Uploads the Measure(s)/file(s) into the DB table and echos the result
@@ -127,7 +114,14 @@ TODO: vaildate text input from form
 function displayFileList($fileList) {
 //Show the list of files and a way to select one or more to upload
 
-    echo '<h2>Select file(s) from <em>_data</em> to upload</h2>';
+    echo '
+        <h2>Select file(s) to upload</h2>
+        <p>File inside the "<b>_data</b>" folder, located in the root of the program, will be automatically
+        displayed in the panel; if the proper naming convention is respected, the form will be automatically pre-filled.
+        <b>Please verify the auto-filled data before upload</b>.
+        </p>
+    ';
+
 
     if (!empty($fileList)) {
         //if at least one file in the list, show results
@@ -143,19 +137,25 @@ function displayFileList($fileList) {
             <br>
             <table class="upload">
             <tr>
-				<th>
-				<div class="tooltip">
-                    <label for="selectAll" class="selectAll" id="selectAll_label">Select</label> <br>
-                    <input type="checkbox" id="selectAll" >
-                        <span>Select all</span>
-                </div>
-				</th>
+                <th>Select<br>
+                    <div class="tooltip">
+                        <input type="checkbox" id="selectAll">
+                        <!-- <label for="selectAll" id="selectAll_label">Select</label> --> <br>
+                        <span><strong>Select/Deselect all</strong><br></span>
+                    </div>
+                </th>
                 <th>File Name</th>
                 <th>Net Color</th>
                 <th>Measurement position</th>
                 <th>Measurement type <br>
-                    <input type="checkbox" id="sameType" >
-				    <label for="sameType" class="sameType">All same type</label>
+                    <div class="tooltip">
+                        <input type="checkbox" id="sameType">
+                        <label for="sameType">All same type</label><br>
+                            <span>
+                                <strong>Same as the first file</strong><br/>
+                                 Select the type first
+                            </span>
+                    </div>
                 </th>
 			</tr>';
         for ($i=0; $i<count($fileList); $i++) {
@@ -179,25 +179,28 @@ function displayFileList($fileList) {
                         <option value="White2Q">White2 Quincy</option>
                         <option value="OpenField">Open Field TFREC</option>
                         <option value="OpenFieldQ">Open Field Quincy</option>
+                        <option value="Ctrl">Ctrl TFREC</option>
+                        <option value="CtrlQ">CtrlQ</option>
                     </select>
                 </td>
 
                 <td class="measurePosition">
-                    <input type="radio" name="measurePosition'.$i.'" value="1" >Mark 1
+<!--                    <input type="radio" name="measurePosition'.$i.'" value="1" >Mark 1
                     <input type="radio" name="measurePosition'.$i.'" value="2" >Mark 2
-                    <br>
-
+                    <br> -->
                     <input type="radio" name="measurePosition'.$i.'" value="N" >North
                     <input type="radio" name="measurePosition'.$i.'" value="S" >South
-                    <input type="radio" name="measurePosition'.$i.'" value="" >N/A
+                    <input type="radio" name="measurePosition'.$i.'" value="_" >N/A
 
-                    <br>
+                    <br class="moreSpace">
 
                     <input type="radio" name="measureNumber'.$i.'" value="1">1st
                     <input type="radio" name="measureNumber'.$i.'" value="2">2nd
                     <input type="radio" name="measureNumber'.$i.'" value="3">3dr
                     <input type="radio" name="measureNumber'.$i.'" value="" >N/A
-                    <br>
+
+                    <br class="moreSpace">
+
                     <input type="checkbox" name="scattered'.$i.'" value="scattered">SCAT
 <!--                    <input type="checkbox" name="reference'.$i.'" value="reference">REF -->
                 </td>
@@ -213,10 +216,12 @@ function displayFileList($fileList) {
         }
         echo '</table>
             <div>
-                <input type="submit" name="action" value="upload">
+                <input type="submit" class="upload" name="action" value="Upload!">
             </div>
         </form>
-        <div class="chart"><a href="select_data_w-math.php" target="_blank">Chart Measures</a></div>
+        <div>
+            <button id="newChart" class="newChart" type="button">New chart</button>
+        </div>
 
     ';
     } else {

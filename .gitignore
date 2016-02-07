@@ -6,7 +6,7 @@
 /ORIGINAL_DATA/
 *.txt
 /varie/
-
+_data/
 
 #-----------------------------------------
 # MAC OSX system files
@@ -17,7 +17,7 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon[\r]
 
 
 # Thumbnails

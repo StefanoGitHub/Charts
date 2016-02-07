@@ -77,7 +77,7 @@ $errorMessaqe = (isset($_REQUEST['error'])) ?
 
 <h1>Select data</h1>
 
-<form action="view_chart_w-math.php" id="select" method="get">
+<form action="view_chart.php" id="select" method="get">
 
     <table>
         <tr>

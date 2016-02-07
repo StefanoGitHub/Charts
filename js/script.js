@@ -106,13 +106,20 @@ $('#upload').submit(function () {
 //redirect to select_data page
 $('#newChart').click(function () {
     //redirect to page
-    window.location.href = "select_data_W-math.php";
+    window.open('select_data.php', '_blank');
+    //window.location.href = "select_data.php";
 });
 
 //redirect to upload page
 $('#newUpload').click(function () {
     //redirect to page
     window.open('upload.php', '_blank');
+});
+
+//redirect to upload page
+$('#reload').click(function () {
+    //redirect to page
+    location.reload();
 });
 
 //select all files; all data in all rows becomes required

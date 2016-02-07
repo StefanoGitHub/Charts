@@ -1,0 +1,101 @@
+/*tooltips*/
+/* from   http://www.menucool.com/tooltip/css-tooltip  */
+div.tooltip {
+    outline: none;
+    margin: inherit;
+    font-family: sans-serif;
+    font: caption;
+
+}
+
+div.tooltip span strong {
+/*    line-height: 20px;*/
+}
+
+div.tooltip span {
+    z-index: 1;
+    display: none;
+    padding: 0.5em 1.5em;
+    font-weight: normal;
+    font-size: .8em;
+    margin-top: 0.1em;
+}
+
+.tooltip:hover {
+text-decoration: none; /* for links? */
+}
+
+div.tooltip:hover span {
+    display: inline;
+    position: absolute;
+    color: #595959;
+    border: #3c3c3c;
+    background: lightgrey;
+}
+
+/*CSS3 extras*/
+div.tooltip span {
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #959595;
+}
+
+
+
+
+
+/*.tooltip {*/
+    /*outline: none;*/
+/*!*    font-family: sans-serif;*!*/
+    /*font: caption;*/
+    /**/
+/*}*/
+
+/*.tooltip strong {*/
+    /*line-height: 20px;*/
+/*}*/
+
+/*.tooltip:hover {*/
+    /*text-decoration: none; !* for links? *!*/
+/*}*/
+
+/*.tooltip span {*/
+    /*z-index: 10;*/
+    /*display: none;*/
+    /*!*padding: 14px 20px;*!*/
+    /*!*margin-top: -30px;*!*/
+    /*!*margin-left: 28px;*!*/
+    /*!*width: 300px;*!*/
+    /*!*line-height: 16px;*!*/
+    /*padding: 3px 0 12px 0;*/
+    /*margin-top: -60px;*/
+    /*margin-left: -125px;*/
+    /*width: 180px;*/
+    /*!*line-height: 16px;*!*/
+/*}*/
+
+/*.tooltip img {*/
+    /*margin-top: 17px;*/
+    /*margin-left: 90px;*/
+/*}*/
+
+/*.tooltip:hover span {*/
+    /*display: inline;*/
+    /*position: absolute;*/
+    /*color: #111;*/
+    /*border: 1px solid grey;*/
+    /*background: lightgrey;*/
+/*}*/
+
+/*.callout {*/
+    /*z-index: 20;*/
+    /*position: absolute;*/
+    /*top: 30px;*/
+    /*border: 0;*/
+    /*left: -12px;*/
+/*}*/
+
+/*!*CSS3 extras*!*/
+/*.tooltip span {*/
+    /*border-radius: 4px;*/
+/*!*    box-shadow: 2px 2px 5px #CCC;*!*/
+/*}*/

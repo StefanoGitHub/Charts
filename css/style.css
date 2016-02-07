@@ -1,55 +1,45 @@
-body.chart_page {
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 90%;
+    margin: 0 auto;
+}
+body.view_chart, body.select_data {
     background-color: lightsteelblue
 }
-body.upload_page {
+body.upload {
     background-color: darkseagreen;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
     text-align: center;
 }
-
+p {
+    text-align: center;
+    font-size: 1em;
+    margin: 2em auto;
+    width: 100%;
+    max-width: 900px;
+}
 td, tr, th {
     text-align: center;
     border: grey solid 1px;
+    font-size: 0.9em;
+    padding: 0.5em;
 }
 
 table {
     margin: 0 auto;
     border: grey solid 1px;
+    max-width: 900px;
 }
 
 
 div {
     text-align: center;
-    margin: .5em 1.5em;
+    /*margin: .5em 1.5em;*/
 }
 div.tableBlock {
     border-top: 1px solid slategrey;
-}
-/*tooltip select all*/
-/* from   http://www.menucool.com/tooltip/css-tooltip  */
-div.tooltip { outline:none; margin: inherit;}
-div.tooltip span {
-    z-index:1;
-    display:none;
-    padding:0.2em;
-    margin-top:1.3em;
-    margin-left:-5.8em;
-    font-weight: normal;
-    font-size: .8em;
-}
-div.tooltip:hover span {
-    display:inline;
-    position:absolute;
-    color:darkgreen;
-    border: 1px solid darkgreen;
-    background: darkseagreen;
-}
-/*CSS3 extras*/
-div.tooltip span {
-    border-radius:2px;
-    box-shadow: 1px 1px 1px #CCC;
 }
 
 
@@ -66,13 +56,13 @@ div.tooltip span {
 
 /***** BUTTONS *****/
 button {
-    margin: 1em 4em;
+    /*margin: 1em 2em;*/
 }
 .addRow, .delRow {
     margin: 2em 4em 1em;
 }
 #newChart, #newUpload {
-    margin: 3em 4em;
+    margin: 1em 5em;
 }
 /*
 .addTable, .delTable {
@@ -86,21 +76,28 @@ button {
 
 /***** INPUTS *****/
 input {
-    margin-left: 0.8em;
-    margin-right: 0em;
+    /*margin-left: 0.8em;*/
+    /*margin-right: 0em;*/
 }
 .datalist {
     margin: 0 1em;
 }
-input.chart{
-    margin: 3em 0em 1em;
+
+input[type='radio'] {
+    margin-right: 0.3em;
+}
+input.chart, input.upload {
+    /*margin: 2em 5em 1em;*/
+/*}*/
+/*input.upload{*/
+    margin: 1em 0 4em 0;
 }
 #selectAll { /*checkbox*/
-    margin: 0 0.5em;;
+/*    margin: 0 0.5em;;*/
 }
 
 /***** LABELS *****/
-label.sameType, label.sameDate {
+.tooltip label {
     font-weight: normal;
     font-size: .8em;
 }
@@ -112,7 +109,15 @@ label.sameType, label.sameDate {
 }
 
 
-
+footer {
+    color: darkslategrey;
+    text-align: right;
+    font-size: 0.8em;
+    font-style: italic;
+    margin: 4em 1em 0 0;
+    font-variant: caption;
+    font-weight: bold;
+}
 
 /***************************************/
 .box{
@@ -124,3 +129,5 @@ label.sameType, label.sameDate {
     margin: 2em;*/
     padding: .3em;
 }
+
+

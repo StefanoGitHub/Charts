@@ -216,7 +216,7 @@ function displayFileList($fileList) {
                 <input type="submit" name="action" value="upload">
             </div>
         </form>
-        <div class="chart"><a href="select_data_w-math.php" target="_blank">Chart Measures</a></div>
+        <div class="chart"><a href="select_data.php" target="_blank">Chart Measures</a></div>
 
     ';
     } else {
