@@ -42,11 +42,11 @@ include "includes/header_inc.php";
             //Show existing projects
             $fileList = getFileList("_data");
             displayFileList($fileList);
-            echo '
-                <div>
-                    <button id="reload" class="reload" type="button">Reload page</button>
-                </div>
-            ';
+//            echo '
+//                <div>
+//                    <button id="reload" class="reload" type="button">Reload page</button>
+//                </div>
+//            ';
     }//end switch
 
 //###########  END BODY ################//
@@ -115,7 +115,7 @@ function displayFileList($fileList) {
 //Show the list of files and a way to select one or more to upload
 
     echo '
-        <h2>Select file(s) to upload</h2>
+        <h1>Select file(s) to upload</h1>
         <p>File inside the "<b>_data</b>" folder, located in the root of the program, will be automatically
         displayed in the panel; if the proper naming convention is respected, the form will be automatically pre-filled.
         <b>Please verify the auto-filled data before upload</b>.
@@ -125,7 +125,7 @@ function displayFileList($fileList) {
 
     if (!empty($fileList)) {
         //if at least one file in the list, show results
-        echo '<form id="upload" action="' . THIS_PAGE . '" method="post">
+        echo '<form id="upload" name="upload" action="' . THIS_PAGE . '" method="post">
             <table>
                 <tr>
                     <th>Measurement date</th>
@@ -215,13 +215,21 @@ function displayFileList($fileList) {
             ';
         }
         echo '</table>
-            <div>
+            <!-- <div>
                 <input type="submit" class="upload" name="action" value="Upload!">
+            </div> -->
+
+            <div class="input-group">
+                <div class="input">
+                    <input type="submit" class="upload" name="action" value="">Upload
+                    <i class="fa fa-arrow-right"></i>
+                    <i class="fa fa-database"></i>
+                </div>
             </div>
+
+<!--        <a href="#" onclick="document.forms[0].submit(); return false;">Submit</a> -->
+
         </form>
-        <div>
-            <button id="newChart" class="newChart" type="button">New chart</button>
-        </div>
 
     ';
     } else {

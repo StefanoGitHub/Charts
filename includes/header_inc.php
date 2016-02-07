@@ -2,22 +2,29 @@
 //header_inc.php
 
 $navLinks = array();
-$navLinks['select_data.php'] = "Select Data";
 $navLinks['upload.php'] = "Upload Data";
+$navLinks['select_data.php'] = "Select Data";
 $navLinks['view_chart.php'] = "Chart";
 
+$navIcons = array();
+$navIcons['upload.php'] = '<i class="fa fa-upload fa-fw"></i> ';
+$navIcons['select_data.php'] = '<i class="fa fa-table fa-fw"></i> ';
+$navIcons['view_chart.php'] = '<i class="fa fa-line-chart fa-fw"></i> ';
 
-function makeLinks($Array)
-{
+
+function makeLinks($Array, $icons) {
     $myReturn = "";
+    $arrow_count = 0;
+    $arrow = ' <span><i class="fa fa-arrow-right"></i></span> ';
     foreach ( $Array as $url => $text ) {
-//        if ($url == THIS_PAGE || THIS_PAGE == "projects_view.php" && $url == "projects_list.php") {
-        if ($url == THIS_PAGE) {
-                $current = ' class="current" ';
-        } else {
-            $current = '';
+        $url == THIS_PAGE ? $current = ' class="current" ' : $current = '';
+        $url == 'view_chart.php' ? $href = '' : $href = $url;
+        //dumpDie($href);
+        $myReturn .= '<li' . $current . '><a href="' . $href . '">' . $icons[$url] . $text . '</a></li>';
+        if ($arrow_count < 2) {
+            $myReturn .= $arrow;
+            $arrow_count++;
         }
-        $myReturn .= '<li' . $current . '><a href="' . $url . '">' . $text . '</a></li>';
     }
     return $myReturn;
 }
@@ -35,10 +42,13 @@ $pageTitle = $navLinks[THIS_PAGE];
     <meta charset="utf-8"/>
 
     <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="css/tooltip.css">
+
 <!--    <link rel="icon" type="image/png" href="images/charts.ico"/>-->
     <link rel="icon" type="image/png" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- jQuery -->
     <script src="js/jquery-2.1.4.js"></script>
@@ -54,8 +64,11 @@ $pageTitle = $navLinks[THIS_PAGE];
 
 <header>
     <nav>
+
         <ul id="menu">
-            <?= makeLinks($navLinks) ?>
+            <div class="nav">
+                <?= makeLinks($navLinks, $navIcons) ?>
+            </div>
         </ul>
 
     </nav>

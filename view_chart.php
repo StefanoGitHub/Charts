@@ -301,6 +301,7 @@ include "includes/header_inc.php";
 
         </script>
 
+
     <h1>Selected chart</h1>
         <!-- here the chart will be displayed -->
         <div id="curve_chart"></div>

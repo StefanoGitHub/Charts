@@ -1,8 +1,12 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
     width: 90%;
     margin: 0 auto;
+    font: normal .9em/1.5em Arial, Helvetica, sans-serif;
+    background: #ebebeb;
+    min-width: 600px;
+    color: rgba(0, 0, 0, .8);
 }
+
 body.view_chart, body.select_data {
     background-color: lightsteelblue
 }
@@ -10,13 +14,16 @@ body.upload {
     background-color: darkseagreen;
 }
 
-h1, h2, h3, p {
+h1 {
+    font-size: 1.5em;
+    
     text-align: center;
+    margin: .5em auto 0;
 }
 p {
     text-align: center;
     font-size: 1em;
-    margin: 2em auto;
+    margin: .5em auto 2em;
     width: 100%;
     max-width: 900px;
 }
@@ -103,10 +110,52 @@ input.chart, input.upload {
 }
 
 .moreSpace {
-    margin: .5em 0em;
+    margin: .5em 0;
     content: '.';
     display: block;
 }
+
+
+div.input-group {
+    width: 100%;
+    margin: 1em auto;
+}
+div.input {
+    border-radius: 1.6em;
+    -webkit-border-radius: 1.6em;
+    -moz-border-radius: 1.6em;
+
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    padding: 0.4em 1.5em;
+    background: #7d7d7d url(../images/gradient.png) repeat-x 0 -110px;
+
+    font-weight: bold;
+    color: #e7e5e5;
+
+    display: inline-block;
+
+}
+div.input input {
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1em;
+}
+div.input-group :hover {
+    background: #666 url(../images/gradient.png) repeat-x 0 -40px;
+    color: #444;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+
+
+
+
 
 
 footer {

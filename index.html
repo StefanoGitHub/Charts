@@ -1,17 +1,46 @@
-<?php
-//select_data.php
-include "functions.php";
+<!DOCTYPE html>
+<html>
 
-$errorMessaqe = (isset($_REQUEST['error'])) ?
-                '<h3 class="error">No value matches the selection: '.$_REQUEST['error'].'</h3>' :
-                '';
+<head lang="en">
 
-//HEADER
-include "includes/header_inc.php";
-//data.php?oRequest=<?php echo json_encode($_REQUEST)? >
+    <title>Select Data</title>
 
-//###########  BODY ################//
-?>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/nav_style.css">
+
+    <link rel="stylesheet" type="text/css" href="css/tooltip.css">
+    <!--    <link rel="icon" type="image/png" href="images/charts.ico"/>-->
+    <link rel="icon" type="image/png" href="images/favicon.ico"/>
+
+    <!-- jQuery -->
+    <script src="js/jquery-2.1.4.js"></script>
+    <!-- ICanHaz templating -->
+    <script type="text/javascript" src="js/ICanHaz.js"></script>
+    <!-- kolorwheel.js -->
+    <script src="js/KolorWheel.js"></script>
+
+</head>
+
+
+<body class="select_data">
+
+<header>
+    <nav>
+
+            <ul id="menu">
+                <div class="nav">
+                    <li class="current"><a href="select_data.php">Select Data</a></li>
+            <li><a href="upload.php">Upload Data</a></li>
+            <li><a href="view_chart.php">Chart</a></li>
+                </div>
+            </ul>
+
+
+    </nav>
+</header>
 
 <script id="newRow" type="text/html">
     <tr>
@@ -62,10 +91,7 @@ include "includes/header_inc.php";
     </tr>
 </script>
 
-
-    <h1>Select data</h1>
-    <p>Fill each and every field of the form to chart the data.</p>
-
+<h1>Select data</h1>
 
 <form action="view_chart.php" id="select" method="get">
 
@@ -74,13 +100,13 @@ include "includes/header_inc.php";
             <th>Measurement type</th>
         </tr>
         <tr>
-            <td class="measureType" >
+            <td class="measureType">
                 <input type="radio" name="measurementType" id="IRR" value="Irradiance" required>
-                    <label for="IRR" id="IRR_label">.IRR</label>
+                <label for="IRR" id="IRR_label">.IRR</label>
                 <input type="radio" name="measurementType" id="TRM" value="Transmittance">
-                    <label for="TRM" id="TRM_label">.TRM</label>
+                <label for="TRM" id="TRM_label">.TRM</label>
                 <input type="radio" name="measurementType" id="SSM" value="Reference">
-                    <label for="SSM" id="SSM_label">.SSM (Light Ref)</label>
+                <label for="SSM" id="SSM_label">.SSM (Light Ref)</label>
             </td>
         </tr>
     </table>
@@ -115,31 +141,31 @@ include "includes/header_inc.php";
             </td>
             <td>
                 <input type="checkbox" name="position0[]" id="0_pos1" value="N">
-                    <label for="0_pos1" id="0_N">North</label>
-                <input type="checkbox" name="position0[]" id="0_pos2" value="S" >
-                    <label for="0_pos2" id="0_S">South</label>
-                <input type="checkbox" class="NA" name="position0" id="0_pos3" value="_" >
-                    <label for="0_pos3" id="0_posNA">N/A</label>
+                <label for="0_pos1" id="0_N">North</label>
+                <input type="checkbox" name="position0[]" id="0_pos2" value="S">
+                <label for="0_pos2" id="0_S">South</label>
+                <input type="checkbox" class="NA" name="position0" id="0_pos3" value="_">
+                <label for="0_pos3" id="0_posNA">N/A</label>
                 <br class="moreSpace">
 
-                <b>AVG samples:</b> <input type="checkbox" name="number0[]" id="0_num1" value="1" >
-                    <label for="0_num1" id="0_1st">1st</label>
+                <b>AVG samples:</b> <input type="checkbox" name="number0[]" id="0_num1" value="1">
+                <label for="0_num1" id="0_1st">1st</label>
                 <input type="checkbox" name="number0[]" id="0_num2" value="2">
-                    <label for="0_num2" id="0_2nd">2nd</label>
+                <label for="0_num2" id="0_2nd">2nd</label>
                 <input type="checkbox" name="number0[]" id="0_num3" value="3">
-                    <label for="0_num3" id="0_3dr">3dr</label>
-                <input type="checkbox" class="all" name="number0_all" id="0_all" value="" >
-                    <label for="0_all" id="0_numAll">All</label>
+                <label for="0_num3" id="0_3dr">3dr</label>
+                <input type="checkbox" class="all" name="number0_all" id="0_all" value="">
+                <label for="0_all" id="0_numAll">All</label>
                 <br class="moreSpace">
 
                 <b>Scattered light?</b>
                 <input type="checkbox" name="scattered0" id="0_scat" value="scattered">
-                    <label for="0_scat" id="0_scat">Yes</label>
-<!--                <input type="checkbox" name="reference0" id="0_ref" value="reference">
-                    <label for="0_ref" id="0_ref">REF</label>
--->            </td>
+                <label for="0_scat" id="0_scat">Yes</label>
+                <!--                <input type="checkbox" name="reference0" id="0_ref" value="reference">
+                                    <label for="0_ref" id="0_ref">REF</label>
+                -->            </td>
             <td>
-                <input type="text" class="date" id="thisDate" name="sessionDate0" placeholder="mmddyy" required />
+                <input type="text" class="date" id="thisDate" name="sessionDate0" placeholder="mmddyy" required/>
                 <br>
                 <button type="button" id="sameDate">All with this date</button>
 
@@ -153,14 +179,19 @@ include "includes/header_inc.php";
     </div>
 </form>
 
-<?=$errorMessaqe?>
 
-<!--<div>-->
-<!--    <button id="newUpload" class="newUpload" type="button">Upload new data</button>-->
-<!--</div>-->
+<div>
+    <button id="newUpload" class="newUpload" type="button">Upload new data</button>
+</div>
 
-<?php
-//###########  END BODY ################//
 
-//FOOTER
-include "includes/footer_inc.php";
+<script type="text/javascript" src="js/script.js"></script>
+
+
+<footer>
+    Steb_O &copy;2016
+</footer>
+
+</body>
+</html>
+
