@@ -16,9 +16,8 @@ body.upload {
 
 h1 {
     font-size: 1.5em;
-    
     text-align: center;
-    margin: .5em auto 0;
+    margin: .5em auto 1.5em;
 }
 p {
     text-align: center;
@@ -55,10 +54,22 @@ div.tableBlock {
     text-align: center;
 }
 
+div.container {
+    text-align: right;
+    width: 1000px;
+    margin: 0 auto;
+
+}
 #curve_chart {
     width: 1000px;
     height: 550px;
     margin: 0 auto;
+}
+#png {
+    font-size: 0.7em;
+    /*position: absolute;*/
+    /*right: 0px;*/
+    text-decoration: none;
 }
 
 /***** BUTTONS *****/
@@ -156,11 +167,14 @@ input.chart, input.upload {
 footer {
     color: darkslategrey;
     text-align: right;
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-style: italic;
     margin: 4em 1em 0 0;
-    font-variant: caption;
+    font-family: Courier, "Lucida Console", monospace;;
     font-weight: bold;
+}
+footer span {
+    font-size: 0.85em;
 }
 
 /***************************************/

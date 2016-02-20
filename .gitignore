@@ -7,7 +7,6 @@
 *.txt
 /varie/
 _data/
-!DB.sql
 
 #-----------------------------------------
 # MAC OSX system files
@@ -52,4 +51,6 @@ Temporary Items
 # Logs and databases #
 *.log
 *.sql
+!DB.sql
+
 *.sqlite

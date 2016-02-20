@@ -7,7 +7,7 @@
 
 
 <footer>
-    Steb_O &copy;<?=date("Y")?>
+    <i class="fa fa-file-code-o fa-fw"></i>&copy;<span><?= date("Y") ?></span> Steb_O
 </footer>
 
 </body>

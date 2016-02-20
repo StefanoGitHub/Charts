@@ -146,6 +146,7 @@ include "includes/header_inc.php";
                 // Create the DATA TABLE.
                 var dataTable = google.visualization.arrayToDataTable([<?=$dataTable?>]);
 
+/*
                 //Alternative way
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'Day');
@@ -169,6 +170,7 @@ include "includes/header_inc.php";
                     [13,  4.8,  6.3,  3.6],
                     [14,  4.2,  6.2,  3.4]
                 ]);
+*/
 
 
 
@@ -295,21 +297,37 @@ include "includes/header_inc.php";
                 options.series = colorSeries;
 
                 //Instantiate and draw the chart, passing in some options.
-                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                var chartDiv = document.getElementById('curve_chart')
+                var chart = new google.visualization.LineChart(chartDiv);
+
+                //generate the .png version
+                //Wait for the chart to finish drawing before calling the getImageURI() method.
+                google.visualization.events.addListener(chart, 'ready', function () {
+                    curve_chart.innerHTML = '<img src="' + chart.getImageURI() + '">';
+                    console.log(chartDiv.innerHTML);
+                });
+
+                //draw the chart
                 chart.draw(dataTable, options);
+
+                var pngDiv = document.getElementById('png');
+                pngDiv.outerHTML = '<a id="png" href="' + chart.getImageURI() + '" ' +
+                    'target="_blank" ' +
+                    'download = "chart.png">Download <i class="fa fa-download fa-fw"></i></a>';
+
             }
+
 
         </script>
 
 
     <h1>Selected chart</h1>
-        <!-- here the chart will be displayed -->
-        <div id="curve_chart"></div>
-<!--        <div>-->
-<!--            <button id="newChart" class="newChart" type="button">New chart</button>-->
-<!--            <button id="newUpload" class="newUpload" type="button">Upload new data</button>-->
-<!--        </div>-->
-
+        <div class="container">
+            <!-- the chart will be displayed here -->
+            <div id="curve_chart"></div>
+            <!-- link to download the png version -->
+            <div id="png"></div>
+        </div>
 
     <div class="submit_button">
         <button id="newChart" class="newChart" type="button">
@@ -319,8 +337,6 @@ include "includes/header_inc.php";
         <button id="newUpload" class="newUpload" type="button">
             <i class="fa fa-plus FA-"></i> &nbsp; Upload new data <i class="fa fa-table fa-fw"></i>
         </button>
-
-
     </div>
 
 
