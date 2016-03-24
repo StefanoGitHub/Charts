@@ -9,7 +9,6 @@
  * $sessionDate: string (i.e. 08032015)
  *
  * Returns the result from the DB
-TODO:
  ***************************************************************************************/
 class Measure {
     public $netColor = '';
@@ -17,12 +16,13 @@ class Measure {
     public $measurementType = '';
     public $sessionDate = '';
     public $valuesArr = array(); //array of value pairs (Wavelength, Amplitude)
-    //              [$Wavelength][$Amplitude]
-    //valuesArr[0][]     225        7834
-    //valuesArr[1][]     300        2645
-    //valuesArr[2][]     305        4975
-    // ..
-    //valuesArr[$i][]     ..         ..
+    /**              [$Wavelength][$Amplitude]
+     * valuesArr[0][]     225        7834
+     * valuesArr[1][]     300        2645
+     * valuesArr[2][]     305        4975
+     *  ..
+     * valuesArr[$i][]     ..         ..
+     */
 
     const AMPLITUDE = 1;
     const WAVELENGTH = 0;
@@ -39,23 +39,25 @@ class Measure {
         }
     }
 
-    public function __construct_0() {
-        $this->valuesArr = array();
-        $this->netColor = '';
-        $this->position = '';
-        $this->measurementType = '';
-        $this->sessionDate = '';
-    }
+            public function __construct_0() {
+                $this->valuesArr = array();
+                $this->netColor = '';
+                $this->position = '';
+                $this->measurementType = '';
+                $this->sessionDate = '';
+            }
+        
+            public function __construct_5($valuesArr, $netColor, $position, $measurementType, $sessionDate) {
+                $this->valuesArr = $valuesArr;
+                $this->netColor = $netColor;
+                $this->position = $position;
+                $this->measurementType = $measurementType;
+                $this->sessionDate = $sessionDate;
+            }
+    //end constructors
 
-    public function __construct_5($valuesArr, $netColor, $position, $measurementType, $sessionDate) {
-        $this->valuesArr = $valuesArr;
-        $this->netColor = $netColor;
-        $this->position = $position;
-        $this->measurementType = $measurementType;
-        $this->sessionDate = $sessionDate;
-    }//end constructor
 
-
+    
     //getters
     public function getAmplitude($i) {
         return $this->valuesArr[$i][self::AMPLITUDE];
@@ -83,6 +85,6 @@ class Measure {
             '</pre>';
     }
 
-}// end Question Class
+}// end Measure Class
 
 

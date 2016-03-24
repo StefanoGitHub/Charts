@@ -10,9 +10,7 @@ define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); //Current page name, stripp
 
 
 /***************************************************************************************
- * troubleshooting wrapper function for var_dump
- *
- * saves annoyance of needing to type pre-tags
+ * troubleshooting wrapper function for var_dump, saves annoyance of needing to type pre-tags
  *
  * Optional parameter $adminOnly if set to TRUE will require
  * currently logged in admin to view crash - will not interfere with
@@ -21,7 +19,7 @@ define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); //Current page name, stripp
  * WARNING: Use for troubleshooting only: will crash page at point of call!
  *
  * <code>
- * dumpDie($myObject);
+ *   dumpDie($myObject);
  * </code>
  *
  * @param object $myObj any object or data we wish to view internally
@@ -50,19 +48,15 @@ function echoit($name='', $myVar)
 
 /***************************************************************************************
  * Gets the file and extracts the pairs of data
- * It returns an array of arrays, each array holding the pair of measured values
-TODO: 
+ * It returns an array of arrays, each holding the pair of measured values
  ***************************************************************************************/
 function getLinesFromFile($filePath) {
 
     $linesArr = file($filePath, FILE_SKIP_EMPTY_LINES);
-    //dump($linesArr);
     $dataArr = array();
     for ($i=0; $i<count($linesArr); $i++) {
         $linesArr[$i] = explode(" ", trim( str_replace("  "," ",$linesArr[$i]))); //, " \t\n\r\0\x0B"
-        //dump($linesArr[$i]);
         if(count($linesArr[$i]) == 2) {
-            //dump($linesArr[$i]);
             //check if the line contains a "value pair"
             if (is_numeric($linesArr[$i][0]) && is_numeric($linesArr[$i][1])) {
                 //if the two values are not numeric discard the line
@@ -70,60 +64,9 @@ function getLinesFromFile($filePath) {
             }
         }
     }
-    //dumpDie($dataArr);
-    //die;
     return $dataArr;
 }//end getLinesFromFile()
 
-/***************************************************************************************
- * Inserts the data from an array of value pairs in the table
- * Returns TRUE if insertion successful, FALSE otherwise
-TODO: 
- ***************************************************************************************/
-function insertExecute($dataArr, $netColor, $position, $measurementType, $sessionDate) {
-    //define meanings for dataArr values based on position in the array
-
-    //dumpDie($dataArr);
-    $Wavelength = 0;
-    $Amplitude = 1;
-    //ID, Wavelength, Amplitude, NetColor, MeasurementType, SessionDate
-    $sql = "INSERT INTO `t_IRR_Data` VALUES "; //ID
-
-    for ($i=0; $i<count($dataArr)-1; $i++) {
-        //add all the couples of data
-        $sql .= "(
-            ".$dataArr[$i][$Wavelength].", 
-            ".$dataArr[$i][$Amplitude].", 
-            '$netColor', 
-            '$position', 
-            '$measurementType', 
-            '$sessionDate' ), ";
-    }
-    //the last row will not end with comma
-    if (count($dataArr)-1 > 0) {
-        $sql .= "(
-        " . $dataArr[count($dataArr) - 1][0] . ",
-        " . $dataArr[count($dataArr) - 1][1] . ",
-        '$netColor',
-        '$position',
-        '$measurementType',
-        '$sessionDate' );";
-    } else {
-        $sql .= "(
-        " . $dataArr[0][0] . ",
-        " . $dataArr[0][1] . ",
-        '$netColor',
-        '$position',
-        '$measurementType',
-        '$sessionDate' );";
-    }
-
-    $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
-    $result = mysqli_query($iConn,$sql) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
-    mysqli_close($iConn);
-
-    return $success = ($result = 1) ? TRUE : FALSE;
-}
 
 /**
  * Provides active connection to MySQL DB.
@@ -287,26 +230,26 @@ function startSession() {
     }
 } //End startSession()
 
-/**
- * wrapper function for PHP session_destroy(), to prevent 'session uninitialized' error messages.
- *
- * To view any session data, sessions must be explicitly started in PHP.
- * In order to use sessions in a variety of INC files, we'll check to see if a session
- * exists first, then destroy the session only if exists.
- *
- *
- * @return boolean
- * @todo none
- */
-function clearSession() {
-    //if(!isset($_SESSION)){@session_start();}
-    if (isset($_SESSION)) {
-        @session_destroy();
-        return true;
-    } else {
-        return false;
-    }
-} //End startSession()
+///**
+// * wrapper function for PHP session_destroy(), to prevent 'session uninitialized' error messages.
+// *
+// * To view any session data, sessions must be explicitly started in PHP.
+// * In order to use sessions in a variety of INC files, we'll check to see if a session
+// * exists first, then destroy the session only if exists.
+// *
+// *
+// * @return boolean
+// * @todo none
+// */
+//function clearSession() {
+//    //if(!isset($_SESSION)){@session_start();}
+//    if (isset($_SESSION)) {
+//        @session_destroy();
+//        return true;
+//    } else {
+//        return false;
+//    }
+//} //End startSession()
 
 
 function myerror($myFile, $myLine, $errorMsg)
@@ -342,88 +285,6 @@ function dbOut($str)
     return $str;
 } //End dbOut()
 
-/***************************************************************************************
- * mysqli version of dbIn()
- *
- * Filters data per MySQL standards before entering database.
- *
- * Adds slashes and helps prevent SQL injection per MySQL standards.
- * Function enclosed in 'wrapper' function to add further functionality when
- * as vulnerabilities emerge.
- *
- * @param string $var data as entered by user
- * @param object $iConn active mysqli DB connection, passed by reference.
- * @return string returns data filtered by MySQL, adding slashes, etc.
- * @see dbIn()
- * @todo none
- ***************************************************************************************/
-function idbIn($var,&$iConn) {
-    if(isset($var) && $var != "") {
-        return mysqli_real_escape_string($iConn,$var);
-    } else {
-        return "";
-    }
-
-}//end idbIn()
-
-/***************************************************************************************
- * Gets the elements from the Array parameter and generates an OR separated string
- * used in the SQL statement to select multiple columns
- * Returns a string
-TODO: 
- ***************************************************************************************/
-function arrToSQLString($Arr) {
-    $string = '';
-    for ($i=0; $i<count($Arr)-1; $i++) {
-        //load all the values of the array separated by OR
-        $string .= "'$Arr[$i]' OR ";
-    }//the last value will not ternimate with OR
-    $string .= "'".$Arr[count($Arr)-1]."'";
-    return $string;
-}//end arrToString() 
-
-
-/**
- * Creates a smart (sic) title from words present in the php file name (page)
- *
- * If no string is input, will take current PHP file name, strip of extension
- * and replace "-" and "_" with spaces
- *
- * Will also title case first letter of significant words in title
- *
- * A comma separated string named $skip can be used to add/delete more
- * words that are NOT title cased
- *
- * First word is always title case by default
- *
- * <code>
- * $config->titleTag = smartTitle();
- * </code>
- *
- * added version 2.07
- *
- * @param string $myTitle file name or etc to amend (optional)
- * @return string converted title cased version of file name/string
- * @todo none
- */
-function smartTitle($myTitle = '') {
-    if ($myTitle == '') {
-        $myTitle = THIS_PAGE;
-    }
-    $myTitle = strtolower(substr($myTitle, 0, strripos($myTitle, '.'))); #remove extension, lower case
-    $separators = array("_", "-");  #array of possible separators to remove
-    $myTitle = str_replace($separators, " ", $myTitle); #replace separators with spaces
-    $myTitle = explode(" ",$myTitle); #create an array from the title
-    $skip = "this|is|of|a|an|the|but|or|not|yet|at|on|in|over|above|under|below|behind|next to| beside|by|among|between|by|till|since|during|for|throughout|to|and|my";
-    $skip = explode("|",$skip); # words to skip in title case
-
-    for($x=0;$x<count($myTitle);$x++) {
-        //title case words not skipped
-        if($x == 0 || !in_array($myTitle[$x], $skip)) {$myTitle[$x] = ucwords($myTitle[$x]);}
-        //echo $word . '<br />';
-    }
-    return implode(" ",$myTitle); #return imploded (spaces re-added) version
-}// End smartTitle()
 
 
 
@@ -431,57 +292,151 @@ function smartTitle($myTitle = '') {
 
 
 
-/**
- * From: https://mrkmg.com/posts/php-function-to-generate-a-color-from-a-text-string
- * Outputs a color (#000000) based Text input
- *
- * @param $text String of text
- * @param $min_brightness Integer between 0 and 100
- * @param $spec Integer between 2-10, determines how unique each color will be
- */
-function genColorCodeFromText($text,$min_brightness=100,$spec=10)
-{
-    // Check inputs
-    if(!is_int($min_brightness)) throw new Exception("$min_brightness is not an integer");
-    if(!is_int($spec)) throw new Exception("$spec is not an integer");
-    if($spec < 2 or $spec > 10) throw new Exception("$spec is out of range");
-    if($min_brightness < 0 or $min_brightness > 255) throw new Exception("$min_brightness is out of range");
 
 
-    $hash = md5($text);  //Gen hash of text
-    $colors = array();
-    for($i=0;$i<3;$i++)
-        $colors[$i] = max(array(round(((hexdec(substr($hash,$spec*$i,$spec)))/hexdec(str_pad('',$spec,'F')))*255),$min_brightness)); //convert hash into 3 decimal values between 0 and 255
-
-    if($min_brightness > 0)  //only check brightness requirements if min_brightness is about 100
-        while( array_sum($colors)/3 < $min_brightness )  //loop until brightness is above or equal to min_brightness
-            for($i=0;$i<3;$i++)
-                $colors[$i] += 10;	//increase each color by 10
-
-    $output = '';
-
-    for($i=0;$i<3;$i++)
-        $output .= str_pad(dechex($colors[$i]),2,0,STR_PAD_LEFT);  //convert each color to hex and append to output
-
-    return '#'.$output;
-}
 
 
-/**
- * @param $start
- * @param $end
- * @param int $entries
- * @return array
- */
-function create_pallette($start, $end, $entries=10)
-{
-    $inc=($start - $end)/($entries-1);
-    $out=array(0=>$start);
-    for ($x=1; $x<$entries;$x++) {
-        $out[$x]=$start+$inc * $x;
-    }
-    return $out;
-}
+
+
+
+///***************************************************************************************
+// * mysqli version of dbIn()
+// *
+// * Filters data per MySQL standards before entering database.
+// *
+// * Adds slashes and helps prevent SQL injection per MySQL standards.
+// * Function enclosed in 'wrapper' function to add further functionality when
+// * as vulnerabilities emerge.
+// *
+// * @param string $var data as entered by user
+// * @param object $iConn active mysqli DB connection, passed by reference.
+// * @return string returns data filtered by MySQL, adding slashes, etc.
+// * @see dbIn()
+// * @todo none
+// ***************************************************************************************/
+//function idbIn($var,&$iConn) {
+//    if(isset($var) && $var != "") {
+//        return mysqli_real_escape_string($iConn,$var);
+//    } else {
+//        return "";
+//    }
+//
+//}//end idbIn()
+
+///***************************************************************************************
+// * Gets the elements from the Array parameter and generates an OR separated string
+// * used in the SQL statement to select multiple columns
+// * Returns a string
+//TODO: 
+// ***************************************************************************************/
+//function arrToSQLString($Arr) {
+//    $string = '';
+//    for ($i=0; $i<count($Arr)-1; $i++) {
+//        //load all the values of the array separated by OR
+//        $string .= "'$Arr[$i]' OR ";
+//    }//the last value will not ternimate with OR
+//    $string .= "'".$Arr[count($Arr)-1]."'";
+//    return $string;
+//}//end arrToString() 
+
+
+
+
+///**
+// * Creates a smart (sic) title from words present in the php file name (page)
+// *
+// * If no string is input, will take current PHP file name, strip of extension
+// * and replace "-" and "_" with spaces
+// *
+// * Will also title case first letter of significant words in title
+// *
+// * A comma separated string named $skip can be used to add/delete more
+// * words that are NOT title cased
+// *
+// * First word is always title case by default
+// *
+// * <code>
+// * $config->titleTag = smartTitle();
+// * </code>
+// *
+// * added version 2.07
+// *
+// * @param string $myTitle file name or etc to amend (optional)
+// * @return string converted title cased version of file name/string
+// * @todo none
+// */
+//function smartTitle($myTitle = '') {
+//    if ($myTitle == '') {
+//        $myTitle = THIS_PAGE;
+//    }
+//    $myTitle = strtolower(substr($myTitle, 0, strripos($myTitle, '.'))); #remove extension, lower case
+//    $separators = array("_", "-");  #array of possible separators to remove
+//    $myTitle = str_replace($separators, " ", $myTitle); #replace separators with spaces
+//    $myTitle = explode(" ",$myTitle); #create an array from the title
+//    $skip = "this|is|of|a|an|the|but|or|not|yet|at|on|in|over|above|under|below|behind|next to| beside|by|among|between|by|till|since|during|for|throughout|to|and|my";
+//    $skip = explode("|",$skip); # words to skip in title case
+//
+//    for($x=0;$x<count($myTitle);$x++) {
+//        //title case words not skipped
+//        if($x == 0 || !in_array($myTitle[$x], $skip)) {$myTitle[$x] = ucwords($myTitle[$x]);}
+//        //echo $word . '<br />';
+//    }
+//    return implode(" ",$myTitle); #return imploded (spaces re-added) version
+//}// End smartTitle()
+
+
+
+///**
+// * From: https://mrkmg.com/posts/php-function-to-generate-a-color-from-a-text-string
+// * Outputs a color (#000000) based Text input
+// *
+// * @param $text String of text
+// * @param $min_brightness Integer between 0 and 100
+// * @param $spec Integer between 2-10, determines how unique each color will be
+// */
+//function genColorCodeFromText($text,$min_brightness=100,$spec=10)
+//{
+//    // Check inputs
+//    if(!is_int($min_brightness)) throw new Exception("$min_brightness is not an integer");
+//    if(!is_int($spec)) throw new Exception("$spec is not an integer");
+//    if($spec < 2 or $spec > 10) throw new Exception("$spec is out of range");
+//    if($min_brightness < 0 or $min_brightness > 255) throw new Exception("$min_brightness is out of range");
+//
+//
+//    $hash = md5($text);  //Gen hash of text
+//    $colors = array();
+//    for($i=0;$i<3;$i++)
+//        $colors[$i] = max(array(round(((hexdec(substr($hash,$spec*$i,$spec)))/hexdec(str_pad('',$spec,'F')))*255),$min_brightness)); //convert hash into 3 decimal values between 0 and 255
+//
+//    if($min_brightness > 0)  //only check brightness requirements if min_brightness is about 100
+//        while( array_sum($colors)/3 < $min_brightness )  //loop until brightness is above or equal to min_brightness
+//            for($i=0;$i<3;$i++)
+//                $colors[$i] += 10;	//increase each color by 10
+//
+//    $output = '';
+//
+//    for($i=0;$i<3;$i++)
+//        $output .= str_pad(dechex($colors[$i]),2,0,STR_PAD_LEFT);  //convert each color to hex and append to output
+//
+//    return '#'.$output;
+//}
+
+
+///**
+// * @param $start
+// * @param $end
+// * @param int $entries
+// * @return array
+// */
+//function create_pallette($start, $end, $entries=10)
+//{
+//    $inc=($start - $end)/($entries-1);
+//    $out=array(0=>$start);
+//    for ($x=1; $x<$entries;$x++) {
+//        $out[$x]=$start+$inc * $x;
+//    }
+//    return $out;
+//}
 
 
 

@@ -1,10 +1,15 @@
 <?php
 //select_data.php
+/**
+ * This page allow the user to select the data from the database an then generate the Chart
+ **/
+
+
 include "functions.php";
 
 $errorMessaqe = (isset($_REQUEST['error'])) ?
-                '<h3 class="error">No value matches the selection: '.$_REQUEST['error'].'</h3>' :
-                '';
+                  '<h3 class="error">No value matches the selection: '.$_REQUEST['error'].'</h3>' :
+                  '';
 
 //HEADER
 include "includes/header_inc.php";
@@ -13,6 +18,7 @@ include "includes/header_inc.php";
 //###########  BODY ################//
 ?>
 
+<!-- ---------- new row template --------------- -->
 <script id="newRow" type="text/html">
     <tr>
         <td>
@@ -57,10 +63,14 @@ include "includes/header_inc.php";
             <label for="{{ index }}_scat" id="{{ index }}_scat">Yes</label>
         </td>
         <td>
-            <input type="text" class="date" name="sessionDate{{ index }}" placeholder="mmddyy" required/>
+            <input type="text" class="date" name="sessionDate{{ index }}" placeholder="mm-dd-yy" required/>
         </td>
     </tr>
 </script>
+<!-- ---------- end new row template --------------- -->
+
+
+
 
 
     <h1>Select data</h1>
@@ -135,11 +145,9 @@ include "includes/header_inc.php";
                 <b>Scattered light?</b>
                 <input type="checkbox" name="scattered0" id="0_scat" value="scattered">
                     <label for="0_scat" id="0_scat">Yes</label>
-<!--                <input type="checkbox" name="reference0" id="0_ref" value="reference">
-                    <label for="0_ref" id="0_ref">REF</label>
--->            </td>
+            </td>
             <td>
-                <input type="text" class="date" id="thisDate" name="sessionDate0" placeholder="mmddyy" required />
+                <input type="text" class="date" id="thisDate" name="sessionDate0" placeholder="mm-dd-yy" required />
                 <br>
                 <button type="button" id="sameDate">All with this date</button>
 
@@ -157,10 +165,6 @@ include "includes/header_inc.php";
 </form>
 
 <?=$errorMessaqe?>
-
-<!--<div>-->
-<!--    <button id="newUpload" class="newUpload" type="button">Upload new data</button>-->
-<!--</div>-->
 
 <?php
 //###########  END BODY ################//

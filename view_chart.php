@@ -1,17 +1,18 @@
 <?php
 //view_chart.php
+/**
+ * This page shows the selected data in a Google line chart
+ **/
+
 
 include "functions.php";
 define ('DEBUG', 'DEBUG');
-
-//dumpDie($_REQUEST);
 
 $measurementType = $_REQUEST['measurementType'];
 
 $linesToChart = array();
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
 
-//    $position = (isset($_REQUEST['position'.$i]) && $_REQUEST['position'.$i] != '') ? $_REQUEST['position'.$i] : '';
     $positions = $_REQUEST['position'.$i];
     $numbers = $_REQUEST['number'.$i];
     $scattered = (isset($_REQUEST['scattered'.$i]) && $_REQUEST['scattered'.$i] == 'scattered') ? '_SCAT' : '';
@@ -19,9 +20,8 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
 
     $selectedMeasures = array();
     $measureID = '';
-
-//    dump($positions);
-//    dumpDie($numbers);
+    
+    $sessionDate = str_replace("-", "", $_REQUEST['sessionDate' . $i]);
 
     if (is_array($positions)) {
         foreach ( $positions as $position ) {
@@ -29,10 +29,10 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
                 //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
                 $measureID = $position . '_' . $number . $scattered . $reference;
                 //generate the array of selected measures
-                $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+                $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $sessionDate);
                 //if no data available return to previous page with error message
                 if ($contentFromDB == false) {
-                    $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$_REQUEST['sessionDate' . $i].']';
+                    $errorMessage = '['.$_REQUEST['netColor' . $i].' '.$measureID.' '.$measurementType.' '.$sessionDate.']';
                     header('Location: select_data.php?action=Go&error='.$errorMessage);
                     exit();
                 }
@@ -44,16 +44,11 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
             //define the identification of the measure (like '1_3_SCAT', or 'N_2', or simply '_1')
             $position = $_REQUEST['position'.$i];
             $measureID = $position . '_' . $number . $scattered . $reference;
-            //dumpDie($measureID);
             //generate the array of selected measures
-//            dump($_REQUEST['netColor' . $i]);
-//            dump($measureID);
-//            dump($measurementType);
-//            dumpDie($_REQUEST['sessionDate' . $i]);
-            $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $_REQUEST['sessionDate' . $i]);
+            $contentFromDB = getMeasureFromDB($_REQUEST['netColor' . $i], $measureID, $measurementType, $sessionDate);
             //if no data available return to previous page with error message
             if ($contentFromDB == false) {
-                $errorMessage = '[' . $_REQUEST['netColor' . $i] . ' ' . $measureID . ' ' . $measurementType . ' ' . $_REQUEST['sessionDate' . $i] . ']';
+                $errorMessage = '[' . $_REQUEST['netColor' . $i] . ' ' . $measureID . ' ' . $measurementType . ' ' . $sessionDate . ']';
                 header('Location: select_data.php?action=Go&error=' . $errorMessage);
                 exit();
             }
@@ -70,18 +65,17 @@ for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
     }
 }
 
-//dumpDie($linesToChart);
 
 $chartTitle = $measurementType;
 //if all the lines in the chart come from the same session date, add this to the title
 $allSameDate = true;
 for ($i=0; $i < $_REQUEST['linesToChart']; $i++) {
-    if ($_REQUEST['sessionDate0'] !=  $_REQUEST['sessionDate'.$i]) {
+    if (str_replace("-", "", $_REQUEST['sessionDate0']) != $sessionDate) {
         $allSameDate = false;
     }
 }
 if ($allSameDate) {
-    $chartTitle .= '  -  ' . implode(".", str_split($_REQUEST['sessionDate0'], 2));
+    $chartTitle .= '  -  ' . implode(".", str_split(str_replace("-", "", $_REQUEST['sessionDate0']), 2));
 }
 //if all measures come from the same location, add this to the title
 $measuresInQuincy = 0;
@@ -101,7 +95,6 @@ $chartTitle .= $location;
 
 //create the Chart object
 $Chart = new Chart($chartTitle, $measurementType, $linesToChart); //$selectedMeasures
-//dumpDie($Chart);
 //from the Chart obj generate the data table for the charting tool
 $dataTable = generateDataTable($Chart);
 //dumpDie($dataTable);
@@ -144,6 +137,7 @@ include "includes/header_inc.php";
             function drawChart() {
 
                 // Create the DATA TABLE.
+                /** at the moment the data from the db is loaded here from PHP */
                 var dataTable = google.visualization.arrayToDataTable([<?=$dataTable?>]);
 
 /*
@@ -180,7 +174,7 @@ include "includes/header_inc.php";
                     darkGrey = '#444444',   lightGrey = '#FEFEFE',
                     darkYellow = '#D48D00', lightYellow = '#88BF00', //E16C00 97D400
                     darkGreen = '#016F25', lightGreen = '#C0DC9D', //if necessary in the future
-                   steps = 18; //number of shades per color wheel
+                    steps = 18; //number of shades per color wheel
 
                 //create color palette objs
                 var blueHue = new KolorWheel(darkBlue).abs(lightBlue, steps);
@@ -387,24 +381,23 @@ include "includes/header_inc.php";
 
 
 /**
- *
+ * gets the data from IRR_Data_year table, limiting the spectrum Wavelength between 299.5 and 1000.5
  *
  * @param $netColor
  * @param $position
  * @param $measurementType
  * @param $sessionDate
- * @return bool|Measure
+ * @return boolean|Measure - returns a Measure obj or false if unsuccessful
  *
- * TODO
  */
 function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) {
+    $year = date('Y');
+    $sessionDate = str_replace("-", "", $sessionDate); // 11-03-15 -> '110315'
+
     $sql = "SELECT Wavelength, Amplitude
-            FROM t_IRR_Data
+            FROM IRR_Data_". $year."
             WHERE
-             Wavelength > 299.5 AND Wavelength < 1000.5 AND
-
-            -- Wavelength > 225 AND Wavelength < 241 AND
-
+            Wavelength > 299.5 AND Wavelength < 1000.5 AND
             NetColor = '".$netColor."' AND
             Position = '".$position."' AND
             MeasurementType = '".$measurementType."' AND
@@ -423,11 +416,12 @@ function getMeasureFromDB($netColor, $position, $measurementType, $sessionDate) 
 
         $i=0;
         while ($row = mysqli_fetch_assoc($result)) {
-            //              [$Wavelength][$Amplitude]
-            //valuesArr[0][]    225        7834
-            //valuesArr[1][]    300        2645
-            //valuesArr[2][]    305        4975
-            //valuesArr[..][]    ..         ..
+            /**              [$Wavelength][$Amplitude]
+             * valuesArr[0][]    225        7834
+             * valuesArr[1][]    300        2645
+             * valuesArr[2][]    305        4975
+             * valuesArr[..][]    ..         ..
+             */
             $Measure->setWavelength($i, dbOut($row["Wavelength"]));
             $Measure->setAmplitude($i, dbOut($row["Amplitude"]));
 

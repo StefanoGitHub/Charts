@@ -4,16 +4,13 @@
 /**
  * This page allow the user to select the data files from a directory and upload them into the database
  *
- * TODO:
- * - Implement directory/file selection
- * - implement database selection
+ * TODO: implement directory/file selection
+ * TODO: implement database selection
  *
  **/
 
-
 include "functions.php";
 define ('DEBUG', 'DEBUG');
-
 if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Action = "";}
 
 
@@ -22,8 +19,8 @@ include "includes/header_inc.php";
 
 //###########  BODY ################//
 
-    switch ($Action)
-    {//check 'action' for type of process
+    //check 'action' for type of process
+    switch ($Action) {
         case "upload": //upload selected file(s)
             if (isset($_REQUEST['files']) && count($_REQUEST['files'])>0) {
                 //display files if any has been selected
@@ -42,17 +39,17 @@ include "includes/header_inc.php";
             //Show existing projects
             $fileList = getFileList("_data");
             displayFileList($fileList);
-//            echo '
-//                <div>
-//                    <button id="reload" class="reload" type="button">Reload page</button>
-//                </div>
-//            ';
+
     }//end switch
 
 //###########  END BODY ################//
 
 //FOOTER
 include "includes/footer_inc.php";
+
+
+
+
 
 
 /***************************************************************************************
@@ -79,12 +76,10 @@ function uploadFiles() {
             $valuesArr = getLinesFromFile('_data/'.$_REQUEST['fileList'.$r]);
             $netColor = $_REQUEST['netColor'.$r];
 
-
             $position = $_REQUEST['measurePosition'.$r].$number.$scattered.$reference;
 
-
             $measurementType = $_REQUEST['measureType' . $r];
-            $sessionDate = $_REQUEST['measureDate'];
+            $sessionDate = str_replace("-", "", $_REQUEST['measureDate']); ; // 11-03-15 -> '110315'
 
             $Measure[$i] = new Measure($valuesArr, $netColor, $position, $measurementType, $sessionDate);
             $insertOK = insertExecute(
@@ -95,21 +90,34 @@ function uploadFiles() {
                 $Measure[$i]->sessionDate
             );
             if ($insertOK) {
-                echo '<h3>' . $_REQUEST['fileList'.$r] . ' uploaded successfully!</h3>';
+                echo '<h3>' .$_REQUEST['fileList'.$r]. ' [' .$_REQUEST['measureDate']. '] uploaded successfully! 
+                         <i class="fa fa-smile-o"></i>
+                      </h3>';
             } else {
-                echo '<h3>' . $_REQUEST['fileList'.$r] . ' NOT uploaded :(</h3>';
+                echo '<h3>' . $_REQUEST['fileList'.$r] . ' NOT uploaded 
+                         <i class="fa fa-frown-o"></i>
+                      </h3>';
             }
         } else {
-            echo '<h3>' . $_REQUEST['fileList'.$r] . ' NOT uploaded :(</h3>';
+            echo '<h3>' . $_REQUEST['fileList'.$r] . ' NOT uploaded 
+                     <i class="fa fa-frown-o"></i>
+                  </h3>';
         }
     }
 }//end uploadFiles()
 
 
 /***************************************************************************************
- * Dysplays the list of file in the folder and allow the user to select the file(s) to upload.
- * Returns POST [ "files" (array of strings), "netColor#" (string), "measurePosition#" (string), "measureType" (string), measureDate#" (string) and "action#" (=upload) ]
-TODO: vaildate text input from form
+ * Displays the list of file in the '_data' folder and allow the user to select the file(s) to upload.
+ * Returns POST [
+ *      "files" (array of strings),
+ *      "netColor#" (string),
+ *      "measurePosition#" (string),
+ *      "measureType" (string),
+ *      measureDate#" (string),
+ *      "action#" (=upload)
+ * ]
+ * TODO: vaildate text input from form
  ***************************************************************************************/
 function displayFileList($fileList) {
 //Show the list of files and a way to select one or more to upload
@@ -122,16 +130,15 @@ function displayFileList($fileList) {
         </p>
     ';
 
-
+    //if at least one file in the list, show results
     if (!empty($fileList)) {
-        //if at least one file in the list, show results
         echo '<form id="upload" name="upload" action="' . THIS_PAGE . '" method="post">
             <table>
                 <tr>
                     <th>Measurement date</th>
                 </tr>
                 <tr>
-                    <td><input type="text" name="measureDate" placeholder="mmddyy" required /></td>
+                    <td><input type="text" name="measureDate" placeholder="mm-dd-yy" required /></td>
                 </tr>
             </table>
             <br>
@@ -158,8 +165,9 @@ function displayFileList($fileList) {
                     </div>
                 </th>
 			</tr>';
+
+        //create a line for each file in the folder
         for ($i=0; $i<count($fileList); $i++) {
-            //create a line for each file in the folder
             echo '<tr>
                 <td><input type="checkbox" id="'.($i+2).'" class="select_checkbox" name="files[]" value="'.$i.'"></td>
                 <td class="file">'.$fileList[$i].'
@@ -214,13 +222,10 @@ function displayFileList($fileList) {
             </tr>
             ';
         }
-        echo '</table>
-            <!-- <div>
-                <input type="submit" class="upload" name="action" value="Upload!">
-            </div> -->
 
+        echo '</table>
             <div class="submit_button">
-                <button id="upload_button" type="submit" form="upload" value="Submit">
+                <button id="upload_button" type="submit" form="upload" name="action" value="upload">
                     Upload <i class="fa fa-arrow-right"></i> <i class="fa fa-database"></i>
                 </button>
             </div>
@@ -264,4 +269,52 @@ function getFileList($directory) {
     }
 }//end getFileList()
 
+/***************************************************************************************
+ * Inserts the data from an array of value pairs in the db table `IRR_Data_year`
+ * Returns TRUE if insertion successful, FALSE otherwise
+ ***************************************************************************************/
+function insertExecute($dataArr, $netColor, $position, $measurementType, $sessionDate) {
+
+    $year = date('Y');
+    //define meanings for dataArr values based on position in the array
+    $Wavelength = 0;
+    $Amplitude = 1;
+    //ID, Wavelength, Amplitude, NetColor, MeasurementType, SessionDate
+    $sql = "INSERT INTO `IRR_Data_". $year."` VALUES ";
+
+    for ( $i = 0; $i < count($dataArr) - 1; $i++ ) {
+        //add all the couples of data
+        $sql .= "(
+            " . $dataArr[$i][$Wavelength] . ", 
+            " . $dataArr[$i][$Amplitude] . ", 
+            '$netColor', 
+            '$position', 
+            '$measurementType', 
+            '$sessionDate' ), ";
+    }
+    //the last row will not end with comma
+    if (count($dataArr) - 1 > 0) {
+        $sql .= "(
+        " . $dataArr[count($dataArr) - 1][0] . ",
+        " . $dataArr[count($dataArr) - 1][1] . ",
+        '$netColor',
+        '$position',
+        '$measurementType',
+        '$sessionDate' );";
+    } else {
+        $sql .= "(
+        " . $dataArr[0][0] . ",
+        " . $dataArr[0][1] . ",
+        '$netColor',
+        '$position',
+        '$measurementType',
+        '$sessionDate' );";
+    }
+
+    $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die(myerror(__FILE__, __LINE__, mysqli_connect_error()));
+    $result = mysqli_query($iConn, $sql) or die(myerror(__FILE__, __LINE__, mysqli_error($iConn)));
+    mysqli_close($iConn);
+
+    return $success = ($result = 1) ? TRUE : FALSE;
+}
 

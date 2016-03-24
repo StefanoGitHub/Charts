@@ -1,9 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.4.10
--- http://www.phpmyadmin.net
---
--- Host: localhost:3306
--- Generation Time: Feb 20, 2016 at 06:33 PM
+-- phpMyAdmin SQL
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -21,7 +16,6 @@ USE `Charts`;
 --
 -- Table structure for table `t_IRR_Data`
 --
-
 CREATE TABLE IF NOT EXISTS `t_IRR_Data` (
   `Wavelength` decimal(15,7) NOT NULL,
   `Amplitude` decimal(15,7) NOT NULL,
@@ -31,9 +25,6 @@ CREATE TABLE IF NOT EXISTS `t_IRR_Data` (
   `SessionDate` varchar(30) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `t_IRR_Data`

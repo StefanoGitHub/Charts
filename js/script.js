@@ -1,11 +1,4 @@
-/**
- * Created by Stefano on 9/1/15.
- *
- * icanhaz.js
- *
- *
- *
- */
+//script.js
 "use strict";
 
 //add new row at the bottom of the table
