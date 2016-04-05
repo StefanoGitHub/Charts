@@ -124,10 +124,15 @@ function displayFileList($fileList) {
 
     echo '
         <h1>Select file(s) to upload</h1>
-        <p>File inside the "<b>_data</b>" folder, located in the root of the program, will be automatically
-        displayed in the panel; if the proper naming convention is respected, the form will be automatically pre-filled.
-        <b>Please verify the auto-filled data before upload</b>.
-        </p>
+        
+        <div class="select_file_heder">
+            <p class="select_file_heder">File inside the "<b>_data</b>" folder, located in the root of the program, will be automatically
+            displayed in the panel; if the proper naming convention is respected, the form will be automatically pre-filled.
+            <b>Please verify the auto-filled data before upload</b>.
+            </p>
+            
+            <img id="nomenclature" src="images/file_nomenclature.png">
+        </div>
     ';
 
     //if at least one file in the list, show results
@@ -138,7 +143,7 @@ function displayFileList($fileList) {
                     <th>Measurement date</th>
                 </tr>
                 <tr>
-                    <td><input type="text" name="measureDate" placeholder="mm-dd-yy" required /></td>
+                    <td><input type="text" name="measureDate" class="date" placeholder="mm-dd-yy" required /></td>
                 </tr>
             </table>
             <br>
@@ -185,10 +190,10 @@ function displayFileList($fileList) {
                         <option value="White">White TFREC</option>
                         <option value="White1Q">White1 Quincy</option>
                         <option value="White2Q">White2 Quincy</option>
-                        <option value="OpenField">Open Field TFREC</option>
-                        <option value="OpenFieldQ">Open Field Quincy</option>
-                        <option value="Ctrl">Ctrl TFREC</option>
-                        <option value="CtrlQ">CtrlQ</option>
+                        <option value="OpFld">Open Field TFREC</option>
+                        <option value="OpFldQ">Open Field Quincy</option>
+                        <!-- <option value="Ctrl">Ctrl TFREC</option>
+                        <option value="CtrlQ">CtrlQ</option> -->
                     </select>
                 </td>
 
@@ -215,7 +220,8 @@ function displayFileList($fileList) {
                 <td class="measureType">
                     <input type="radio" name="measureType'.$i.'" class="irradiance" value="Irradiance" >.IRR
                     <input type="radio" name="measureType'.$i.'" class="transmittance" value="Transmittance">.TRM
-                    <input type="radio" name="measureType'.$i.'" class="reference" value="Reference">.SSM (Light Ref)
+                    <!-- <input type="radio" name="measureType'.$i.'" class="reference" value="Reference">
+                    .SSM (Light Ref) -->
                 </td>
                 
                 <!-- <td><input type="text" name="measureDate'.$i.'" placeholder="mmddyy" /></td> -->

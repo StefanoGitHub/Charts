@@ -3,7 +3,7 @@ body {
     margin: 0 auto;
     font: normal .9em/1.5em Arial, Helvetica, sans-serif;
     background: #ebebeb;
-    min-width: 600px;
+    min-width: 850px;
     color: rgba(0, 0, 0, .8);
 }
 
@@ -26,11 +26,27 @@ p {
     width: 100%;
     max-width: 900px;
 }
+
+p.select_file_heder {
+    margin: 2em 2.7em 2em 0;
+    text-align: justify;
+    width: 390px;
+    float: left;
+}
+
+div.select_file_heder {
+    margin: 0 auto 1em;
+    width: 850px;
+}
 td, tr, th {
     text-align: center;
     border: grey solid 1px;
     font-size: 0.9em;
     padding: 0.5em;
+}
+
+img#nomenclature {
+    width: 420px;
 }
 
 table {

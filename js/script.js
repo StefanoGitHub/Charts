@@ -203,9 +203,9 @@ $( document ).ready(function() {
             case 'TRM':
                 measureType = 'Transmittance';
                 break;
-            case 'SSM':
-                measureType = 'Reference';
-                break;
+            // case 'SSM':
+            //     measureType = 'Reference';
+            //     break;
             case 'IRR':
                 measureType = 'Irradiance';
                 break;

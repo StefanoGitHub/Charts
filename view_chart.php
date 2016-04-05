@@ -240,13 +240,13 @@ include "includes/header_inc.php";
                                 whiteLines = 0;
                             }
                             break;
-                       case 'ctrl':
-                            colorSeriesArr.push(yellowPalette[yellowLines]);
-                            yellowLines++;
-                            if (yellowLines == yellowPalette.length) {
-                                yellowLines = 0;
-                            }
-                            break;
+//                       case 'ctrl':
+//                            colorSeriesArr.push(yellowPalette[yellowLines]);
+//                            yellowLines++;
+//                            if (yellowLines == yellowPalette.length) {
+//                                yellowLines = 0;
+//                            }
+//                            break;
                         case 'openfield':
                             colorSeriesArr.push(greenPalette[greenLines]);
                             greenLines++;

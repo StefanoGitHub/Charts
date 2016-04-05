@@ -33,10 +33,10 @@ include "includes/header_inc.php";
                 <option value="White">White TFREC</option>
                 <option value="White1Q">White1 Quincy</option>
                 <option value="White2Q">White2 Quincy</option>
-                <option value="OpenField">Open Field TFREC</option>
-                <option value="OpenFieldQ">Open Field Quincy</option>
-                <option value="Ctrl">Ctrl TFREC</option>
-                <option value="CtrlQ">CtrlQ</option>
+                <option value="OpFld">Open Field TFREC</option>
+                <option value="OpFldQ">Open Field Quincy</option>
+<!--                <option value="Ctrl">Ctrl TFREC</option>-->
+<!--                <option value="CtrlQ">CtrlQ</option>-->
             </datalist>
         </td>
         <td>
@@ -81,16 +81,16 @@ include "includes/header_inc.php";
 
     <table>
         <tr>
-            <th>Measurement type</th>
+            <th>Data type</th>
         </tr>
         <tr>
             <td class="measureType" >
                 <input type="radio" name="measurementType" id="IRR" value="Irradiance" required>
-                    <label for="IRR" id="IRR_label">.IRR</label>
+                    <label for="IRR" id="IRR_label">Spectrum</label>
                 <input type="radio" name="measurementType" id="TRM" value="Transmittance">
-                    <label for="TRM" id="TRM_label">.TRM</label>
-                <input type="radio" name="measurementType" id="SSM" value="Reference">
-                    <label for="SSM" id="SSM_label">.SSM (Light Ref)</label>
+                    <label for="TRM" id="TRM_label">Transmittance</label>
+<!--                <input type="radio" name="measurementType" id="SCTR" value="Reference">-->
+<!--                    <label for="SCTR" id="SCTR_label">Scattering</label>-->
             </td>
         </tr>
     </table>
@@ -117,10 +117,10 @@ include "includes/header_inc.php";
                     <option value="White">White TFREC</option>
                     <option value="White1Q">White1 Quincy</option>
                     <option value="White2Q">White2 Quincy</option>
-                    <option value="OpenField">Open Field TFREC</option>
-                    <option value="OpenFieldQ">Open Field Quincy</option>
-                    <option value="Ctrl">Ctrl TFREC</option>
-                    <option value="CtrlQ">CtrlQ</option>
+                    <option value="OpFld">Open Field TFREC</option>
+                    <option value="OpFldQ">Open Field Quincy</option>
+<!--                    <option value="Ctrl">Ctrl TFREC</option>-->
+<!--                    <option value="CtrlQ">CtrlQ</option>-->
                 </datalist>
             </td>
             <td>
