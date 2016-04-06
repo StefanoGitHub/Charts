@@ -252,6 +252,7 @@ function startSession() {
 //} //End startSession()
 
 
+//myerror(__FILE__, __LINE__, mysqli_error($iConn))
 function myerror($myFile, $myLine, $errorMsg)
 {
     if(defined('DEBUG') && DEBUG) {

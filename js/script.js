@@ -73,29 +73,6 @@ $("#table2").on("click", "input:checkbox.NA", function() {
 
 
 
-
-//submit the form if at least one file were selected
-$('#upload').submit(function () {
-    var files = document.getElementsByName("files[]");
-    var anySelected = false;
-    //check that at least one file were selected
-    for (var i=0; i<files.length; i++) {
-        if (files[i].checked) {
-            anySelected = true;
-        }
-    }
-    // prevent to submit if no file were selected.
-    if (anySelected) {
-        // reset and allow the form to submit
-        document.getElementById("error").innerHTML = "";
-        return true;
-    } else {
-        document.getElementById("error").innerHTML = "Please select at least one file";
-        //stop the form from submitting
-        return false;
-    }
-});
-
 //redirect to select_data page
 $('#newChart').click(function () {
     //redirect to page

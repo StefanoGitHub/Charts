@@ -7,9 +7,7 @@
 
 include "functions.php";
 
-$errorMessaqe = (isset($_REQUEST['error'])) ?
-                  '<h3 class="error">No value matches the selection: '.$_REQUEST['error'].'</h3>' :
-                  '';
+$errorMessaqe = (isset($_REQUEST['error'])) ? 'No value matches the selection: '.$_REQUEST['error'] : '';
 
 //HEADER
 include "includes/header_inc.php";
@@ -22,7 +20,7 @@ include "includes/header_inc.php";
 <script id="newRow" type="text/html">
     <tr>
         <td>
-            <input list="netColor{{ index }}" name="netColor{{ index }}" class="datalist">
+            <input list="netColor{{ index }}" name="netColor{{ index }}" class="datalist" required>
             <datalist id="netColor{{ index }}">
                 <option value="Blue">Blue TFREC</option>
                 <option value="Blue1Q">Blue1 Quincy</option>
@@ -40,22 +38,22 @@ include "includes/header_inc.php";
             </datalist>
         </td>
         <td>
-            <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos1" value="N">
-            <label for="{{ index }}_pos1" id="{{ index }}_N">North</label>
-            <input type="checkbox" name="position{{ index }}[]" id="{{ index }}_pos2" value="S">
-            <label for="{{ index }}_pos2" id="{{ index }}_S">South</label>
-            <input type="checkbox" class="NA" name="position{{ index }}" id="{{ index }}_pos3" value="_">
-            <label for="{{ index }}_pos3" id="{{ index }}_posNA">N/A</label>
+            <input type="checkbox" name="position{{ index }}[]" data-check="pos" id="{{ index }}_pos1" value="N">
+                <label for="{{ index }}_pos1" id="{{ index }}_N">North</label>
+            <input type="checkbox" name="position{{ index }}[]" data-check="pos" id="{{ index }}_pos2" value="S">
+                <label for="{{ index }}_pos2" id="{{ index }}_S">South</label>
+            <input type="checkbox" class="NA" name="position{{ index }}" data-check="pos" id="{{ index }}_pos3" value="_">
+                <label for="{{ index }}_pos3" id="{{ index }}_posNA">N/A</label>
             <br class="moreSpace">
 
-            <b>AVG samples:</b> <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num1" value="1">
-            <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
-            <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num2" value="2">
-            <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
-            <input type="checkbox" name="number{{ index }}[]" id="{{ index }}_num3" value="3">
-            <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
-            <input type="checkbox" class="all" name="number{{ index }}all" id="{{ index }}_all" value="">
-            <label for="{{ index }}_all" id="{{ index }}_numAll">All</label>
+            <b>AVG samples:</b> <input type="checkbox" name="number{{ index }}[]" data-check="num" id="{{ index }}_num1" value="1" >
+                <label for="{{ index }}_num1" id="{{ index }}_1st">1st</label>
+            <input type="checkbox" name="number{{ index }}[]" data-check="num" id="{{ index }}_num2" value="2">
+                <label for="{{ index }}_num2" id="{{ index }}_2nd">2nd</label>
+            <input type="checkbox" name="number{{ index }}[]" data-check="num" id="{{ index }}_num3" value="3">
+                <label for="{{ index }}_num3" id="{{ index }}_3dr">3dr</label>
+            <input type="checkbox" class="all" name="number{{ index }}all" data-check="num" id="{{ index }}_all" value="">
+                <label for="{{ index }}_all" id="{{ index }}_numAll">All</label>
             <br class="moreSpace">
 
             <b>Scattered light?</b>
@@ -77,7 +75,7 @@ include "includes/header_inc.php";
     <p>Fill each and every field of the form to chart the data.</p>
 
 
-<form action="view_chart.php" id="select" method="get">
+<form action="show_chart.php" id="select" method="get">
 
     <table>
         <tr>
@@ -106,7 +104,7 @@ include "includes/header_inc.php";
         </tr>
         <tr>
             <td>
-                <input list="netColor0" name="netColor0" class="datalist">
+                <input list="netColor0" name="netColor0" class="datalist" required>
                 <datalist id="netColor0">
                     <option value="Blue">Blue TFREC</option>
                     <option value="Blue1Q">Blue1 Quincy</option>
@@ -124,21 +122,21 @@ include "includes/header_inc.php";
                 </datalist>
             </td>
             <td>
-                <input type="checkbox" name="position0[]" id="0_pos1" value="N">
+                <input type="checkbox" name="position0[]" data-check="pos" id="0_pos1" value="N" >
                     <label for="0_pos1" id="0_N">North</label>
-                <input type="checkbox" name="position0[]" id="0_pos2" value="S" >
+                <input type="checkbox" name="position0[]" data-check="pos" id="0_pos2" value="S" >
                     <label for="0_pos2" id="0_S">South</label>
-                <input type="checkbox" class="NA" name="position0" id="0_pos3" value="_" >
+                <input type="checkbox" class="NA" name="position0" data-check="pos" id="0_pos3" value="_" >
                     <label for="0_pos3" id="0_posNA">N/A</label>
                 <br class="moreSpace">
 
-                <b>AVG samples:</b> <input type="checkbox" name="number0[]" id="0_num1" value="1" >
+                <b>AVG samples:</b> <input type="checkbox" name="number0[]" data-check="num" id="0_num1" value="1" >
                     <label for="0_num1" id="0_1st">1st</label>
-                <input type="checkbox" name="number0[]" id="0_num2" value="2">
+                <input type="checkbox" name="number0[]" data-check="num" id="0_num2" value="2">
                     <label for="0_num2" id="0_2nd">2nd</label>
-                <input type="checkbox" name="number0[]" id="0_num3" value="3">
+                <input type="checkbox" name="number0[]" data-check="num" id="0_num3" value="3">
                     <label for="0_num3" id="0_3dr">3dr</label>
-                <input type="checkbox" class="all" name="number0_all" id="0_all" value="" >
+                <input type="checkbox" class="all" name="number0_all" data-check="num" id="0_all" value="" >
                     <label for="0_all" id="0_numAll">All</label>
                 <br class="moreSpace">
 
@@ -157,14 +155,16 @@ include "includes/header_inc.php";
     <input id="linesToChart" type="hidden" name="linesToChart" value="1">
 
     <div class="submit_button">
-        <button id="chart_button" type="submit" form="select" value="Submit">
+        <!--input necessary for the validation on button click-->
+        <input type="hidden" value="Submit">
+        <button id="chart_button" type="submit" form="select">
             Chart <i class="fa fa-arrow-right"></i> <i class="fa fa-line-chart fa-fw"></i>
         </button>
     </div>
 
 </form>
 
-<?=$errorMessaqe?>
+    <h3 class="error" id="error"><?=$errorMessaqe?></h3>
 
 <?php
 //###########  END BODY ################//
