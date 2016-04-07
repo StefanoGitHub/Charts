@@ -18,8 +18,7 @@ if(isset($_REQUEST['action'])){$Action = (trim($_REQUEST['action']));}else{$Acti
 include "includes/header_inc.php";
 
 //###########  BODY ################//
-
-    //check 'action' for type of process
+//check 'action' for type of process
     switch ($Action) {
         case "upload": //upload selected file(s)
             if (isset($_REQUEST['files']) && count($_REQUEST['files'])>0) {
@@ -32,7 +31,6 @@ include "includes/header_inc.php";
                 displayFileList($fileList);
                 echo '<div class="error" id="error">Please select at least one file</a></div>';
                 echo '<div class="reload"><a href="' . THIS_PAGE . '">Reload page</a></div>';
-
             }
             break;
         default:
@@ -82,23 +80,29 @@ function uploadFiles() {
             $sessionDate = str_replace("-", "", $_REQUEST['measureDate']); ; // 11-03-15 -> '110315'
 
             $Measure[$i] = new Measure($valuesArr, $netColor, $position, $measurementType, $sessionDate);
-            $insertOK = insertExecute(
+            $result = insertExecute(
                 $Measure[$i]->valuesArr,
                 $Measure[$i]->netColor,
                 $Measure[$i]->position,
                 $Measure[$i]->measurementType,
                 $Measure[$i]->sessionDate
             );
-            if ($insertOK) {
+
+            if ($result === true) {
                 echo '<h3>' .$_REQUEST['fileList'.$r]. ' [' .$_REQUEST['measureDate']. '] uploaded successfully! 
                          <i class="fa fa-smile-o"></i>
                       </h3>';
             } else {
-                echo '<h3>' . $_REQUEST['fileList'.$r] . ' NOT uploaded 
-                         <i class="fa fa-frown-o"></i>
+                //check if the data was already in the DB, i.e. if the error contains 'Duplicate entry'
+                $errorMsg = (strpos($result , 'Duplicate entry') !== FALSE) ? 'Data already in the database!' : '';
+                echo '<h3 class="error">' . $_REQUEST['fileList'.$r] . ' NOT uploaded 
+                         <i class="fa fa-frown-o"></i> <br>
+                         '. $errorMsg .'
                       </h3>';
             }
-        } else {
+        }
+        //probably this is never used...
+        else {
             echo '<h3>' . $_REQUEST['fileList'.$r] . ' NOT uploaded 
                      <i class="fa fa-frown-o"></i>
                   </h3>';
@@ -231,10 +235,12 @@ function displayFileList($fileList) {
 
         echo '</table>
             <div class="submit_button">
-                <button id="upload_button" type="submit" form="upload" name="action" value="upload">
+                <input type="hidden" name="action" value="upload">
+                <button id="upload_button" type="submit" form="upload" >
                     Upload <i class="fa fa-arrow-right"></i> <i class="fa fa-database"></i>
                 </button>
             </div>
+            <h3 class="error" id="error"></h3>
 
         </form>
 
@@ -277,10 +283,9 @@ function getFileList($directory) {
 
 /***************************************************************************************
  * Inserts the data from an array of value pairs in the db table `IRR_Data_year`
- * Returns TRUE if insertion successful, FALSE otherwise
+ * Returns TRUE if insertion successful, the error string otherwise
  ***************************************************************************************/
 function insertExecute($dataArr, $netColor, $position, $measurementType, $sessionDate) {
-
     $year = date('Y');
     //define meanings for dataArr values based on position in the array
     $Wavelength = 0;
@@ -318,9 +323,10 @@ function insertExecute($dataArr, $netColor, $position, $measurementType, $sessio
     }
 
     $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die(myerror(__FILE__, __LINE__, mysqli_connect_error()));
-    $result = mysqli_query($iConn, $sql) or die(myerror(__FILE__, __LINE__, mysqli_error($iConn)));
+//    $result = mysqli_query($iConn, $sql) or die(myerror(__FILE__, __LINE__, mysqli_error($iConn)));
+    $result = (mysqli_query($iConn, $sql) == TRUE) ? TRUE : mysqli_error($iConn);
     mysqli_close($iConn);
 
-    return $success = ($result = 1) ? TRUE : FALSE;
+    return $result;
 }
 
