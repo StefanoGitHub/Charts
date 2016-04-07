@@ -4,29 +4,32 @@
 $navLinks = array();
 $navLinks['upload.php'] = "Upload Data";
 $navLinks['select_data.php'] = "Select Data";
+//$navLinks['scattering.php'] = "Scattering";
 $navLinks['show_chart.php'] = "Chart";
 
 $navIcons = array();
 $navIcons['upload.php'] = '<i class="fa fa-upload fa-fw"></i> ';
 $navIcons['select_data.php'] = '<i class="fa fa-table fa-fw"></i> ';
+//$navIcons['scattering.php'] = '<i class="fa fa-arrows-alt fa-fw"></i> ';
 $navIcons['show_chart.php'] = '<i class="fa fa-line-chart fa-fw"></i> ';
 
 
 function makeLinks($Array, $icons) {
     $myReturn = "";
-    $arrow_count = 0;
-    $arrow = ' <span><i class="fa fa-arrow-right"></i></span> ';
+    //$arrow_count = 0;
+    //$arrow = ' <span><i class="fa fa-arrow-right"></i></span> ';
     foreach ( $Array as $url => $text ) {
         $url == THIS_PAGE ? $current = ' class="current" ' : $current = '';
         $url == 'show_chart.php' ? $href = '' : $href = 'href = "'.$url.'"';
         $url == 'show_chart.php' ? $id = ' id="chart" ' : $id = '';
         //dumpDie($href);
         $myReturn .= '<li' . $current . $id . '><a '. $href.'>' . $icons[$url] . $text . '</a></li>';
-        if ($arrow_count < 2) {
-            $myReturn .= $arrow;
-            $arrow_count++;
-        }
+//        if ($arrow_count < 2) {
+//            $myReturn .= $arrow;
+//            $arrow_count++;
+//        }
     }
+
     return $myReturn;
 }
 

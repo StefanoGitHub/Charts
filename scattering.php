@@ -1,15 +1,17 @@
 <?php
-//select_data.php
+//scattering.php
 /**
- * This page allow the user to select the data from the database an then generate the Chart
- **/
+ * 
+ * **/
 
 include "functions.php";
-$errorMessaqe = (isset($_REQUEST['error'])) ? 'No value matches the selection: '.$_REQUEST['error'] : '';
+
 
 //HEADER
 include "includes/header_inc.php";
 //data.php?oRequest=<?php echo json_encode($_REQUEST)? >
+
+$errorMessaqe = (isset($_REQUEST['error'])) ? 'No value matches the selection: '.$_REQUEST['error'] : '';
 
 //###########  BODY ################//
 ?>

@@ -4,7 +4,6 @@
  * This page shows the selected data in a Google line chart
  **/
 
-
 include "functions.php";
 define ('DEBUG', 'DEBUG');
 
